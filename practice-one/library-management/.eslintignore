@@ -1,5 +1,0 @@
-node_modules/
-build/
-commitlint.config.js
-vite-env.d.ts
-*stories.tsx
