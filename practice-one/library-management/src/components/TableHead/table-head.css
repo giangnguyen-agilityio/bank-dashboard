@@ -1,0 +1,30 @@
+.table-header {
+  margin: 15px 0;
+  background: var(--bg-introduction-color);
+  color: var(--secondary-text-color);
+}
+
+.table-header-cell {
+  text-align: center;
+  padding: 15px;
+  width: 25%;
+}
+
+.table-header-cell:first-child,
+.table-header-cell:nth-child(2),
+.table-header-cell:nth-child(3) {
+  width: 15%;
+}
+
+/* Media Query for Tablets and Smaller Screens */
+@media only screen and (max-width: 768px) {
+  .table-header {
+    display: none;
+  }
+
+  .table-header-row {
+    border-bottom: 3px solid var(--primary-color);
+    display: block;
+    margin-bottom: 15px;
+  }
+}

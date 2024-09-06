@@ -1,0 +1,6 @@
+.logo {
+  font-size: 26px;
+  font-family: var(--primary-font);
+  color: var(--primary-color);
+  cursor: pointer;
+}

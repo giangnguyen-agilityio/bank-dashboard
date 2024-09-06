@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SocialLink component renders link with correct attributes 1`] = `
+<div>
+  <a
+    href="/"
+  >
+    <img
+      alt="Social Icon"
+      class="chakra-image css-eqjwk7"
+      src="icon-url"
+    />
+  </a>
+</div>
+`;
