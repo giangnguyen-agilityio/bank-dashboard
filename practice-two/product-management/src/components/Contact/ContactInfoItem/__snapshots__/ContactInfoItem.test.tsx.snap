@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactInfoItem component renders correctly 1`] = `
+<div>
+  <address
+    class="css-1gfsowa"
+  >
+    <div
+      class="css-wkpw2c"
+    >
+      <img
+        alt="Contact Title icon"
+        class="chakra-image css-1wsuzl7"
+        src="icon-url"
+      />
+      <p
+        class="chakra-text css-1xtp2ig"
+      >
+        Contact Title
+      </p>
+    </div>
+    Contact Content
+  </address>
+</div>
+`;
