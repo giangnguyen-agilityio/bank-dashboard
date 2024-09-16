@@ -1,0 +1,2 @@
+cd  practice-three/bank-dashboard
+pnpm test && pnpm build

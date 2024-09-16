@@ -1,12 +1,16 @@
 # Bank Dashboard
 
-# Overview
+## 📝 Overview
 
 - This document is intended to describe the requirements for my ReactJS Practice.
 - Design: [Figma](https://www.figma.com/design/lDvMDOy9aGtVCmdu10G4CB/BankDash---UI?node-id=0-1&t=DJCyUdsZ9irdxe9Z-1)
 - Plan: [Note](https://docs.google.com/document/d/1NZQ3uxJq4cvBGEIdmLuhSFxPtjKPpAK3ODrWB6y5ZFE/edit?usp=sharing)
 
-## Features
+## ⌛ Timeline
+
+- 14 working days
+
+## 🗂️ Features
 
 - The website has **Authentication** and **Authorization**.
 - There are two main roles on the website, which include:
@@ -27,7 +31,7 @@
     - The User can also access the Settings tab to update their personal profile information.
     - The User can also access the Settings tab to change their current password.
 
-## Targets
+## 🎯 Targets
 
 - Apply advanced knowledge of React.
 - Utilize NextUI to create and customize UI components that match the design.
@@ -39,7 +43,7 @@
 - Improve PageSpeed scores, aiming to achieve the highest score around 90-95.
 - Ensure responsive design that supports three device types: Mobile, Tablet, and Desktop.
 
-## Tech stacks
+## 💻 Tech stacks
 
 - [React 18](https://react.dev/)
 - [NextUI](https://nextui.org/)
@@ -50,7 +54,7 @@
 - [Zustand](https://zustand.docs.pmnd.rs/)
 - [MockAPI](https://mockapi.io/)
 
-## Development tools
+## 🛠️ Development tools
 
 - [Husky](https://typicode.github.io/husky/)
 - [Prettier](https://prettier.io/)
@@ -63,19 +67,53 @@
 - [Vercel](https://vercel.com)
 - [Vite](https://vitejs.dev)
 
-## Prerequisites
+## 📦 Prerequisites
 
 - [Node.js >= 18](https://nodejs.org/)
 - [pnpm >= 9](https://pnpm.io/installation)
 
-## Base dependencies
+## ⚙️ Base dependencies
 
 - [React 18](https://react.dev/)
 - [NextUI](https://nextui.org/) to build shared UIs.
 - [TailwindCSS](https://tailwindcss.com/docs/installation)
 - [jest](https://jestjs.io/docs/getting-started) and [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) for testing.
 
-## How to develop
+## 📁 Project structure
+
+```shell
+.
+├── .husky
+├── .storybook
+├── public/
+├── src/
+│   ├── assets/
+│   │   ├── fonts/
+│   │   ├── icons/
+│   │   └── images/
+│   ├── components/
+│   ├── constants/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── interfaces/
+│   ├── layouts/
+│   ├── mocks/
+│   ├── pages/
+│   ├── routes/
+│   ├── services/
+│   ├── stores/
+│   ├── styles/
+│   ├── themes/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── main.tsx
+├── index.html
+├── package.json
+└── README.md
+```
+
+## 🚀 How to develop
 
 ### Clone the project
 
@@ -102,7 +140,7 @@
   pnpm install
   ```
 
-### Commands Used for the Project
+### Commands used for the project
 
 <b>_IMPORTANT_:</b> Create a `.env` file and follow the instructions in `.env.example`.
 
@@ -110,7 +148,7 @@
 - `pnpm build`: build project prepare for deployment
 - `pnpm storybook`: run storybook
 
-# Author
+## 👨‍💻 Author
 
 - Giang Nguyen.
 - Email: giang.nguyen@asnet.com.vn.
