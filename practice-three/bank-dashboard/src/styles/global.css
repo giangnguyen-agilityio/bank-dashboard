@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src:
+      url(/src/assets/fonts/Inter.woff2) format('woff2'),
+      url(/src/assets/fonts/Inter.woff) format('woff');
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src:
+      url(/src/assets/fonts/Lato.woff2) format('woff2'),
+      url(/src/assets/fonts/Lato.woff) format('woff');
+  }
+}
