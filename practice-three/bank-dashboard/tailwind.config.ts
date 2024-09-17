@@ -3,12 +3,13 @@ import { nextui } from '@nextui-org/theme';
 
 import {
   screens,
-  colors,
+  width,
+  spacing,
+  container,
+  borderRadius,
   fontStyles,
   fontSize,
-  borderRadius,
-  spacing,
-  width,
+  colors,
 } from './src/themes';
 
 const config: Config = {
@@ -20,14 +21,15 @@ const config: Config = {
   theme: {
     extend: {
       screens,
-      colors,
+      width,
+      spacing,
+      container,
+      borderRadius,
       fontFamily: {
         ...fontStyles,
       },
       fontSize,
-      borderRadius,
-      spacing,
-      width,
+      colors,
     },
   },
 
