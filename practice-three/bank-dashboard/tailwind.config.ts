@@ -8,6 +8,7 @@ import {
   fontSize,
   borderRadius,
   spacing,
+  width,
 } from './src/themes';
 
 const config: Config = {
@@ -26,6 +27,7 @@ const config: Config = {
       fontSize,
       borderRadius,
       spacing,
+      width,
     },
   },
 
