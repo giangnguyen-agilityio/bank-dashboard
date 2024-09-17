@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 import { nextui } from '@nextui-org/theme';
-import { screens } from './src/themes';
+
+import { screens, colors } from './src/themes';
 
 const config: Config = {
   content: [
@@ -11,6 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       screens,
+      colors,
       fontFamily: {
         primary: ['Inter', 'sans-serif'],
         secondary: ['Lato', 'sans-serif'],
