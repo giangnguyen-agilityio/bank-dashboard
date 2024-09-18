@@ -4,21 +4,20 @@ import { memo } from 'react';
 const Button = extendVariants(NextUIButton, {
   variants: {
     variant: {
+      bold: 'border-transparent font-primary font-semibold',
       circle: 'font-primary font-medium rounded-5xl',
       outline: 'outline-gray-150 font-primary font-medium rounded-md',
     },
     color: {
-      default: 'bg-transparent text-blue-100',
+      default: 'bg-transparent text-text-secondary',
       primary: 'bg-background-tertiary text-text-tertiary',
-      secondary: 'bg-white-300',
+      secondary: 'bg-background-primary',
     },
     disabled: {
       true: 'bg-transparent text-gray-150 cursor-not-allowed',
     },
-    isIconOnly: {
-      true: 'bg-background-primary',
-    },
     size: {
+      unset: 'min-w-0 w-auto h-auto p-3.25',
       tiny: 'min-w-0 w-auto h-auto px-3 py-1.75',
       xs: 'min-w-0 w-auto h-auto px-5.25 py-3',
       sm: 'min-w-0 w-auto h-auto px-6.25 py-3.75',
@@ -29,7 +28,8 @@ const Button = extendVariants(NextUIButton, {
     },
   },
   defaultVariants: {
-    variant: 'light',
+    color: 'primary',
+    size: 'unset',
   },
 });
 
