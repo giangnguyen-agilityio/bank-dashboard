@@ -6,33 +6,34 @@ const config: Config = {
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
 
-  // The root directory that Jest should scan for tests and modules within
-  rootDir: 'src',
-
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ['../jest.setup.ts'],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
 
   // An array of directory names to be searched recursively up from the requiring module's location
   moduleDirectories: ['node_modules', 'src'],
 
-  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  moduleNameMapper: {
-    '@/(.*)': '<rootDir>/$1',
-    '.+\\.(png|jpg)$': 'identity-obj-proxy',
-    '^.+\\.svg$': 'jest-transformer-svg',
+  // The test environment that will be used for testing
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+    '.+\\.(css|png|jpg|ttf|woff|woff2|webp)$': 'jest-transform-stub',
   },
 
-  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  moduleNameMapper: {
+    '@app/(.*)': '<rootDir>/src/$1',
+    '\\.(css|scss|svg)$': 'identity-obj-proxy',
+  },
+
+  collectCoverageFrom: ['**/*.{ts,tsx}'],
 
   coveragePathIgnorePatterns: [
     'node_modules',
-    '<rootDir>/**/constants/*',
-    '<rootDir>/**/icons/*',
-    '<rootDir>/**/interfaces/*',
-    '<rootDir>/**/mocks/*',
-    '<rootDir>/**/routes/*',
-    '<rootDir>/**/themes/*',
-    '<rootDir>/**/types/*',
+    '<rootDir>/src/constants/*',
+    '<rootDir>/src/icons/*',
+    '<rootDir>/src/interfaces/*',
+    '<rootDir>/src/mocks/*',
+    '<rootDir>/src/routes/*',
+    '<rootDir>/src/themes/*',
+    '<rootDir>/src/types/*',
     '<rootDir>/main.tsx',
     '<rootDir>/vite-env.d.ts',
     '^.*\\.stories\\.[jt]sx?$',
