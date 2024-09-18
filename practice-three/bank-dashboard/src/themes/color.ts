@@ -18,6 +18,7 @@ const colorPalette = {
   },
   gray: {
     100: '#b1b1b1', // Sliver
+    150: '#6b7280', // AuroMetalSaurus
     200: '#4f4f4f', // Dark Gray
   },
   green: {

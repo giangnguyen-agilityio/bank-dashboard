@@ -10,6 +10,7 @@ import {
   fontStyles,
   fontSize,
   colors,
+  colorPalette,
 } from './src/themes';
 
 const config: Config = {
@@ -29,7 +30,10 @@ const config: Config = {
         ...fontStyles,
       },
       fontSize,
-      colors,
+      colors: {
+        ...colors,
+        ...colorPalette,
+      },
     },
   },
 
