@@ -36,11 +36,15 @@ const config: Config = {
     '<rootDir>/src/types/*',
     '<rootDir>/main.tsx',
     '<rootDir>/vite-env.d.ts',
+    '<rootDir>/.storybook/*',
+    '<rootDir>/jest.config.ts',
+    '<rootDir>/tailwind.config.ts',
+    '<rootDir>/vite.config.ts',
     '^.*\\.stories\\.[jt]sx?$',
   ],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: '../coverage',
+  coverageDirectory: 'coverage',
 
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
