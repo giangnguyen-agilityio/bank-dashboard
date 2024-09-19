@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Text from '..';
+import { Text } from '@app/components';
 
 describe('Text Component', () => {
   it('should render with default props', () => {
