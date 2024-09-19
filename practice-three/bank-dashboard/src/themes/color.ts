@@ -51,7 +51,7 @@ const colors = {
     secondary: colorPalette.blue[100],
     tertiary: colorPalette.white[100],
     success: colorPalette.green[150],
-    warning: colorPalette.red[100],
+    error: colorPalette.red[100],
   },
 
   background: {
