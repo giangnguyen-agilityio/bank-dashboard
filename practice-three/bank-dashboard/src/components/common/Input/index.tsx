@@ -55,6 +55,12 @@ const Input = extendVariants(NextUIInput, {
         inputWrapper: 'border',
       },
     },
+
+    disabled: {
+      true: {
+        input: 'cursor-not-allowed',
+      },
+    },
   },
   defaultVariants: {
     border: 'default',
