@@ -11,6 +11,7 @@ import {
   fontSize,
   colors,
   colorPalette,
+  backgroundImage,
 } from './src/themes';
 
 const config: Config = {
@@ -21,6 +22,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage,
       screens,
       width,
       spacing,
