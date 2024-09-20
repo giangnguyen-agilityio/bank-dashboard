@@ -9,7 +9,7 @@ describe('Button Component', () => {
 
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveClass(
-      'bg-background-tertiary',
+      'bg-background-secondary',
       'text-text-tertiary',
       'min-w-0',
       'w-auto',

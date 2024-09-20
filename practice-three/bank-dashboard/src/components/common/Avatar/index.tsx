@@ -65,7 +65,7 @@ const Avatar = ({
         <div className="absolute bottom-3.75 right-0" data-testid="icon">
           <div
             className={clsx(
-              'flex justify-center items-center rounded-full bg-background-tertiary ',
+              'flex justify-center items-center rounded-full bg-background-secondary ',
               iconSizeClass,
             )}
             aria-label="Edit Avatar Icon"

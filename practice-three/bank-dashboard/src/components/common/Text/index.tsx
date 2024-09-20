@@ -32,14 +32,14 @@ export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
 }
 
 const VARIANT_CLASSES = {
-  default: 'text-primary text-text-default font-regular',
-  primary: 'text-primary text-text-primary font-regular',
-  heading: 'text-primary text-text-secondary font-semibold',
-  title: ' text-primary text-text-primary font-medium',
-  sidebar: 'text-primary text-gray-100 font-normal',
-  description: 'text-secondary text-text-tertiary font-semibold',
-  success: 'text-primary text-text-success font-medium',
-  error: 'text-primary text-text-danger font-medium',
+  default: 'font-primary text-text-default font-regular',
+  primary: 'font-primary text-text-primary font-regular',
+  heading: 'font-primary text-text-secondary font-semibold',
+  title: ' font-primary text-text-primary font-medium',
+  sidebar: 'font-primary text-gray-100 font-normal',
+  description: 'font-secondary text-text-tertiary font-semibold',
+  success: 'font-primary text-text-success font-medium',
+  error: 'font-primary text-text-danger font-medium',
 };
 
 const SIZE_CLASSES = {

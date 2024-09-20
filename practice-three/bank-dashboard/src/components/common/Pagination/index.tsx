@@ -64,7 +64,7 @@ const Pagination: React.FC<PaginationProps> = ({
         data-testid="pagination"
         classNames={{
           item: itemClass,
-          cursor: 'bg-background-tertiary',
+          cursor: 'bg-background-secondary',
         }}
         total={totalPages}
         page={currentPage}

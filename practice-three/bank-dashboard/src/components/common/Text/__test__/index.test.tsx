@@ -9,7 +9,7 @@ describe('Text Component', () => {
 
     expect(textElement).toBeInTheDocument();
     expect(textElement).toHaveClass(
-      'text-primary text-text-default font-regular',
+      'font-primary text-text-default font-regular',
     );
     expect(textElement).toHaveClass(
       'text-ellipsis whitespace-nowrap overflow-hidden',
@@ -22,7 +22,7 @@ describe('Text Component', () => {
 
     expect(textElement).toBeInTheDocument();
     expect(textElement).toHaveClass(
-      'text-primary text-text-default font-regular',
+      'font-primary text-text-default font-regular',
     );
   });
 
@@ -31,7 +31,7 @@ describe('Text Component', () => {
     const textElement = container.querySelector('p');
 
     expect(textElement).toHaveClass(
-      'text-primary text-text-success font-medium',
+      'font-primary text-text-success font-medium',
     );
   });
 
@@ -83,7 +83,7 @@ describe('Text Component', () => {
     const textElement = container.querySelector('div');
 
     expect(textElement).toHaveClass(
-      'text-primary text-text-danger font-medium',
+      'font-primary text-text-danger font-medium',
     );
     expect(textElement).toHaveClass('text-3xl');
     expect(textElement).toHaveClass('whitespace-pre-wrap overflow-visible');

@@ -57,7 +57,7 @@ const colors = {
   background: {
     default: colorPalette.white[100],
     primary: colorPalette.white[300],
-    tertiary: colorPalette.blue[200],
+    secondary: colorPalette.blue[200],
   },
 
   border: {
@@ -65,6 +65,11 @@ const colors = {
     primary: colorPalette.blue[300],
     secondary: colorPalette.blue[20],
   },
+};
+
+export const backgroundImage = {
+  'linear-card':
+    'linear-gradient(to right, #4643ed 0%, 44.2%, #1712f3 88.4%, 94.2%, #100bf2 100%)',
 };
 
 export { colorPalette, colors };

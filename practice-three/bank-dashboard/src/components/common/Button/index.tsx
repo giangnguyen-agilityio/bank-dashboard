@@ -10,7 +10,7 @@ const Button = extendVariants(NextUIButton, {
     },
     color: {
       default: 'bg-transparent text-text-secondary',
-      primary: 'bg-background-tertiary text-text-tertiary',
+      primary: 'bg-background-secondary text-text-tertiary',
       secondary: 'bg-background-primary',
     },
     disabled: {
