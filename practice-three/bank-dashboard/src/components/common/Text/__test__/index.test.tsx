@@ -11,9 +11,7 @@ describe('Text Component', () => {
     expect(textElement).toHaveClass(
       'font-primary text-text-default font-regular',
     );
-    expect(textElement).toHaveClass(
-      'text-ellipsis whitespace-nowrap overflow-hidden',
-    );
+    expect(textElement).toHaveClass('truncate');
   });
 
   it('should render with a custom tag', () => {
@@ -46,7 +44,7 @@ describe('Text Component', () => {
     const { container } = render(<Text type="wrap">Wrapped Text</Text>);
     const textElement = container.querySelector('p');
 
-    expect(textElement).toHaveClass('whitespace-pre-wrap overflow-visible');
+    expect(textElement).toHaveClass('break-all whitespace-normal');
   });
 
   it('should render with custom class', () => {
@@ -86,7 +84,7 @@ describe('Text Component', () => {
       'font-primary text-text-danger font-medium',
     );
     expect(textElement).toHaveClass('text-3xl');
-    expect(textElement).toHaveClass('whitespace-pre-wrap overflow-visible');
+    expect(textElement).toHaveClass('break-all whitespace-normal');
     expect(textElement).toHaveClass('extra-class');
   });
 });

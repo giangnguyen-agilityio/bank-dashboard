@@ -59,8 +59,8 @@ const SIZE_CLASSES = {
 };
 
 const TYPE_CLASSES = {
-  nowrap: 'text-ellipsis whitespace-nowrap overflow-hidden',
-  wrap: 'whitespace-pre-wrap overflow-visible',
+  nowrap: 'truncate',
+  wrap: 'break-all whitespace-normal',
 };
 
 const Text = ({
