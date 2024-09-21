@@ -18,7 +18,7 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
     cardHolder = '',
     cardNumber = '',
     expiryDate = '',
-  } = data;
+  } = data || {};
 
   const cardClass = clsx(
     'shadow-none w-66.25 md:w-57.75 lg:w-87.5 rounded-xl md:rounded-2xl lg:rounded-3xl',
@@ -38,7 +38,7 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
     <Card className={cardClass}>
       {/* Card Body */}
       <CardBody className="flex gap-5.75 p-0 px-5 py-4 lg:gap-7.5 lg:px-6.5 lg:pt-4.5 lg:pb-7">
-        <Box className="flex w-full justify-between items-center">
+        <Box className="flex w-full justify-between items-center gap-3">
           {/* Card Balance */}
           <Box aria-label="Card Balance" data-testid="card-balance">
             <Text
@@ -49,10 +49,11 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
               Balance
             </Text>
             <Text
+              type="wrap"
               variant="description"
               customClass={textClass('text-2xl lg:text-5xl', false)}
             >
-              ${balance}
+              ${balance.toLocaleString('en-US')}
             </Text>
           </Box>
 
@@ -71,8 +72,9 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
               Card Holder
             </Text>
             <Text
+              title={cardHolder}
               variant="description"
-              customClass={textClass('text-md lg:text-xl', false)}
+              customClass={textClass('max-w-25 text-md lg:text-xl', false)}
             >
               {cardHolder}
             </Text>
