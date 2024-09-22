@@ -39,7 +39,7 @@ const VARIANT_CLASSES = {
   sidebar: 'font-primary text-gray-100 font-normal',
   description: 'font-secondary text-text-tertiary font-semibold',
   success: 'font-primary text-text-success font-medium',
-  error: 'font-primary text-text-danger font-medium',
+  error: 'font-primary text-text-error font-medium',
 };
 
 const SIZE_CLASSES = {
