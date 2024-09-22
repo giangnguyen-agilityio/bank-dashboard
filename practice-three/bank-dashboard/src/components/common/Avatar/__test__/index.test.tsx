@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Avatar from '..';
+import { Avatar } from '@app/components';
 
 describe('Avatar Component', () => {
   it('should render the Avatar with default size (md)', () => {

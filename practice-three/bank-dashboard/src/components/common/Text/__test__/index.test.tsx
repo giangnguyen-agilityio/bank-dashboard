@@ -81,7 +81,7 @@ describe('Text Component', () => {
     const textElement = container.querySelector('div');
 
     expect(textElement).toHaveClass(
-      'font-primary text-text-danger font-medium',
+      'font-primary text-text-error font-medium',
     );
     expect(textElement).toHaveClass('text-3xl');
     expect(textElement).toHaveClass('break-all whitespace-normal');
