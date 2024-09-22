@@ -35,7 +35,7 @@ const VARIANT_CLASSES = {
   default: 'font-primary text-text-default font-regular',
   primary: 'font-primary text-text-primary font-regular',
   heading: 'font-primary text-text-secondary font-semibold',
-  title: ' font-primary text-text-primary font-medium',
+  title: 'font-primary text-text-primary font-medium',
   sidebar: 'font-primary text-gray-100 font-normal',
   description: 'font-secondary text-text-tertiary font-semibold',
   success: 'font-primary text-text-success font-medium',
