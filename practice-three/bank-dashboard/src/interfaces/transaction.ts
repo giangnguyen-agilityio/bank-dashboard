@@ -15,4 +15,13 @@ interface TransactionItemData {
   kind: TransactionKind;
 }
 
-export type { TransactionItemData };
+interface TransactionData {
+  description: string;
+  transactionId: string;
+  type: string;
+  category: string;
+  date: string;
+  amount: number;
+}
+
+export type { TransactionItemData, TransactionData };
