@@ -7,3 +7,5 @@ export { default as Avatar } from './Avatar';
 export { default as Pagination } from './Pagination';
 export { default as CreditCard } from './CreditCard';
 export { default as TransactionItem } from './TransactionItem';
+export { default as AccountStatusItem } from './AccountStatusItem';
+export { default as AccountStatusBar } from './AccountStatusBar';

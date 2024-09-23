@@ -9,6 +9,7 @@ const colorPalette = {
   },
   blue: {
     10: '#edf1f7', // Light Blue
+    15: '#e7edff', // Light Steel Blue
     20: '#e6eff5', // Light Alice Blue
     25: '#dfeaf2', // Light Powder Blue
     50: '#718ebf', // Wild Blue Yonder
