@@ -10,12 +10,12 @@ jest.mock('@app/utils', () => ({
   getTransactionAmountStyles: jest.fn(),
 }));
 
-describe('TransactionItem', () => {
+describe('TransactionItem Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should renders the transaction icon', () => {
+  it('should renders the TransactionItem component without crashing', () => {
     (getTransactionAmountStyles as jest.Mock).mockReturnValue({
       className: 'text-red-500',
       symbol: '-',
@@ -24,41 +24,14 @@ describe('TransactionItem', () => {
     render(<TransactionItem {...MOCK_TRANSACTION_ITEMS[0]} />);
 
     const iconElement = screen.getByLabelText('Wallet Icon');
-
-    expect(iconElement).toBeInTheDocument();
-  });
-
-  it('should renders the transaction title and date', () => {
-    (getTransactionAmountStyles as jest.Mock).mockReturnValue({
-      className: 'text-red-500',
-      symbol: '-',
-    });
-
-    render(<TransactionItem {...MOCK_TRANSACTION_ITEMS[0]} />);
-
     const titleElement = screen.getByTestId('transaction-title');
     const dateElement = screen.getByTestId('transaction-date');
-
-    expect(titleElement).toBeInTheDocument();
-    expect(titleElement).toHaveTextContent('Deposit from my Card');
-
-    expect(dateElement).toBeInTheDocument();
-    expect(dateElement).toHaveTextContent('28 January 2021');
-  });
-
-  it('should renders the transaction amount with proper styles and symbol', () => {
-    (getTransactionAmountStyles as jest.Mock).mockReturnValue({
-      className: 'text-red-500',
-      symbol: '-',
-    });
-
-    render(<TransactionItem {...MOCK_TRANSACTION_ITEMS[0]} />);
-
     const amountElement = screen.getByTestId('transaction-amount');
 
+    expect(iconElement).toBeInTheDocument();
+    expect(titleElement).toHaveTextContent('Deposit from my Card');
+    expect(dateElement).toHaveTextContent('28 January 2021');
     expect(amountElement).toBeInTheDocument();
-    expect(amountElement).toHaveClass('text-red-500');
-    expect(amountElement).toHaveTextContent('-$850');
   });
 
   it('should applies correct styles for different transaction kinds', () => {

@@ -38,25 +38,15 @@ describe('Avatar Component', () => {
     expect(avatar).not.toHaveClass('border-2');
   });
 
-  it('should render the edit icon when isEdit is true and size is xl', () => {
-    render(<Avatar size="xl" isEdit />);
-    const editIcon = screen.queryByTestId('icon');
+  it('should render the edit icon when isEdit is true and size is greater than xl', () => {
+    const sizes: ('xl' | '2xl' | '3xl')[] = ['xl', '2xl', '3xl'];
 
-    expect(editIcon).toBeInTheDocument();
-  });
+    sizes.forEach((size) => {
+      const { container } = render(<Avatar size={size} isEdit />);
+      const editIcon = container.querySelector('[data-testid="icon"]');
 
-  it('should render the edit icon when isEdit is true and size is 2xl', () => {
-    render(<Avatar size="2xl" isEdit />);
-    const editIcon = screen.queryByTestId('icon');
-
-    expect(editIcon).toBeInTheDocument();
-  });
-
-  it('should render the edit icon when isEdit is true and size is 3xl', () => {
-    render(<Avatar size="3xl" isEdit />);
-    const editIcon = screen.queryByTestId('icon');
-
-    expect(editIcon).toBeInTheDocument();
+      expect(editIcon).toBeInTheDocument();
+    });
   });
 
   it('should not render the edit icon when isEdit is true but size is smaller than xl', () => {

@@ -4,7 +4,7 @@ import { MOCK_ACCOUNT_STATUS_BAR_DATA } from '@app/mocks';
 import { AccountStatusBar } from '@app/components';
 import { NOTIFICATIONS } from '@app/constants';
 
-describe('AccountStatusBar', () => {
+describe('AccountStatusBar Component', () => {
   it('should renders correct props for AccountStatusItem', () => {
     render(<AccountStatusBar data={MOCK_ACCOUNT_STATUS_BAR_DATA} />);
 

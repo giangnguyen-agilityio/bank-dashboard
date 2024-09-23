@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { UserIcon } from '@app/assets';
 import { AccountStatusItem } from '@app/components';
 
-describe('AccountStatusItem', () => {
+describe('AccountStatusItem Component', () => {
   it('should renders correctly with provided props', () => {
     render(
       <AccountStatusItem

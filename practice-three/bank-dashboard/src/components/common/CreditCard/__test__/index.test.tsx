@@ -5,7 +5,7 @@ import { ICreditCard } from '@app/interfaces';
 import { maskCardNumber } from '@app/utils';
 import { CreditCard } from '@app/components';
 
-describe('CreditCard component', () => {
+describe('CreditCard Component', () => {
   it('should render the CreditCard component', () => {
     render(<CreditCard data={MOCK_CREDIT_CARD_DATA} />);
 
