@@ -19,3 +19,4 @@ export * from './TransferIcon';
 export * from './UpArrowIcon';
 export * from './UserIcon';
 export * from './WalletIcon';
+export * from './MoreVerticalIcon';
