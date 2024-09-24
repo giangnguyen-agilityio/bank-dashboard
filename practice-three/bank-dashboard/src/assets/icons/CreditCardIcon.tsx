@@ -1,11 +1,11 @@
-import { CustomClassType } from '@app/types/components';
+import { CustomClassType } from '@app/types';
 
-export const CreditCardIcon = ({
-  customClass = 'w-6.5 h-6.5',
-}: CustomClassType) => (
+export const CreditCardIcon = ({ customClass }: CustomClassType) => (
   <svg
     aria-label="Credit Card Icon"
     className={customClass}
+    width={26}
+    height={26}
     viewBox="0 0 26 26"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

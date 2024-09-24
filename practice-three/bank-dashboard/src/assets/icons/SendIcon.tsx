@@ -1,9 +1,11 @@
 import { CustomClassType } from '@app/types/components';
 
-export const SendIcon = ({ customClass = 'w-6.5 h-5.75' }: CustomClassType) => (
+export const SendIcon = ({ customClass }: CustomClassType) => (
   <svg
     aria-label="Send Icon"
     className={customClass}
+    width={26}
+    height={23}
     viewBox="0 0 26 23"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

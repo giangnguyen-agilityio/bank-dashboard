@@ -1,17 +1,16 @@
-import { CustomClassType } from '@app/types/components';
+import { CustomClassType } from '@app/types';
 
 interface ChipCardIconProps extends CustomClassType {
   isDefault?: boolean;
 }
 
-export const ChipCardIcon = ({
-  customClass = 'w-8.75 h-8.75',
-  isDefault,
-}: ChipCardIconProps) => {
+export const ChipCardIcon = ({ customClass, isDefault }: ChipCardIconProps) => {
   return (
     <svg
       aria-label="Chip Card Icon"
       className={customClass}
+      width={35}
+      height={35}
       viewBox="0 0 35 35"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

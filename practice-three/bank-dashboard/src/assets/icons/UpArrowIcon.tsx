@@ -1,11 +1,11 @@
 import { CustomClassType } from '@app/types/components';
 
-export const UpArrowIcon = ({
-  customClass = 'w-7.5 h-7.5',
-}: CustomClassType) => (
+export const UpArrowIcon = ({ customClass }: CustomClassType) => (
   <svg
     aria-label="Up Arrow Icon"
     className={customClass}
+    width={30}
+    height={30}
     viewBox="0 0 30 30"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

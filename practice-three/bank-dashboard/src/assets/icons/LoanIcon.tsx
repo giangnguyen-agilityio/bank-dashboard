@@ -1,9 +1,11 @@
 import { CustomClassType } from '@app/types/components';
 
-export const LoanIcon = ({ customClass = 'w-2.25 h-3.5' }: CustomClassType) => (
+export const LoanIcon = ({ customClass }: CustomClassType) => (
   <svg
     aria-label="Loan Icon"
     className={customClass}
+    width={25}
+    height={25}
     viewBox="0 0 25 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

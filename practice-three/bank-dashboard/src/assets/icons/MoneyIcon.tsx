@@ -1,9 +1,11 @@
 import { CustomClassType } from '@app/types/components';
 
-export const MoneyIcon = ({ customClass = 'w-7 h-7' }: CustomClassType) => (
+export const MoneyIcon = ({ customClass }: CustomClassType) => (
   <svg
     aria-label="Money Icon"
     className={customClass}
+    width={28}
+    height={28}
     viewBox="0 0 28 28"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

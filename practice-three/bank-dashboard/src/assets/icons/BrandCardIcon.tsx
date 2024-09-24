@@ -1,11 +1,11 @@
-import { CustomClassType } from '@app/types/components';
+import { CustomClassType } from '@app/types';
 
-export const BrandCardIcon = ({
-  customClass = 'w-11 h-7.5',
-}: CustomClassType) => (
+export const BrandCardIcon = ({ customClass }: CustomClassType) => (
   <svg
     aria-label="Brand Card Icon"
     className={customClass}
+    width={44}
+    height={30}
     fill="none"
     viewBox="0 0 44 30"
     xmlns="http://www.w3.org/2000/svg"
