@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
+// Icons
 import { UserIcon } from '@app/assets';
+
+// Components
 import { AccountStatusItem } from '@app/components';
 
 describe('AccountStatusItem Component', () => {

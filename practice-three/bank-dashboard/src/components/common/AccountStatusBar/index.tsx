@@ -1,6 +1,11 @@
-import { AccountStatusItem, Box, Text } from '@app/components';
+// Constants
 import { NOTIFICATIONS } from '@app/constants';
+
+// Interfaces
 import { IAccountStatusItem } from '@app/interfaces';
+
+// Components
+import { AccountStatusItem, Box, Text } from '@app/components';
 
 interface AccountStatusBarProps {
   data?: IAccountStatusItem[];

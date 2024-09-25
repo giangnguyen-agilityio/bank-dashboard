@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
+// Components
 import { Avatar } from '@app/components';
 
 describe('Avatar Component', () => {

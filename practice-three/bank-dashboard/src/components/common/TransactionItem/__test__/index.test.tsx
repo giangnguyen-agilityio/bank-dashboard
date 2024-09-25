@@ -1,12 +1,19 @@
 import { ElementType } from 'react';
 import { render, screen } from '@testing-library/react';
 
+// Utils
 import { getTransactionAmountStyles } from '@app/utils';
+
+// Mocks
 import {
   MOCK_DEFAULT_TRANSACTION_ITEMS,
   MOCK_TRANSACTION_ITEMS,
 } from '@app/mocks';
+
+// Interfaces
 import { TransactionKind } from '@app/interfaces';
+
+// Components
 import { TransactionItem } from '@app/components';
 
 jest.mock('@app/utils', () => ({

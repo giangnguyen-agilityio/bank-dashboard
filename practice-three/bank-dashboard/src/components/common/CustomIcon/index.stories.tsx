@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+// Mocks
 import { MOCK_DEFAULT_TRANSACTION_ITEMS } from '@app/mocks';
 
+// Components
 import CustomIcon from '.';
 
 const meta = {

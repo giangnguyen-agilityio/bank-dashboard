@@ -1,8 +1,15 @@
 import { render, screen } from '@testing-library/react';
 
+// Mocks
 import { MOCK_CREDIT_CARD_DATA } from '@app/mocks';
+
+// Interfaces
 import { ICreditCard } from '@app/interfaces';
+
+// Utils
 import { maskCardNumber } from '@app/utils';
+
+// Components
 import { CreditCard } from '@app/components';
 
 describe('CreditCard Component', () => {

@@ -1,7 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
-import { CustomIcon } from '@app/components';
+// Icons
 import { WalletIcon } from '@app/assets';
+
+// Components
+import { CustomIcon } from '@app/components';
 
 describe('CustomIcon Component', () => {
   it('should renders the IconComponent correctly without crashing', () => {

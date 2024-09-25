@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 
+// Components
 import { Text } from '@app/components';
 
 describe('Text Component', () => {

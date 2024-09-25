@@ -1,7 +1,12 @@
 import { render, screen } from '@testing-library/react';
 
+// Mocks
 import { MOCK_ACCOUNT_STATUS_BAR_DATA } from '@app/mocks';
+
+// Components
 import { AccountStatusBar } from '@app/components';
+
+// Constants
 import { NOTIFICATIONS } from '@app/constants';
 
 describe('AccountStatusBar Component', () => {

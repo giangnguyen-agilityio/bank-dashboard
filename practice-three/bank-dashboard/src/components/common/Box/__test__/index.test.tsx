@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 
+// Components
 import { Box } from '@app/components';
 
 describe('Box Component', () => {

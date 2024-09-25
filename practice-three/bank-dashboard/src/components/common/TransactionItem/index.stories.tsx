@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+// Mocks
 import {
   MOCK_DEFAULT_TRANSACTION_ITEMS,
   MOCK_TRANSACTION_ITEMS,
 } from '@app/mocks';
 
+// Components
 import TransactionItem from '.';
 
 const meta = {
