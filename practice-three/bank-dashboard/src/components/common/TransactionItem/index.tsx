@@ -1,6 +1,7 @@
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { Box, Text, TransactionIcon } from '@app/components';
+import { Box, Text, CustomIcon } from '@app/components';
 import { TransactionItemData } from '@app/interfaces';
 import { getTransactionAmountStyles } from '@app/utils';
 import { MOCK_DEFAULT_TRANSACTION_ITEMS } from '@app/mocks';
@@ -29,7 +30,10 @@ const TransactionItem = ({
         data-testid="transaction-icon"
         className="mr-3.75 md:mr-2 lg:mr-4.25"
       >
-        <TransactionIcon IconComponent={icon} bgColorClass={backgroundColor} />
+        <CustomIcon
+          IconComponent={icon}
+          customClass={clsx('size-12.5 md:size-10 lg:size-14', backgroundColor)}
+        />
       </Box>
 
       {/* Info and Amount Section */}

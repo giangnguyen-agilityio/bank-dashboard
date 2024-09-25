@@ -7,35 +7,33 @@ describe('AccountStatusItem Component', () => {
   it('should renders correctly with provided props', () => {
     render(
       <AccountStatusItem
-        icon={<UserIcon />}
+        icon={UserIcon}
         title="Total Accounts"
         quantity={20}
         backgroundColor="bg-blue-500"
       />,
     );
 
-    expect(
-      screen.getByTestId('account-item-icon').firstChild,
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('icon-wrapper')).toBeInTheDocument();
     expect(screen.getByTestId('account-item-title')).toHaveTextContent(
       'Total Accounts',
     );
     expect(screen.getByTestId('account-item-quantity')).toHaveTextContent('20');
-    expect(screen.getByTestId('account-item-icon')).toHaveClass('bg-blue-500');
+    expect(screen.getByTestId('icon-wrapper')).toHaveClass('bg-blue-500');
   });
 
   it('should renders correctly with default props', () => {
     render(
       <AccountStatusItem
         icon={undefined}
-        title={undefined as never}
-        quantity={undefined as never}
-        backgroundColor={undefined as never}
+        title={undefined}
+        quantity={undefined}
+        backgroundColor={undefined}
       />,
     );
 
-    expect(screen.getByTestId('account-item-icon').firstChild).toBeNull();
+    expect(screen.getByTestId('icon-wrapper').firstChild).toBeNull();
     expect(screen.getByTestId('account-item-title')).toHaveTextContent('N/A');
-    expect(screen.getByTestId('account-item-icon')).toHaveClass('bg-blue-15');
+    expect(screen.getByTestId('icon-wrapper')).toHaveClass('bg-blue-15');
   });
 });
