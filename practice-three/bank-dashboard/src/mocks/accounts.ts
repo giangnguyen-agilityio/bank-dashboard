@@ -1,5 +1,6 @@
 import { UserIcon } from '@app/assets';
 import {
+  AccountRole,
   AccountStatus,
   IAccountData,
   IAccountStatusItem,
@@ -7,19 +8,19 @@ import {
 
 const MOCK_ACCOUNT_STATUS_BAR_DATA: IAccountStatusItem[] = [
   {
-    icon: <UserIcon />,
+    icon: UserIcon,
     title: 'Total Accounts',
     quantity: 20,
     backgroundColor: 'bg-blue-15',
   },
   {
-    icon: <UserIcon />,
+    icon: UserIcon,
     title: 'Active Accounts',
     quantity: 18,
     backgroundColor: 'bg-green-50',
   },
   {
-    icon: <UserIcon />,
+    icon: UserIcon,
     title: 'Inactive Accounts',
     quantity: 2,
     backgroundColor: 'bg-white-200',
@@ -30,9 +31,11 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
   {
     accountId: 'ACC001',
     name: 'John Doe',
-    username: 'jdoe',
+    username:
+      'loremipsumdasdsad5as65d58q5s7d8q7w8e7qw8e78qw7e89wq79e87wq8e75as4da2s4545',
     password: 'password123',
-    email: 'jdoe@example.com',
+    email:
+      'jdoe@example.comloremipsumdasdsad5as65d58q5s7d8q7w8e7qw8e78qw7e89wq79e87wq8e75as4da2s4545',
     dateOfBirth: '1990-01-01',
     presentAddress: '123 Main St, Apt 4',
     permanentAddress: '456 Maple St',
@@ -40,6 +43,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '10001',
     county: 'New York',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC002',
@@ -54,6 +58,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '90001',
     county: 'Los Angeles',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC003',
@@ -68,6 +73,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '60601',
     county: 'Cook',
     status: AccountStatus.Inactive,
+    role: AccountRole.Admin,
   },
   {
     accountId: 'ACC004',
@@ -82,6 +88,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '77001',
     county: 'Harris',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC005',
@@ -96,6 +103,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '85001',
     county: 'Maricopa',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC006',
@@ -110,6 +118,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '19101',
     county: 'Philadelphia',
     status: AccountStatus.Inactive,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC007',
@@ -124,6 +133,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '78201',
     county: 'Bexar',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC008',
@@ -138,6 +148,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '92101',
     county: 'San Diego',
     status: AccountStatus.Active,
+    role: AccountRole.Admin,
   },
   {
     accountId: 'ACC009',
@@ -152,6 +163,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '75201',
     county: 'Dallas',
     status: AccountStatus.Inactive,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC010',
@@ -166,6 +178,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '95101',
     county: 'Santa Clara',
     status: AccountStatus.Active,
+    role: AccountRole.Admin,
   },
   {
     accountId: 'ACC011',
@@ -180,6 +193,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '73301',
     county: 'Travis',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC012',
@@ -194,6 +208,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '32201',
     county: 'Duval',
     status: AccountStatus.Inactive,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC013',
@@ -208,6 +223,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '76101',
     county: 'Tarrant',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC014',
@@ -222,6 +238,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '43201',
     county: 'Franklin',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC015',
@@ -236,6 +253,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '94101',
     county: 'San Francisco',
     status: AccountStatus.Inactive,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC016',
@@ -250,6 +268,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '28201',
     county: 'Mecklenburg',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC017',
@@ -264,6 +283,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '98101',
     county: 'King',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC018',
@@ -278,6 +298,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '80201',
     county: 'Denver',
     status: AccountStatus.Inactive,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC019',
@@ -292,6 +313,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '73101',
     county: 'Oklahoma',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
   {
     accountId: 'ACC020',
@@ -306,6 +328,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     postalCode: '02101',
     county: 'Suffolk',
     status: AccountStatus.Active,
+    role: AccountRole.User,
   },
 ];
 

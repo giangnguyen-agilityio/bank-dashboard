@@ -1,5 +1,4 @@
 import { memo, ReactNode } from 'react';
-import { clsx } from 'clsx';
 import isEqual from 'react-fast-compare';
 import {
   Table as TableNextUI,
@@ -10,8 +9,17 @@ import {
   TableCell,
 } from '@nextui-org/react';
 
+// Constants
+import { NOTIFICATIONS, SIZE_COLUMN_DEFAULT } from '@app/constants';
+
 // Types
 import { TableColumnType, TTableAccessor } from '@app/types';
+
+// Utils
+import { cn } from '@app/utils';
+
+// Components
+import { Text } from '@app/components';
 
 type VariantTable = 'primary' | 'secondary';
 
@@ -28,33 +36,44 @@ const CustomTable = <T extends { id: string }>({
   isStriped = false,
   variant = 'primary',
 }: CustomTableProps<T>) => {
-  const renderCell = (item: T, accessor?: TTableAccessor<T>): ReactNode => {
+  const renderCell = (
+    item: T,
+    accessor?: TTableAccessor<T>,
+    size?: number,
+  ): ReactNode => {
     if (!accessor) return;
 
     if (typeof accessor === 'string')
-      return <div>{item[accessor] as ReactNode}</div>;
+      return (
+        <Text
+          customClass="text-base lg:text-2xl"
+          style={{ maxWidth: size || SIZE_COLUMN_DEFAULT }}
+        >
+          {item[accessor] as ReactNode}
+        </Text>
+      );
 
     if (typeof accessor === 'function') return accessor(item);
   };
 
   const TableClasses = {
-    wrapper: clsx(
+    wrapper: cn(
       'mx-auto',
       'w-81.25 md:185.75 lg:w-277.5',
       'px-5 py-5 md:px-5 md:py-4.25 lg:px-7.5 lg:py-5',
       'rounded-xl md:rounded-2xl lg:rounded-3xl',
     ),
-    header: clsx(
+    header: cn(
       'bg-background-default border-b border-solid border-blue-20',
       'font-primary font-medium text-text-primary text-base lg:text-2xl',
       'pb-1.75 lg:pb-2.5',
     ),
-    tr: clsx(
+    tr: cn(
       'border-b border-solid border-blue-20',
       '[&:last-child]:border-none',
     ),
     td: 'first:rounded-l-lg last:rounded-r-lg',
-    cell: clsx(
+    cell: cn(
       'font-primary font-medium text-text-primary text-base lg:text-2xl',
       'p-3 lg:p-3.5',
     ),
@@ -67,7 +86,7 @@ const CustomTable = <T extends { id: string }>({
         wrapper: TableClasses.wrapper,
         th: TableClasses.header,
         tr: TableClasses.tr,
-        td: clsx(TableClasses.td, TableClasses.cell),
+        td: cn(TableClasses.td, TableClasses.cell),
       }}
       hideHeader={variant === 'secondary'}
     >
@@ -87,8 +106,11 @@ const CustomTable = <T extends { id: string }>({
         })}
       </TableHeader>
 
-      <TableBody data-testid="table-body" emptyContent={'No records found.'}>
-        {data.map((item) => (
+      <TableBody
+        data-testid="table-body"
+        emptyContent={NOTIFICATIONS.NO_RECORDS_FOUND}
+      >
+        {data?.map((item) => (
           <TableRow key={item.id} data-id={`table-row-${item.id}`}>
             {columns.map((columnConfig, indexColumn) => (
               <TableCell
@@ -96,7 +118,7 @@ const CustomTable = <T extends { id: string }>({
                 data-testid="table-cell"
                 className={TableClasses.cell}
               >
-                {renderCell(item, columnConfig.accessor)}
+                {renderCell(item, columnConfig.accessor, columnConfig.size)}
               </TableCell>
             ))}
           </TableRow>

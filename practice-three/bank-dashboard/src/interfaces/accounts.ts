@@ -1,5 +1,7 @@
+import { ElementType } from 'react';
+
 interface IAccountStatusItem {
-  icon: React.ReactNode;
+  icon: ElementType;
   title: string;
   quantity: number;
   backgroundColor: string;
@@ -8,6 +10,11 @@ interface IAccountStatusItem {
 export enum AccountStatus {
   Active,
   Inactive,
+}
+
+export enum AccountRole {
+  Admin,
+  User,
 }
 
 interface IAccountData {
@@ -23,6 +30,7 @@ interface IAccountData {
   postalCode: string;
   county: string;
   status: AccountStatus;
+  role: AccountRole;
 }
 
 export type { IAccountStatusItem, IAccountData };
