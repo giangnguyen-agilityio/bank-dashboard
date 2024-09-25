@@ -1,6 +1,9 @@
 import { ElementType } from 'react';
-import clsx from 'clsx';
 
+// Utils
+import { cn } from '@app/utils';
+
+// Component
 import { Box, Text, CustomIcon } from '@app/components';
 
 interface ItemProps {
@@ -16,7 +19,7 @@ const AccountStatusItem = ({
   quantity = 0,
   backgroundColor = 'bg-blue-15',
 }: ItemProps) => {
-  const iconClass = clsx('p-2.5 size-11.25 lg:size-17.5', backgroundColor);
+  const iconClass = cn('p-2.5 size-11.25 lg:size-17.5', backgroundColor);
 
   return (
     <Box
@@ -34,8 +37,8 @@ const AccountStatusItem = ({
       >
         <Text
           data-testid="account-item-title"
-          variant="primary"
-          customClass="font-medium text-base md:text-sm lg:text-2xl"
+          variant="title"
+          customClass="text-base md:text-sm lg:text-2xl"
         >
           {title}
         </Text>
@@ -43,7 +46,7 @@ const AccountStatusItem = ({
           data-testid="account-item-quantity"
           customClass="font-semibold text-2xl lg:text-5xl"
         >
-          {quantity}
+          {String(quantity)}
         </Text>
       </Box>
     </Box>

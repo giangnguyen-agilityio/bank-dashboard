@@ -1,6 +1,9 @@
 import { ElementType } from 'react';
-import clsx from 'clsx';
 
+// Utils
+import { cn } from '@app/utils';
+
+// Components
 import { Box } from '@app/components';
 
 interface CustomIconProps {
@@ -13,7 +16,7 @@ const ICON_WRAPPER_CLASS = 'flex justify-center items-center rounded-full';
 const CustomIcon = ({ IconComponent, customClass }: CustomIconProps) => (
   <Box
     data-testid="icon-wrapper"
-    className={clsx(ICON_WRAPPER_CLASS, customClass)}
+    className={cn(ICON_WRAPPER_CLASS, customClass)}
   >
     {IconComponent && <IconComponent />}
   </Box>

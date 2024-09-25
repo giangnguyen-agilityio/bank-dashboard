@@ -1,5 +1,7 @@
-import clsx from 'clsx';
 import { createElement, HTMLAttributes, memo, ReactNode } from 'react';
+
+// Utils
+import { cn } from '@app/utils';
 
 export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   as?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -32,8 +34,8 @@ export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
 }
 
 const VARIANT_CLASSES = {
-  default: 'font-primary text-text-default font-regular',
-  primary: 'font-primary text-text-primary font-regular',
+  default: 'font-primary text-text-default font-normal',
+  primary: 'font-primary text-text-primary font-normal',
   heading: 'font-primary text-text-secondary font-semibold',
   title: 'font-primary text-text-primary font-medium',
   sidebar: 'font-primary text-gray-100 font-normal',
@@ -74,7 +76,7 @@ const Text = ({
 }: TextProps) => {
   if (!children) return null;
 
-  const classes = clsx(
+  const classes = cn(
     VARIANT_CLASSES[variant],
     size && SIZE_CLASSES[size],
     TYPE_CLASSES[type],

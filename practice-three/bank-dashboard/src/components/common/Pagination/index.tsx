@@ -1,10 +1,14 @@
 import React, { memo, useCallback } from 'react';
-import { clsx } from 'clsx';
 import { Pagination as PaginationNextUI } from '@nextui-org/react';
 
+// Utils
+import { cn } from '@app/utils';
+
+// Icons
 import { LeftArrowIcon, RightArrowIcon } from '@app/assets';
 
-import Button from '../Button';
+// Components
+import { Button } from '@app/components';
 
 interface PaginationProps {
   totalPages: number;
@@ -17,16 +21,16 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage = 1,
   onPageChange,
 }) => {
-  const itemClass = clsx('bg-transparent text-blue-200 shadow-none');
+  const itemClass = cn('bg-transparent text-blue-200 shadow-none');
 
-  const prevButtonClass = clsx(
+  const prevButtonClass = cn(
     'flex p-0 font-primary font-semibold bg-transparent',
     {
       'text-blue-200': currentPage !== 1,
     },
   );
 
-  const nextButtonClass = clsx(
+  const nextButtonClass = cn(
     'flex p-0 font-primary font-semibold bg-transparent',
     {
       'text-blue-200': currentPage !== totalPages,

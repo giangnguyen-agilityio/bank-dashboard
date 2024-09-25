@@ -1,11 +1,14 @@
 import { memo } from 'react';
-import clsx from 'clsx';
 import {
   Avatar as AvatarNextUI,
   AvatarProps as AvatarNextUIProps,
 } from '@nextui-org/react';
 
+// Icons
 import { EditIcon } from '@app/assets';
+
+// Utils
+import { cn } from '@app/utils';
 
 interface AvatarProps extends Omit<AvatarNextUIProps, 'size'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
@@ -46,7 +49,7 @@ const Avatar = ({
   ...rest
 }: AvatarProps) => {
   const sizeClass = SIZE_CLASSES[size];
-  const className = clsx(
+  const className = cn(
     sizeClass,
     hasBorder && `border-2 border-${color} border-opacity-25`,
     customClass,
@@ -64,7 +67,7 @@ const Avatar = ({
       {isShowIcon && (
         <div className="absolute bottom-3.75 right-0" data-testid="icon">
           <div
-            className={clsx(
+            className={cn(
               'flex justify-center items-center rounded-full bg-background-secondary ',
               iconSizeClass,
             )}

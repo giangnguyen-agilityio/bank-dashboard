@@ -1,11 +1,17 @@
 import { memo } from 'react';
-import clsx from 'clsx';
 import { Card, CardBody, CardFooter, Divider } from '@nextui-org/react';
 
+// Components
 import { Box, Text } from '@app/components';
+
+// Interfaces
 import { ICreditCard } from '@app/interfaces';
+
+// Icons
 import { BrandCardIcon, ChipCardIcon } from '@app/assets';
-import { maskCardNumber } from '@app/utils';
+
+// Utils
+import { cn, maskCardNumber } from '@app/utils';
 
 interface CreditCardProps {
   isDefault?: boolean;
@@ -20,15 +26,15 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
     expiryDate = '',
   } = data || {};
 
-  const cardClass = clsx(
+  const cardClass = cn(
     'shadow-none w-66.25 md:w-57.75 lg:w-87.5 rounded-xl md:rounded-2xl lg:rounded-3xl',
     isDefault ? 'bg-linear-card' : 'bg-white border border-border-default',
   );
 
   const textClass = (baseClass: string, isLabel: boolean = false) => {
-    const textColor = isLabel ? '!text-text-primary' : '!text-text-secondary';
+    const textColor = isLabel ? 'text-text-primary' : 'text-text-secondary';
 
-    return clsx(baseClass, {
+    return cn(baseClass, {
       'text-text-tertiary': isDefault,
       [textColor]: !isDefault,
     });
@@ -110,7 +116,7 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
           />
         )}
         <Box
-          className={clsx('flex w-full justify-between items-center', {
+          className={cn('flex w-full justify-between items-center', {
             'text-text-tertiary': isDefault,
           })}
         >

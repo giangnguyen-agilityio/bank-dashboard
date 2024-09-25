@@ -1,10 +1,16 @@
 import { memo } from 'react';
-import clsx from 'clsx';
 
-import { Box, Text, CustomIcon } from '@app/components';
+// Interfaces
 import { TransactionItemData } from '@app/interfaces';
-import { getTransactionAmountStyles } from '@app/utils';
+
+// Utils
+import { cn, getTransactionAmountStyles } from '@app/utils';
+
+// Mocks
 import { MOCK_DEFAULT_TRANSACTION_ITEMS } from '@app/mocks';
+
+// Components
+import { Box, Text, CustomIcon } from '@app/components';
 
 const TransactionItem = ({
   transactionIcon,
@@ -32,7 +38,7 @@ const TransactionItem = ({
       >
         <CustomIcon
           IconComponent={icon}
-          customClass={clsx('size-12.5 md:size-10 lg:size-14', backgroundColor)}
+          customClass={cn('size-12.5 md:size-10 lg:size-14', backgroundColor)}
         />
       </Box>
 
@@ -46,7 +52,7 @@ const TransactionItem = ({
           <Text
             data-testid="transaction-title"
             variant="title"
-            customClass="mb-1 text-lg !text-text-default md:text-md lg:mb-1.75 lg:text-2xl"
+            customClass="mb-1 text-lg text-text-default md:text-md lg:mb-1.75 lg:text-2xl"
           >
             {title}
           </Text>
@@ -55,7 +61,7 @@ const TransactionItem = ({
           <Text
             data-testid="transaction-date"
             variant="title"
-            customClass="font-regular text-base lg:text-xl"
+            customClass="font-normal text-base lg:text-xl"
           >
             {date}
           </Text>
@@ -64,7 +70,7 @@ const TransactionItem = ({
         {/* Transaction Amount */}
         <Text
           data-testid="transaction-amount"
-          customClass={`h-full text-sm font-primary font-medium lg:text-2xl ${amountClassName}`}
+          customClass={`h-full text-sm font-medium lg:text-2xl ${amountClassName}`}
         >
           {formattedAmount}
         </Text>
