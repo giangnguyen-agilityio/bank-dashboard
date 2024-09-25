@@ -1,7 +1,11 @@
+import { ElementType } from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { getTransactionAmountStyles } from '@app/utils';
-import { MOCK_TRANSACTION_ITEMS } from '@app/mocks';
+import {
+  MOCK_DEFAULT_TRANSACTION_ITEMS,
+  MOCK_TRANSACTION_ITEMS,
+} from '@app/mocks';
 import { TransactionKind } from '@app/interfaces';
 import { TransactionItem } from '@app/components';
 
@@ -32,6 +36,28 @@ describe('TransactionItem Component', () => {
     expect(titleElement).toHaveTextContent('Deposit from my Card');
     expect(dateElement).toHaveTextContent('28 January 2021');
     expect(amountElement).toBeInTheDocument();
+  });
+
+  it('should use default icon and background color when transactionIcon is not provided', () => {
+    render(
+      <TransactionItem
+        {...MOCK_TRANSACTION_ITEMS[0]}
+        transactionIcon={
+          undefined as unknown as {
+            icon: ElementType;
+            backgroundColor: string;
+          }
+        }
+      />,
+    );
+
+    const iconElement = screen.getByTestId('icon-wrapper');
+
+    // Check fallback to MOCK_DEFAULT_TRANSACTION_ITEMS values
+    expect(iconElement.firstChild).toHaveAttribute('aria-label', 'Money Icon');
+    expect(iconElement).toHaveClass(
+      MOCK_DEFAULT_TRANSACTION_ITEMS.transactionIcon.backgroundColor,
+    );
   });
 
   it('should applies correct styles for different transaction kinds', () => {

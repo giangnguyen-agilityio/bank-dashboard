@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ElementType } from 'react';
 
 export enum TransactionKind {
   Income,
@@ -6,7 +6,10 @@ export enum TransactionKind {
 }
 
 interface TransactionItemData {
-  icon: ReactNode;
+  transactionIcon: {
+    icon: ElementType;
+    backgroundColor: string;
+  };
   transactionInfo: {
     title: string;
     date: string;

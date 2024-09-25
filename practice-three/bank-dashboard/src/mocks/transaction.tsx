@@ -1,4 +1,3 @@
-import { renderTransactionIcon } from '@app/utils';
 import {
   TransactionData,
   TransactionItemData,
@@ -7,7 +6,10 @@ import {
 import { MoneyIcon, PaypalIcon, WalletIcon } from '@app/assets';
 
 const MOCK_DEFAULT_TRANSACTION_ITEMS: TransactionItemData = {
-  icon: renderTransactionIcon(MoneyIcon, 'bg-green-50'),
+  transactionIcon: {
+    icon: MoneyIcon,
+    backgroundColor: 'bg-green-50',
+  },
   transactionInfo: {
     title: 'N/A',
     date: 'N/A',
@@ -18,7 +20,10 @@ const MOCK_DEFAULT_TRANSACTION_ITEMS: TransactionItemData = {
 
 const MOCK_TRANSACTION_ITEMS: TransactionItemData[] = [
   {
-    icon: renderTransactionIcon(WalletIcon, 'bg-white-200'),
+    transactionIcon: {
+      icon: WalletIcon,
+      backgroundColor: 'bg-white-200',
+    },
     transactionInfo: {
       title: 'Deposit from my Card',
       date: '28 January 2021',
@@ -27,7 +32,10 @@ const MOCK_TRANSACTION_ITEMS: TransactionItemData[] = [
     kind: TransactionKind.Expense,
   },
   {
-    icon: renderTransactionIcon(PaypalIcon, 'bg-blue-20'),
+    transactionIcon: {
+      icon: PaypalIcon,
+      backgroundColor: 'bg-blue-20',
+    },
     transactionInfo: {
       title: 'Deposit Paypal',
       date: '25 January 2021',
@@ -36,7 +44,10 @@ const MOCK_TRANSACTION_ITEMS: TransactionItemData[] = [
     kind: TransactionKind.Income,
   },
   {
-    icon: renderTransactionIcon(MoneyIcon, 'bg-green-50'),
+    transactionIcon: {
+      icon: MoneyIcon,
+      backgroundColor: 'bg-green-50',
+    },
     transactionInfo: {
       title: 'Jemi Wilson',
       date: '21 January 2021',

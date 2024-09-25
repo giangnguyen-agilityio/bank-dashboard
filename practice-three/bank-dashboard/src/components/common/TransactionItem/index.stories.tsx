@@ -22,7 +22,7 @@ type Story = StoryObj<typeof TransactionItem>;
 
 export const Default: Story = {
   args: {
-    icon: MOCK_DEFAULT_TRANSACTION_ITEMS.icon,
+    transactionIcon: MOCK_DEFAULT_TRANSACTION_ITEMS.transactionIcon,
     transactionInfo: MOCK_DEFAULT_TRANSACTION_ITEMS.transactionInfo,
     transactionAmount: MOCK_DEFAULT_TRANSACTION_ITEMS.transactionAmount,
     kind: MOCK_DEFAULT_TRANSACTION_ITEMS.kind,
@@ -31,7 +31,7 @@ export const Default: Story = {
 
 export const Primary: Story = {
   args: {
-    icon: MOCK_TRANSACTION_ITEMS[0].icon,
+    transactionIcon: MOCK_TRANSACTION_ITEMS[0].transactionIcon,
     transactionInfo: MOCK_TRANSACTION_ITEMS[0].transactionInfo,
     transactionAmount: MOCK_TRANSACTION_ITEMS[0].transactionAmount,
     kind: MOCK_TRANSACTION_ITEMS[0].kind,
