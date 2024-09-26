@@ -95,4 +95,9 @@ const width = {
   277.5: '69.375rem', // 1110px
 };
 
-export { borderRadius, spacing, width };
+const height = {
+  92.5: '23.125rem', // 370px
+  125: '31.25rem', // 500px
+};
+
+export { borderRadius, spacing, width, height };

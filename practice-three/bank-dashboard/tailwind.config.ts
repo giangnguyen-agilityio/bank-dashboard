@@ -4,6 +4,7 @@ import { nextui } from '@nextui-org/theme';
 import {
   screens,
   width,
+  height,
   spacing,
   container,
   borderRadius,
@@ -25,6 +26,7 @@ const config: Config = {
       backgroundImage,
       screens,
       width,
+      height,
       spacing,
       container,
       borderRadius,
