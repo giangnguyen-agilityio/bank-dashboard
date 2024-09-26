@@ -13,3 +13,4 @@ export { default as AccountStatusItem } from './AccountStatusItem';
 export { default as AccountStatusBar } from './AccountStatusBar';
 export { default as ErrorFallback } from './ErrorFallback';
 export { default as Spinner } from './Spinner';
+export { default as CustomTabs } from './Tabs';
