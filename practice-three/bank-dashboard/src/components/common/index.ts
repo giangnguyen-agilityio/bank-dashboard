@@ -12,3 +12,4 @@ export { default as CustomIcon } from './CustomIcon';
 export { default as AccountStatusItem } from './AccountStatusItem';
 export { default as AccountStatusBar } from './AccountStatusBar';
 export { default as ErrorFallback } from './ErrorFallback';
+export { default as Spinner } from './Spinner';
