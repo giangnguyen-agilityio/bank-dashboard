@@ -10,20 +10,20 @@ export type ErrorFallbackProps = {
   message?: string;
 };
 
+const classes = {
+  container: 'flex flex-col items-center gap-6 p-4',
+  imageWrapper: 'h-92.5 md:h-125',
+  errorMessage: 'text-center text-6xl md:text-8xl',
+  detailErrorMessage:
+    'w-full text-gray-150 text-center whitespace-pre-line text-2xl md:text-3xl',
+  actionText:
+    'font-medium text-center whitespace-pre-line text-2xl md:text-3xl',
+  link: 'text-blue-200 text-2xl hover:underline md:text-3xl',
+};
+
 const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
   const errorMessage = `Oops! Something went wrong :(`;
   const detailErrorMessage = `An error occurred. For more help, feel free to reach out to our support team`;
-
-  const classes = {
-    container: 'flex flex-col items-center gap-6 p-4',
-    imageWrapper: 'h-92.5 md:h-125',
-    errorMessage: 'text-center text-6xl md:text-8xl',
-    detailErrorMessage:
-      'w-full text-gray-150 text-center whitespace-pre-line text-2xl md:text-3xl',
-    actionText:
-      'font-medium text-center whitespace-pre-line text-2xl md:text-3xl',
-    link: 'text-blue-200 text-2xl hover:underline md:text-3xl',
-  };
 
   return (
     <Box className={classes.container}>
@@ -49,7 +49,7 @@ const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
       )}
 
       <Text customClass={classes.actionText}>
-        Please refresh the page or{' '}
+        Please refresh the page or&nbsp;
         <Link href={DESTINATION.DASHBOARD} className={classes.link}>
           back to home
         </Link>
