@@ -15,3 +15,4 @@ export { default as ErrorFallback } from './ErrorFallback';
 export { default as NotFoundFallback } from './NotFoundFallback';
 export { default as Spinner } from './Spinner';
 export { default as CustomTabs } from './Tabs';
+export { default as ConfirmModal } from './ConfirmModal';
