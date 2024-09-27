@@ -58,7 +58,7 @@ const Pagination: React.FC<PaginationProps> = ({
         className={prevButtonClass}
         disabled={currentPage === 1}
         startContent={<LeftArrowIcon />}
-        onClick={handlePrev}
+        onPress={handlePrev}
       >
         Prev
       </Button>
@@ -82,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({
         className={nextButtonClass}
         disabled={currentPage === totalPages}
         endContent={<RightArrowIcon />}
-        onClick={handleNext}
+        onPress={handleNext}
       >
         Next
       </Button>
