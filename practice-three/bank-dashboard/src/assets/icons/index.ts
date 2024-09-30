@@ -20,3 +20,5 @@ export * from './UpArrowIcon';
 export * from './UserIcon';
 export * from './WalletIcon';
 export * from './MoreVerticalIcon';
+export * from './LogoIcon';
+export * from './CloseIcon';
