@@ -16,3 +16,6 @@ export { default as NotFoundFallback } from './NotFoundFallback';
 export { default as Spinner } from './Spinner';
 export { default as CustomTabs } from './Tabs';
 export { default as ConfirmModal } from './ConfirmModal';
+export { default as SidebarItem } from './SidebarItem';
+export { default as Sidebar } from './Sidebar';
+export { default as Navbar } from './Navbar';
