@@ -8,6 +8,9 @@ const DESTINATION = {
   SERVICES: '/services',
   PRIVILEGES: '/privileges',
   SETTING: '/setting',
+  LOGIN: '/login',
+  FORGOT_PASSWORD: '/forgot-password',
+  SIGN_UP: '/sign-up',
 };
 
 export { DESTINATION };

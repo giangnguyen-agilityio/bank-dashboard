@@ -22,3 +22,5 @@ export * from './WalletIcon';
 export * from './MoreVerticalIcon';
 export * from './LogoIcon';
 export * from './CloseIcon';
+export * from './EyeFilledIcon';
+export * from './EyeSlashFilledIcon';
