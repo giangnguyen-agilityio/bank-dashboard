@@ -13,4 +13,9 @@ const DESTINATION = {
   SIGN_UP: '/sign-up',
 };
 
-export { DESTINATION };
+const END_POINTS = {
+  USERS: '/users',
+  TRANSACTIONS: '/transactions',
+};
+
+export { DESTINATION, END_POINTS };

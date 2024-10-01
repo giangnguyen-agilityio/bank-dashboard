@@ -6,10 +6,19 @@ import { rootRoute } from '@app/routes';
 // Constants
 import { DESTINATION } from '@app/constants';
 
+// Pages
+import { LoginPage } from '@app/pages';
+
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
   component: () => <div>Dashboard</div>,
+});
+
+const loginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/login',
+  component: () => <LoginPage />,
 });
 
 const dashboardRoute = createRoute({
@@ -38,6 +47,7 @@ const settingRoute = createRoute({
 
 export {
   indexRoute,
+  loginRoute,
   dashboardRoute,
   transactionRoute,
   accountsRoute,

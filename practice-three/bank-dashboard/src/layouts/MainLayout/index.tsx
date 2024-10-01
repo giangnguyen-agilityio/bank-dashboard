@@ -1,8 +1,9 @@
 import { ReactElement } from 'react';
 import { useDisclosure } from '@nextui-org/react';
+import { Toaster } from 'react-hot-toast';
 
 // Constants
-import { SIDEBAR_LIST } from '@app/constants';
+import { SIDEBAR_LIST, TOAST_CONFIG } from '@app/constants';
 
 // Components
 import { Container, Navbar, Sidebar } from '@app/components';
@@ -36,6 +37,15 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           </section>
         </main>
       </Container>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: TOAST_CONFIG.DURATION,
+          success: TOAST_CONFIG.SUCCESS_COLOR,
+          error: TOAST_CONFIG.ERROR_COLOR,
+          style: TOAST_CONFIG.TEXT_COLOR,
+        }}
+      />
     </>
   );
 };
