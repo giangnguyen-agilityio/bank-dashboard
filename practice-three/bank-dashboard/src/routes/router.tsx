@@ -4,6 +4,7 @@ import { createRouter } from '@tanstack/react-router';
 import {
   rootRoute,
   indexRoute,
+  loginRoute,
   dashboardRoute,
   transactionRoute,
   accountsRoute,
@@ -13,6 +14,7 @@ import {
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
+  loginRoute,
   dashboardRoute,
   transactionRoute,
   accountsRoute,
