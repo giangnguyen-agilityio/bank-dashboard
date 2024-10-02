@@ -27,7 +27,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         />
 
         {/* Main Content */}
-        <main className="flex flex-1 flex-col" role="main">
+        <main className="flex flex-1 flex-col overflow-hidden" role="main">
           <Navbar onToggleSidebar={toggleSidebar} />
           <section
             className="flex-1 p-6 bg-background-primary md:px-6.25 lg:px-10"
