@@ -1,4 +1,7 @@
+// Interfaces
 import { TransactionData } from '@app/interfaces';
+
+// Types
 import { TableColumnType } from '@app/types';
 
 // The config width for column in table
@@ -13,7 +16,7 @@ const SIZE_COLUMN_DEFAULT = 120;
 
 const TRANSACTION_TABLE_TABS = {
   ALL_TRANSACTIONS: {
-    KEY: 'all-transactions',
+    KEY: '',
     TITLE: 'All Transactions',
   },
   EXPENSE_TRANSACTIONS: {

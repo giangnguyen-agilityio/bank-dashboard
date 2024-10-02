@@ -9,10 +9,14 @@ import { TransactionKind } from '@app/interfaces';
 // Services
 import { getTransactions } from '@app/services';
 
-const useFetchTransactions = (filter?: TransactionKind) =>
+const useFetchTransactions = (
+  filter?: TransactionKind,
+  page?: number,
+  limit?: number,
+) =>
   useQuery({
-    queryKey: [END_POINTS.TRANSACTIONS, filter],
-    queryFn: () => getTransactions(filter),
+    queryKey: [END_POINTS.TRANSACTIONS, filter, page, limit],
+    queryFn: () => getTransactions(filter, page, limit),
   });
 
 export { useFetchTransactions };

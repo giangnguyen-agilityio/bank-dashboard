@@ -33,10 +33,7 @@ type Story = StoryObj<typeof Table>;
 
 export const Primary: Story = {
   args: {
-    data: MOCK_ACCOUNTS_DATA.map((item) => ({
-      id: item.id,
-      ...item,
-    })),
+    data: MOCK_ACCOUNTS_DATA,
     columns: MOCK_COLUMNS_ACCOUNT_LIST as TableColumnType<unknown>[],
   },
 };

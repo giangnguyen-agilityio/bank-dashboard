@@ -7,6 +7,7 @@ import {
   TableColumn,
   TableRow,
   TableCell,
+  Spinner,
 } from '@nextui-org/react';
 
 // Constants
@@ -28,12 +29,14 @@ interface CustomTableProps<T> {
   data: T[];
   variant?: VariantTable;
   isStriped?: boolean;
+  isLoading?: boolean;
 }
 
 const CustomTable = <T extends { id: string }>({
   columns,
   data = [],
   isStriped = false,
+  isLoading = false,
   variant = 'primary',
 }: CustomTableProps<T>) => {
   const renderCell = (
@@ -59,7 +62,7 @@ const CustomTable = <T extends { id: string }>({
   const TableClasses = {
     wrapper: cn(
       'mx-auto',
-      'w-81.25 md:185.75 lg:w-277.5',
+      'min-w-81.25 w-full',
       'px-5 py-5 md:px-5 md:py-4.25 lg:px-7.5 lg:py-5',
       'rounded-xl md:rounded-2xl lg:rounded-3xl',
     ),
@@ -107,6 +110,8 @@ const CustomTable = <T extends { id: string }>({
       </TableHeader>
 
       <TableBody
+        isLoading={isLoading}
+        loadingContent={<Spinner />}
         data-testid="table-body"
         emptyContent={NOTIFICATIONS.NO_RECORDS_FOUND}
       >

@@ -1,7 +1,17 @@
 import { Skeleton } from '@nextui-org/react';
+import { useState, useCallback } from 'react';
 
 // Mocks
 import { MOCK_CREDIT_CARD_DATA } from '@app/mocks';
+
+// Hooks
+import { useFetchTransactions } from '@app/hooks';
+
+// Interfaces
+import { TransactionKind } from '@app/interfaces';
+
+// Constants
+import { LIMIT_PER_PAGE } from '@app/constants';
 
 // Components
 import {
@@ -11,23 +21,32 @@ import {
   Text,
   TransactionTable,
 } from '@app/components';
-import { useFetchTransactions } from '@app/hooks/useTransaction';
-import { TransactionKind } from '@app/interfaces';
 
 const TransactionPage = () => {
-  const { data: transactionData } = useFetchTransactions();
-  const { data: incomeTransactionData } = useFetchTransactions(
-    TransactionKind.Income,
-  );
-  const { data: expenseTransactionData } = useFetchTransactions(
-    TransactionKind.Expense,
+  const [page, setPage] = useState(1);
+  const [selectedTab, setSelectedTab] = useState<TransactionKind>();
+  const { data: transactionData, isLoading } = useFetchTransactions(
+    selectedTab,
+    page,
+    LIMIT_PER_PAGE,
   );
 
   const { transactions, count: totalTransactions } = transactionData || {};
-  const { transactions: incomeTransactions, count: totalIncomeTransactions } =
-    incomeTransactionData || {};
-  const { transactions: expenseTransactions, count: totalExpenseTransactions } =
-    expenseTransactionData || {};
+
+  const handleTabChange = useCallback(
+    (tab: TransactionKind) => {
+      setSelectedTab(tab);
+      setPage(1);
+    },
+    [setSelectedTab, setPage],
+  );
+
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      setPage(newPage);
+    },
+    [setPage],
+  );
 
   return (
     <Box className="min-h-screen flex flex-col gap-5.5 md:gap-5 lg:gap-6">
@@ -84,11 +103,11 @@ const TransactionPage = () => {
         {/* Transaction Table */}
         <TransactionTable
           transactions={transactions}
-          incomeTransactions={incomeTransactions}
-          expenseTransactions={expenseTransactions}
           totalTransactions={totalTransactions}
-          totalIncomeTransactions={totalIncomeTransactions}
-          totalExpenseTransactions={totalExpenseTransactions}
+          currentPage={page}
+          isLoading={isLoading}
+          onTabChange={handleTabChange}
+          onPageChange={handlePageChange}
         />
       </Box>
     </Box>

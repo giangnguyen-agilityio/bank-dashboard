@@ -21,7 +21,10 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage = 1,
   onPageChange,
 }) => {
-  const itemClass = cn('bg-transparent text-blue-200 shadow-none');
+  const itemClass = cn(
+    'bg-transparent text-blue-200 shadow-none',
+    'data-[active=true]:bg-blue-200 data-[active=true]:text-text-tertiary',
+  );
 
   const prevButtonClass = cn(
     'flex p-0 font-primary font-semibold bg-transparent',

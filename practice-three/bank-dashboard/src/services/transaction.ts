@@ -14,11 +14,15 @@ import { handleAxiosError } from '@app/utils';
 
 const getTransactions = async (
   filter?: TransactionKind,
+  page?: number,
+  limit?: number,
 ): Promise<TransactionResponse> => {
   try {
     const response = await httpClient.get(END_POINTS.TRANSACTIONS, {
       params: {
         type: filter,
+        page,
+        limit,
       },
     });
 

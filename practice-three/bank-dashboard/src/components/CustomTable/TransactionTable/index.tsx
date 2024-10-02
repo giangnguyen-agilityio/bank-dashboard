@@ -3,86 +3,98 @@ import { useState } from 'react';
 // Constants
 import {
   COLUMNS_TRANSACTION_LIST,
+  LIMIT_PER_PAGE,
   TRANSACTION_TABLE_TABS,
 } from '@app/constants';
 
 // Interfaces
-import { TransactionData } from '@app/interfaces';
+import { TransactionData, TransactionKind } from '@app/interfaces';
 
 // Components
-import { Box, CustomTabs, Pagination, Table } from '@app/components';
+import { Box, Pagination, Table, CustomTabs } from '@app/components';
 
-// Define the types for the props
 interface TransactionTableProps {
+  currentPage: number;
   totalTransactions?: number;
-  totalIncomeTransactions?: number;
-  totalExpenseTransactions?: number;
   transactions?: TransactionData[];
-  incomeTransactions?: TransactionData[];
-  expenseTransactions?: TransactionData[];
+  isLoading?: boolean;
+  onTabChange?: (tab: TransactionKind) => void;
+  onPageChange?: (page: number) => void;
 }
 
 const TransactionTable = ({
   totalTransactions = 0,
-  totalIncomeTransactions = 0,
-  totalExpenseTransactions = 0,
   transactions = [],
-  incomeTransactions = [],
-  expenseTransactions = [],
+  isLoading,
+  currentPage,
+  onTabChange,
+  onPageChange,
 }: TransactionTableProps) => {
   const [selected, setSelected] = useState<string | number>(
     TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.KEY,
   );
 
-  const createTableData = (
-    key: string,
-    title: string,
-    data: TransactionData[],
-    totalPages: number,
-  ) => ({
-    key,
-    title,
-    tabContent: (
-      <Box className="flex flex-col gap-3.75 lg:gap-5">
-        <Table columns={COLUMNS_TRANSACTION_LIST} data={data} />
+  const totalPage = Math.ceil(totalTransactions / LIMIT_PER_PAGE);
 
-        <Box className="flex w-full justify-end mx-auto">
-          <Pagination totalPages={totalPages} />
-        </Box>
-      </Box>
-    ),
-  });
+  const handleTabChange = (key: string | number) => {
+    setSelected(key);
+    onTabChange?.(key as TransactionKind);
+  };
 
-  const tableData = [
-    createTableData(
-      TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.KEY,
-      TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.TITLE,
-      transactions,
-      totalTransactions,
-    ),
-    createTableData(
-      TRANSACTION_TABLE_TABS.INCOME_TRANSACTIONS.KEY,
-      TRANSACTION_TABLE_TABS.INCOME_TRANSACTIONS.TITLE,
-      incomeTransactions,
-      totalIncomeTransactions,
-    ),
-    createTableData(
-      TRANSACTION_TABLE_TABS.EXPENSE_TRANSACTIONS.KEY,
-      TRANSACTION_TABLE_TABS.EXPENSE_TRANSACTIONS.TITLE,
-      expenseTransactions,
-      totalExpenseTransactions,
-    ),
+  const tabs = [
+    {
+      key: TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.KEY,
+      title: TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.TITLE,
+      tabContent: (
+        <Table
+          columns={COLUMNS_TRANSACTION_LIST}
+          data={transactions}
+          isLoading={isLoading}
+        />
+      ),
+    },
+    {
+      key: TRANSACTION_TABLE_TABS.INCOME_TRANSACTIONS.KEY,
+      title: TRANSACTION_TABLE_TABS.INCOME_TRANSACTIONS.TITLE,
+      tabContent: (
+        <Table
+          columns={COLUMNS_TRANSACTION_LIST}
+          data={transactions}
+          isLoading={isLoading}
+        />
+      ),
+    },
+    {
+      key: TRANSACTION_TABLE_TABS.EXPENSE_TRANSACTIONS.KEY,
+      title: TRANSACTION_TABLE_TABS.EXPENSE_TRANSACTIONS.TITLE,
+      tabContent: (
+        <Table
+          columns={COLUMNS_TRANSACTION_LIST}
+          data={transactions}
+          isLoading={isLoading}
+        />
+      ),
+    },
   ];
 
   return (
-    <>
-      {/* Transaction Table */}
+    <Box>
+      {/* CustomTabs */}
       <CustomTabs
-        tabs={tableData}
+        tabs={tabs}
         selectedKey={selected}
-        onSelectionChange={setSelected}
+        onSelectionChange={handleTabChange}
       />
-    </>
+
+      {/* Pagination */}
+      <Box className="flex w-full justify-end mx-auto">
+        <Pagination
+          totalPages={totalPage}
+          currentPage={currentPage}
+          onPageChange={onPageChange}
+        />
+      </Box>
+    </Box>
   );
 };
 
