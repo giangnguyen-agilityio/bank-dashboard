@@ -32,7 +32,7 @@ interface CustomTableProps<T> {
 
 const CustomTable = <T extends { id: string }>({
   columns,
-  data,
+  data = [],
   isStriped = false,
   variant = 'primary',
 }: CustomTableProps<T>) => {
