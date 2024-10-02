@@ -23,3 +23,34 @@
       url(/src/assets/fonts/Lato.woff) format('woff');
   }
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar:hover {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.small-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.small-scrollbar::-webkit-scrollbar:hover {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.24);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.37);
+}
