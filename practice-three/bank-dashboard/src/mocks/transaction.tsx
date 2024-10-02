@@ -65,6 +65,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Withdrawal',
     date: '2024-09-23',
     amount: 150,
+    cardNumber: '5849210731624890',
   },
   {
     description: 'Payment',
@@ -73,6 +74,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Payment',
     date: '2024-09-22',
     amount: 300,
+    cardNumber: '9302458674019285',
   },
   {
     description: 'Debit',
@@ -81,6 +83,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Debit',
     date: '2024-09-21',
     amount: 50,
+    cardNumber: '8174592306841527',
   },
   {
     description: 'Purchase',
@@ -89,6 +92,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Purchase',
     date: '2024-09-20',
     amount: 200,
+    cardNumber: '3745902186437509',
   },
   {
     description: 'Transfer In',
@@ -97,6 +101,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Transfer In',
     date: '2024-09-19',
     amount: 500,
+    cardNumber: '5609382741058632',
   },
   {
     description: 'Deposit',
@@ -105,6 +110,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Deposit',
     date: '2024-09-18',
     amount: 1000,
+    cardNumber: '9283746152098476',
   },
   {
     description: 'Wire Transfer',
@@ -113,6 +119,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Wire Transfer',
     date: '2024-09-17',
     amount: 2000,
+    cardNumber: '1057483926502184',
   },
   {
     description: 'Transfer Out',
@@ -121,6 +128,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Transfer Out',
     date: '2024-09-16',
     amount: 500,
+    cardNumber: '7629841035274689',
   },
   {
     description: 'Card',
@@ -129,6 +137,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Card',
     date: '2024-09-15',
     amount: 800,
+    cardNumber: '4398725610843967',
   },
   {
     description: 'Withdrawal',
@@ -137,6 +146,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Withdrawal',
     date: '2024-09-14',
     amount: 100,
+    cardNumber: '8412650397241586',
   },
   {
     description: 'Payment',
@@ -145,6 +155,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Payment',
     date: '2024-09-13',
     amount: 250,
+    cardNumber: '5849210731624890',
   },
   {
     description: 'Debit',
@@ -153,6 +164,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Debit',
     date: '2024-09-12',
     amount: 75,
+    cardNumber: '9302458674019285',
   },
   {
     description: 'Purchase',
@@ -161,6 +173,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Purchase',
     date: '2024-09-11',
     amount: 250,
+    cardNumber: '8174592306841527',
   },
   {
     description: 'Transfer In',
@@ -169,6 +182,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Transfer In',
     date: '2024-09-10',
     amount: 300,
+    cardNumber: '3745902186437509',
   },
   {
     description: 'Deposit',
@@ -177,6 +191,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Deposit',
     date: '2024-09-09',
     amount: 1500,
+    cardNumber: '5609382741058632',
   },
   {
     description: 'Wire Transfer',
@@ -185,6 +200,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Wire Transfer',
     date: '2024-09-08',
     amount: 2500,
+    cardNumber: '9283746152098476',
   },
   {
     description: 'Transfer Out',
@@ -193,6 +209,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Transfer Out',
     date: '2024-09-07',
     amount: 600,
+    cardNumber: '1057483926502184',
   },
   {
     description: 'Card',
@@ -201,6 +218,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Card',
     date: '2024-09-06',
     amount: 700,
+    cardNumber: '7629841035274689',
   },
   {
     description: 'Withdrawal',
@@ -209,6 +227,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Withdrawal',
     date: '2024-09-05',
     amount: 200,
+    cardNumber: '4398725610843967',
   },
   {
     description: 'Payment',
@@ -217,6 +236,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
     category: 'Payment',
     date: '2024-09-04',
     amount: 350,
+    cardNumber: '8412650397241586',
   },
 ];
 
