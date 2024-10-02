@@ -13,14 +13,14 @@ interface TabItem {
 interface CustomTabsProps extends TabsProps {
   tabs: TabItem[];
   selectedKey?: string | number | null;
-  onSelectionChange: (key: string | number | null) => void;
+  onSelectionChange?: (key: string | number) => void;
 }
 
 const CustomTabs = ({
   tabs = [],
   selectedKey,
-  onSelectionChange,
   classNames,
+  onSelectionChange,
   ...props
 }: CustomTabsProps) => {
   const { base, tabList, tab, tabContent, cursor } = classNames || {};
