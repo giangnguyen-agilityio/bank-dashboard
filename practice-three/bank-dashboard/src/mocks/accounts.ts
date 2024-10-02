@@ -29,7 +29,7 @@ const MOCK_ACCOUNT_STATUS_BAR_DATA: IAccountStatusItem[] = [
 
 const MOCK_ACCOUNTS_DATA: IAccountData[] = [
   {
-    accountId: 'ACC001',
+    id: 'ACC001',
     name: 'John Doe',
     username:
       'loremipsumdasdsad5as65d58q5s7d8q7w8e7qw8e78qw7e89wq79e87wq8e75as4da2s4545',
@@ -46,7 +46,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC002',
+    id: 'ACC002',
     name: 'Jane Smith',
     username: 'jsmith',
     password: 'securePass456',
@@ -61,7 +61,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC003',
+    id: 'ACC003',
     name: 'Robert Brown',
     username: 'rbrown',
     password: 'myPass789',
@@ -76,7 +76,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.Admin,
   },
   {
-    accountId: 'ACC004',
+    id: 'ACC004',
     name: 'Emily Johnson',
     username: 'ejohnson',
     password: 'emily123',
@@ -91,7 +91,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC005',
+    id: 'ACC005',
     name: 'Michael White',
     username: 'mwhite',
     password: 'whitePass101',
@@ -106,7 +106,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC006',
+    id: 'ACC006',
     name: 'Jessica Lee',
     username: 'jlee',
     password: 'jessicaLee',
@@ -121,7 +121,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC007',
+    id: 'ACC007',
     name: 'David Green',
     username: 'dgreen',
     password: 'greenPass789',
@@ -136,7 +136,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC008',
+    id: 'ACC008',
     name: 'Sarah Wilson',
     username: 'swilson',
     password: 'swilson321',
@@ -151,7 +151,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.Admin,
   },
   {
-    accountId: 'ACC009',
+    id: 'ACC009',
     name: 'Daniel Martin',
     username: 'dmartin',
     password: 'danielPass234',
@@ -166,7 +166,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC010',
+    id: 'ACC010',
     name: 'Laura Garcia',
     username: 'lgarcia',
     password: 'lauraPass567',
@@ -181,7 +181,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.Admin,
   },
   {
-    accountId: 'ACC011',
+    id: 'ACC011',
     name: 'Christopher Martinez',
     username: 'cmartinez',
     password: 'chrisPass678',
@@ -196,7 +196,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC012',
+    id: 'ACC012',
     name: 'Emily Rodriguez',
     username: 'erodriguez',
     password: 'emilyPass789',
@@ -211,7 +211,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC013',
+    id: 'ACC013',
     name: 'Matthew Perez',
     username: 'mperez',
     password: 'matthewPass890',
@@ -226,7 +226,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC014',
+    id: 'ACC014',
     name: 'Olivia Hall',
     username: 'ohall',
     password: 'oliviaPass901',
@@ -241,7 +241,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC015',
+    id: 'ACC015',
     name: 'James Young',
     username: 'jyoung',
     password: 'jamesPass234',
@@ -256,7 +256,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC016',
+    id: 'ACC016',
     name: 'Ava King',
     username: 'aking',
     password: 'avaPass567',
@@ -271,7 +271,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC017',
+    id: 'ACC017',
     name: 'William Wright',
     username: 'wwright',
     password: 'williamPass678',
@@ -286,7 +286,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC018',
+    id: 'ACC018',
     name: 'Isabella Scott',
     username: 'iscott',
     password: 'isabellaPass789',
@@ -301,7 +301,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC019',
+    id: 'ACC019',
     name: 'Mason Adams',
     username: 'madams',
     password: 'masonPass890',
@@ -316,7 +316,7 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
     role: AccountRole.User,
   },
   {
-    accountId: 'ACC020',
+    id: 'ACC020',
     name: 'Sophia Baker',
     username: 'sbaker',
     password: 'sophiaPass901',

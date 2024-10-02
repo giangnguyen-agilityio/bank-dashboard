@@ -18,7 +18,7 @@ export enum AccountRole {
 }
 
 interface IAccountData {
-  accountId: string;
+  id: string;
   name: string;
   username: string;
   password: string;
