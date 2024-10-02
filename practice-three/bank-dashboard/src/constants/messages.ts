@@ -11,7 +11,7 @@ const VALIDATION_MESSAGES = {
   },
 };
 
-const FETCH_ERROR_MESSAGES = {
+const FETCH_ERROR_MESSAGES: { [key: number]: string } = {
   400: 'The request could not be understood by the server due to malformed syntax. Please check your input and try again.',
   401: 'You are not authorized to access this resource. Please log in with valid credentials and try again.',
   403: 'You do not have permission to access this resource. Please contact the administrator if you believe this is an error.',
@@ -23,6 +23,9 @@ const FETCH_ERROR_MESSAGES = {
 const ERROR_MESSAGE = {
   LOGIN: 'Email or password is incorrect.',
   TIMEOUT: `Request time out. The server didn't respond in time.`,
+  UNEXPECTED_ERROR: 'An unexpected error occurred',
+  UNKNOWN_ERROR: 'An unknown error occurred',
+  SESSION_HAS_EXPIRED: 'Your session has expired',
 };
 
 const SUCCESS_MESSAGE = {

@@ -1,7 +1,11 @@
 import axios from 'axios';
+import { useNavigate } from '@tanstack/react-router';
+
+// Constants
+import { DESTINATION, ERROR_MESSAGE } from '@app/constants';
 
 // Utils
-// import { convertDateToTimestamp } from '@app/utils';
+import { convertDateToTimestamp } from '@app/utils';
 
 const httpClient = axios.create({
   baseURL: process.env.VITE_APP_API_URL,
@@ -12,18 +16,19 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
   (config) => {
-    // const exp = localStorage.getItem('exp');
+    const exp = localStorage.getItem('exp');
+    const navigate = useNavigate();
 
-    // if (exp) {
-    //   const currentDay = convertDateToTimestamp(exp);
+    if (exp) {
+      const currentDay = convertDateToTimestamp(exp);
 
-    //   if (Date.now() >= currentDay) {
-    //     localStorage.clear();
-    //     window.location.href = '/login';
-    //     return Promise.reject('Your session has expired');
-    //   }
-    // }
+      if (Date.now() >= currentDay) {
+        localStorage.clear();
+        navigate({ to: DESTINATION.LOGIN });
 
+        return Promise.reject(ERROR_MESSAGE.SESSION_HAS_EXPIRED);
+      }
+    }
     return config;
   },
   (error) => {

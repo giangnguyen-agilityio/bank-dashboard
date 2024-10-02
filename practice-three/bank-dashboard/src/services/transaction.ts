@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 // Interfaces
-import { AuthResponse, LoginFormData } from '@app/interfaces';
+import { TransactionKind, TransactionData } from '@app/interfaces';
 
 // Constants
 import { END_POINTS, ERROR_MESSAGE } from '@app/constants';
@@ -12,12 +12,13 @@ import { httpClient } from '@app/services';
 // Utils
 import { handleAxiosError } from '@app/utils';
 
-const login = async (user: LoginFormData): Promise<AuthResponse> => {
+const getTransaction = async (
+  filter?: TransactionKind,
+): Promise<TransactionData> => {
   try {
-    const response = await httpClient.get(END_POINTS.USERS, {
+    const response = await httpClient.get(END_POINTS.TRANSACTIONS, {
       params: {
-        username: user.username,
-        password: user.password,
+        type: filter,
       },
     });
     return response.data;
@@ -30,4 +31,4 @@ const login = async (user: LoginFormData): Promise<AuthResponse> => {
   }
 };
 
-export { login };
+export { getTransaction };

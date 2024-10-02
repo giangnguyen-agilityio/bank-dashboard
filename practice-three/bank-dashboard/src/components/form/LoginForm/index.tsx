@@ -2,11 +2,13 @@ import { ChangeEvent, useCallback } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Checkbox, useDisclosure } from '@nextui-org/react';
 
 // Assets
 import { EyeFilledIcon, EyeSlashFilledIcon, UserIcon } from '@app/assets';
+
+// Hooks
+import { useAuth } from '@app/hooks';
 
 // Interfaces
 import { LoginFormData } from '@app/interfaces';
@@ -19,7 +21,6 @@ import { loginSchema } from '@app/schemas';
 
 // Components
 import { Box, Button, Input, Text } from '@app/components';
-import { useAuth } from '@app/hooks';
 
 const DEFAULT_VALUE: LoginFormData = {
   username: '',

@@ -20,7 +20,7 @@ interface TransactionItemData {
 
 interface TransactionData {
   description: string;
-  transactionId: string;
+  id: string;
   type: string;
   category: string;
   date: string;

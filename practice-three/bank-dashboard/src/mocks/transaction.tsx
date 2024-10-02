@@ -60,7 +60,7 @@ const MOCK_TRANSACTION_ITEMS: TransactionItemData[] = [
 const MOCK_TRANSACTION_DATA: TransactionData[] = [
   {
     description: 'Withdrawal',
-    transactionId: 'TXN001',
+    id: 'TXN001',
     type: 'Expense',
     category: 'Withdrawal',
     date: '2024-09-23',
@@ -68,7 +68,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Payment',
-    transactionId: 'TXN002',
+    id: 'TXN002',
     type: 'Expense',
     category: 'Payment',
     date: '2024-09-22',
@@ -76,7 +76,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Debit',
-    transactionId: 'TXN003',
+    id: 'TXN003',
     type: 'Expense',
     category: 'Debit',
     date: '2024-09-21',
@@ -84,7 +84,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Purchase',
-    transactionId: 'TXN004',
+    id: 'TXN004',
     type: 'Expense',
     category: 'Purchase',
     date: '2024-09-20',
@@ -92,7 +92,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Transfer In',
-    transactionId: 'TXN005',
+    id: 'TXN005',
     type: 'Expense',
     category: 'Transfer In',
     date: '2024-09-19',
@@ -100,7 +100,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Deposit',
-    transactionId: 'TXN006',
+    id: 'TXN006',
     type: 'Income',
     category: 'Deposit',
     date: '2024-09-18',
@@ -108,7 +108,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Wire Transfer',
-    transactionId: 'TXN007',
+    id: 'TXN007',
     type: 'Income',
     category: 'Wire Transfer',
     date: '2024-09-17',
@@ -116,7 +116,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Transfer Out',
-    transactionId: 'TXN008',
+    id: 'TXN008',
     type: 'Income',
     category: 'Transfer Out',
     date: '2024-09-16',
@@ -124,7 +124,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Card',
-    transactionId: 'TXN009',
+    id: 'TXN009',
     type: 'Income',
     category: 'Card',
     date: '2024-09-15',
@@ -132,7 +132,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Withdrawal',
-    transactionId: 'TXN010',
+    id: 'TXN010',
     type: 'Expense',
     category: 'Withdrawal',
     date: '2024-09-14',
@@ -140,7 +140,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Payment',
-    transactionId: 'TXN011',
+    id: 'TXN011',
     type: 'Expense',
     category: 'Payment',
     date: '2024-09-13',
@@ -148,7 +148,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Debit',
-    transactionId: 'TXN012',
+    id: 'TXN012',
     type: 'Expense',
     category: 'Debit',
     date: '2024-09-12',
@@ -156,7 +156,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Purchase',
-    transactionId: 'TXN013',
+    id: 'TXN013',
     type: 'Expense',
     category: 'Purchase',
     date: '2024-09-11',
@@ -164,7 +164,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Transfer In',
-    transactionId: 'TXN014',
+    id: 'TXN014',
     type: 'Expense',
     category: 'Transfer In',
     date: '2024-09-10',
@@ -172,7 +172,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Deposit',
-    transactionId: 'TXN015',
+    id: 'TXN015',
     type: 'Income',
     category: 'Deposit',
     date: '2024-09-09',
@@ -180,7 +180,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Wire Transfer',
-    transactionId: 'TXN016',
+    id: 'TXN016',
     type: 'Income',
     category: 'Wire Transfer',
     date: '2024-09-08',
@@ -188,7 +188,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Transfer Out',
-    transactionId: 'TXN017',
+    id: 'TXN017',
     type: 'Income',
     category: 'Transfer Out',
     date: '2024-09-07',
@@ -196,7 +196,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Card',
-    transactionId: 'TXN018',
+    id: 'TXN018',
     type: 'Income',
     category: 'Card',
     date: '2024-09-06',
@@ -204,7 +204,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Withdrawal',
-    transactionId: 'TXN019',
+    id: 'TXN019',
     type: 'Expense',
     category: 'Withdrawal',
     date: '2024-09-05',
@@ -212,7 +212,7 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
   {
     description: 'Payment',
-    transactionId: 'TXN020',
+    id: 'TXN020',
     type: 'Expense',
     category: 'Payment',
     date: '2024-09-04',
