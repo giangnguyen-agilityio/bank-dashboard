@@ -7,12 +7,12 @@ import { END_POINTS } from '@app/constants';
 import { TransactionKind } from '@app/interfaces';
 
 // Services
-import { getTransaction } from '@app/services';
+import { getTransactions } from '@app/services';
 
 const useFetchTransactions = (filter?: TransactionKind) =>
   useQuery({
     queryKey: [END_POINTS.TRANSACTIONS, filter],
-    queryFn: () => getTransaction(filter),
+    queryFn: () => getTransactions(filter),
   });
 
 export { useFetchTransactions };

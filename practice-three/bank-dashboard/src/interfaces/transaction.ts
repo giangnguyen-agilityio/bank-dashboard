@@ -1,8 +1,8 @@
 import { ElementType } from 'react';
 
 export enum TransactionKind {
-  Income,
-  Expense,
+  Income = 'Income',
+  Expense = 'Expense',
 }
 
 interface TransactionItemData {
@@ -25,6 +25,7 @@ interface TransactionData {
   category: string;
   date: string;
   amount: number;
+  cardNumber: string;
 }
 
 export type { TransactionItemData, TransactionData };
