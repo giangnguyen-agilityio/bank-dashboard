@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 // Interfaces
-import { IAccountData } from '@app/interfaces';
+import { AccountResponse, IAccountData } from '@app/interfaces';
 
 // Constants
 import { END_POINTS, ERROR_MESSAGE } from '@app/constants';
@@ -12,7 +12,7 @@ import { httpClient } from '@app/services';
 // Utils
 import { handleAxiosError } from '@app/utils';
 
-const getUsers = async (): Promise<IAccountData[]> => {
+const getUsers = async (): Promise<AccountResponse> => {
   try {
     const response = await httpClient.get(END_POINTS.USERS);
 

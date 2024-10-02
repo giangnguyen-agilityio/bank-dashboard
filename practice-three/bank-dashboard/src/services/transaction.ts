@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 // Interfaces
-import { TransactionKind, TransactionData } from '@app/interfaces';
+import { TransactionKind, TransactionResponse } from '@app/interfaces';
 
 // Constants
 import { END_POINTS, ERROR_MESSAGE } from '@app/constants';
@@ -12,15 +12,16 @@ import { httpClient } from '@app/services';
 // Utils
 import { handleAxiosError } from '@app/utils';
 
-const getTransaction = async (
+const getTransactions = async (
   filter?: TransactionKind,
-): Promise<TransactionData> => {
+): Promise<TransactionResponse> => {
   try {
     const response = await httpClient.get(END_POINTS.TRANSACTIONS, {
       params: {
         type: filter,
       },
     });
+
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -31,4 +32,4 @@ const getTransaction = async (
   }
 };
 
-export { getTransaction };
+export { getTransactions };
