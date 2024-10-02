@@ -57,7 +57,7 @@ describe('CreditCard Component', () => {
 
     const cardElement = screen.getByTestId('credit-card');
 
-    expect(cardElement).toHaveClass('bg-white border-border-default');
+    expect(cardElement).toHaveClass('bg-white-100 border-border-default');
     expect(cardElement).not.toHaveClass('bg-linear-card');
   });
 

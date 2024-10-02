@@ -27,8 +27,8 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
   } = data || {};
 
   const cardClass = cn(
-    'shadow-none w-66.25 md:w-57.75 lg:w-87.5 rounded-xl md:rounded-2xl lg:rounded-3xl',
-    isDefault ? 'bg-linear-card' : 'bg-white border border-border-default',
+    'cursor-pointer shadow-none w-66.25 md:w-57.75 lg:w-87.5 rounded-xl md:rounded-2xl lg:rounded-3xl',
+    isDefault ? 'bg-linear-card' : 'bg-white-100 border border-border-default',
   );
 
   const textClass = (baseClass: string, isLabel: boolean = false) => {
