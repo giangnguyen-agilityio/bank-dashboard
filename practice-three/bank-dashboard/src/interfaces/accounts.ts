@@ -7,11 +7,6 @@ interface IAccountStatusItem {
   backgroundColor: string;
 }
 
-export enum AccountStatus {
-  Active,
-  Inactive,
-}
-
 export enum AccountRole {
   Admin,
   User,
@@ -29,7 +24,7 @@ interface IAccountData {
   city: string;
   postalCode: string;
   county: string;
-  status: AccountStatus;
+  status: boolean;
   role: AccountRole;
 }
 
