@@ -7,7 +7,7 @@ import { rootRoute } from '@app/routes';
 import { DESTINATION } from '@app/constants';
 
 // Pages
-import { LoginPage, TransactionPage } from '@app/pages';
+import { AccountPage, LoginPage, TransactionPage } from '@app/pages';
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -36,7 +36,7 @@ const transactionRoute = createRoute({
 const accountsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.ACCOUNTS,
-  component: () => <div>Accounts</div>,
+  component: () => <AccountPage />,
 });
 
 const settingRoute = createRoute({
