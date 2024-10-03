@@ -12,9 +12,17 @@ import { httpClient } from '@app/services';
 // Utils
 import { handleAxiosError } from '@app/utils';
 
-const getUsers = async (): Promise<AccountResponse> => {
+const getAccounts = async (
+  page?: number,
+  limit?: number,
+): Promise<AccountResponse> => {
   try {
-    const response = await httpClient.get(END_POINTS.USERS);
+    const response = await httpClient.get(END_POINTS.USERS, {
+      params: {
+        page,
+        limit,
+      },
+    });
 
     return response.data;
   } catch (error) {
@@ -26,7 +34,7 @@ const getUsers = async (): Promise<AccountResponse> => {
   }
 };
 
-const getUserById = async (id: string): Promise<IAccountData> => {
+const getAccountById = async (id: string): Promise<IAccountData> => {
   try {
     const response = await httpClient.get(`${END_POINTS.USERS}/${id}`);
 
@@ -40,7 +48,7 @@ const getUserById = async (id: string): Promise<IAccountData> => {
   }
 };
 
-const addUser = async (
+const addNewAccount = async (
   data: Omit<IAccountData, 'id'>,
 ): Promise<IAccountData> => {
   try {
@@ -56,7 +64,7 @@ const addUser = async (
   }
 };
 
-const updateUser = async (data: IAccountData): Promise<IAccountData> => {
+const updateAccount = async (data: IAccountData): Promise<IAccountData> => {
   try {
     const response = await httpClient.put(
       `${END_POINTS.USERS}/${data.id}`,
@@ -73,7 +81,7 @@ const updateUser = async (data: IAccountData): Promise<IAccountData> => {
   }
 };
 
-const removeUser = async (id: IAccountData['id']): Promise<void> => {
+const removeAccount = async (id: IAccountData['id']): Promise<void> => {
   try {
     await httpClient.delete(`${END_POINTS.USERS}/${id}`);
   } catch (error) {
@@ -85,4 +93,10 @@ const removeUser = async (id: IAccountData['id']): Promise<void> => {
   }
 };
 
-export { getUsers, getUserById, addUser, updateUser, removeUser };
+export {
+  getAccounts,
+  getAccountById,
+  addNewAccount,
+  updateAccount,
+  removeAccount,
+};
