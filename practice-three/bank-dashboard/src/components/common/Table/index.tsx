@@ -42,7 +42,7 @@ const CustomTable = <T extends { id: string }>({
   const renderCell = (
     item: T,
     accessor?: TTableAccessor<T>,
-    size?: number,
+    size?: number | string,
   ): ReactNode => {
     if (!accessor) return;
 
@@ -111,9 +111,9 @@ const CustomTable = <T extends { id: string }>({
       </TableHeader>
 
       <TableBody
-        isLoading={isLoading}
-        loadingContent={<Spinner />}
         data-testid="table-body"
+        isLoading={isLoading}
+        loadingContent={<Spinner className="pt-10" />}
         emptyContent={NOTIFICATIONS.NO_RECORDS_FOUND}
       >
         {data?.map((item) => (

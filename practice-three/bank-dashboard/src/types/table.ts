@@ -7,5 +7,5 @@ export type TTableAccessor<T> =
 export interface TableColumnType<T> {
   accessor?: TTableAccessor<T>;
   header?: string | ReactNode;
-  size?: number;
+  size?: number | string;
 }

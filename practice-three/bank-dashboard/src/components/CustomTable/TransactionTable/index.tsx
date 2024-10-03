@@ -219,13 +219,15 @@ const TransactionTable = ({
       />
 
       {/* Pagination */}
-      <Box className="flex w-full justify-end mx-auto">
-        <Pagination
-          totalPages={totalPage}
-          currentPage={currentPage}
-          onPageChange={onPageChange}
-        />
-      </Box>
+      {!isLoading && (
+        <Box className="flex w-full justify-end mx-auto">
+          <Pagination
+            totalPages={totalPage}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+          />
+        </Box>
+      )}
     </Box>
   );
 };
