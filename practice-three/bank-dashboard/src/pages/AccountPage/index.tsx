@@ -13,7 +13,13 @@ import { UserIcon } from '@app/assets';
 import { IAccountData, IAccountStatusItem } from '@app/interfaces';
 
 // Components
-import { Box, Text, AccountTable, AccountStatusBar } from '@app/components';
+import {
+  Box,
+  Text,
+  AccountTable,
+  AccountStatusBar,
+  Button,
+} from '@app/components';
 
 const AccountPage = () => {
   const [page, setPage] = useState(1);
@@ -66,9 +72,20 @@ const AccountPage = () => {
 
       {/* Transactions List */}
       <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
-        <Text variant="heading" customClass="text-2xl md:text-4xl lg:text-6xl">
-          List Accounts
-        </Text>
+        <Box className="card-action flex justify-between items-center">
+          <Text
+            variant="heading"
+            customClass="text-2xl md:text-4xl lg:text-6xl"
+          >
+            List Accounts
+          </Text>
+          <Button
+            color="default"
+            className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"
+          >
+            + Add New Account
+          </Button>
+        </Box>
 
         {/* Transaction Table */}
         <AccountTable
