@@ -8,3 +8,4 @@ export * from './regex';
 export * from './messages';
 export * from './toast';
 export * from './api';
+export * from './breakpoint';
