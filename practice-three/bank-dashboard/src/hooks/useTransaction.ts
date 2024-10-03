@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 
 // Constants
 import { END_POINTS } from '@app/constants';
@@ -17,6 +17,7 @@ const useFetchTransactions = (
   useQuery({
     queryKey: [END_POINTS.TRANSACTIONS, filter, page, limit],
     queryFn: () => getTransactions(filter, page, limit),
+    placeholderData: keepPreviousData,
   });
 
 export { useFetchTransactions };
