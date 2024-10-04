@@ -1,5 +1,4 @@
-import { ReactElement } from 'react';
-import { useDisclosure } from '@nextui-org/react';
+import { ReactElement, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 // Constants
@@ -13,8 +12,9 @@ export interface MainLayoutProps {
 }
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  const { isOpen: isSidebarOpen, onOpenChange: toggleSidebar } =
-    useDisclosure();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleToggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <>
@@ -22,13 +22,13 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         {/* Sidebar */}
         <Sidebar
           isOpen={isSidebarOpen}
-          toggleSidebar={toggleSidebar}
+          toggleSidebar={handleToggleSidebar}
           items={SIDEBAR_LIST}
         />
 
         {/* Main Content */}
         <main className="flex flex-1 flex-col overflow-hidden" role="main">
-          <Navbar onToggleSidebar={toggleSidebar} />
+          <Navbar onToggleSidebar={handleToggleSidebar} />
           <section
             className="flex-1 p-6 bg-background-primary md:px-6.25 lg:px-10"
             tabIndex={-1}
