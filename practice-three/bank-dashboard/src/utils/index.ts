@@ -4,3 +4,4 @@ export * from './styles';
 export * from './url';
 export * from './time';
 export * from './api';
+export * from './testUtils';
