@@ -2,7 +2,7 @@ import { CustomClassType } from '@app/types/components';
 
 export const LogoIcon = ({ customClass }: CustomClassType) => (
   <svg
-    aria-label="Logo"
+    aria-label="Logo Icon"
     className={customClass}
     width={183}
     height={36}
