@@ -76,6 +76,7 @@ const LoginForm = () => {
           }) => (
             <Input
               {...rest}
+              data-testid="username-input"
               name={name}
               isRequired
               classNames={{
@@ -89,12 +90,7 @@ const LoginForm = () => {
               radius="sm"
               placeholder="Enter your username"
               endContent={
-                <Button
-                  variant="light"
-                  color="default"
-                  aria-label="toggle password visibility"
-                  className="p-1"
-                >
+                <Button variant="light" color="default" className="p-1">
                   <UserIcon customClass="w-4.5 h-4 text-gray-100 cursor-pointer" />
                 </Button>
               }
@@ -116,6 +112,7 @@ const LoginForm = () => {
           }) => (
             <Input
               {...rest}
+              data-testid="password-input"
               name={name}
               isRequired
               classNames={{
