@@ -7,6 +7,11 @@ import { MainLayout } from '@app/layouts';
 describe('MainLayout Component', () => {
   const mockChildren = <div data-testid="main-content">Main Content</div>;
 
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+  });
+
   it('should render the layout correctly without crashing', () => {
     wrapper(<MainLayout>{mockChildren}</MainLayout>);
 

@@ -26,6 +26,7 @@ describe('SidebarItem Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
   });
 
   it('should render the sidebar item correctly without crashing', () => {
