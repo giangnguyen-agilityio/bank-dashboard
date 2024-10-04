@@ -13,15 +13,7 @@ const meta = {
   parameters: { actions: { argTypesRegex: '^on.*' } },
   decorators: [
     (Story) => (
-      <div
-        className="container"
-        style={{
-          width: '100vw',
-          height: 'fit-content',
-          padding: '20px',
-          maxWidth: '1440px',
-        }}
-      >
+      <div className="container w-screen h-fit p-5 max-w-screen-lg">
         <Story />
       </div>
     ),

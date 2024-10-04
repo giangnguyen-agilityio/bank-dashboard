@@ -8,19 +8,11 @@ const meta = {
   component: Navbar,
   tags: ['autodocs'],
   parameters: {
-    layout: 'centered',
     actions: { argTypesRegex: '^on.*' },
   },
   decorators: [
     (Story) => (
-      <div
-        className="container"
-        style={{
-          width: '100vw',
-          padding: '0 20px',
-          maxWidth: '1440px',
-        }}
-      >
+      <div className="container mx-auto min-w-[375px]">
         <Story />
       </div>
     ),

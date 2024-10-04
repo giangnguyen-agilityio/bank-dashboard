@@ -16,14 +16,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div
-        className="container"
-        style={{
-          width: '100vw',
-          padding: '0 20px',
-          maxWidth: '1440px',
-        }}
-      >
+      <div className="container w-screen h-screen px-5 max-w-screen-lg mx-auto">
         <Story />
       </div>
     ),
