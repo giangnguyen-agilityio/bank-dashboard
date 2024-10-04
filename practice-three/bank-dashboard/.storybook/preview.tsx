@@ -1,5 +1,11 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
+import {
+  RouterProvider,
+  createMemoryHistory,
+  createRootRoute,
+  createRouter,
+} from '@tanstack/react-router';
 
 //Providers
 import { NextUIProvider } from '@nextui-org/react';
@@ -20,7 +26,14 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <NextUIProvider>
-        <Story />
+        <RouterProvider
+          router={createRouter({
+            history: createMemoryHistory(),
+            routeTree: createRootRoute({
+              component: Story,
+            }),
+          })}
+        />
       </NextUIProvider>
     ),
   ],
