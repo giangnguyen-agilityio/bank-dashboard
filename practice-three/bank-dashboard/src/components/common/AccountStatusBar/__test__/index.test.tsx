@@ -1,13 +1,14 @@
-import { render, screen } from '@testing-library/react';
+// Constants
+import { NOTIFICATIONS } from '@app/constants';
+
+// Utils
+import { render, screen } from '@app/utils';
 
 // Mocks
 import { MOCK_ACCOUNT_STATUS_BAR_DATA } from '@app/mocks';
 
 // Components
 import { AccountStatusBar } from '@app/components';
-
-// Constants
-import { NOTIFICATIONS } from '@app/constants';
 
 describe('AccountStatusBar Component', () => {
   it('should renders correct props for AccountStatusItem', () => {

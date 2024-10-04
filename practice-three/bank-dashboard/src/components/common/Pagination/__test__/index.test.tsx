@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+// Utils
+import { render, screen, fireEvent } from '@app/utils';
 
 // Components
 import { Pagination } from '@app/components';

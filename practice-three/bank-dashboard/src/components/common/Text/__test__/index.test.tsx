@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+// Utils
+import { render } from '@app/utils';
 
 // Components
 import { Text } from '@app/components';
@@ -6,11 +7,13 @@ import { Text } from '@app/components';
 describe('Text Component', () => {
   it('should not render when children are null', () => {
     const { container } = render(<Text>{null}</Text>);
+
     expect(container.firstChild).toBeNull();
   });
 
   it('should not render when children are undefined', () => {
     const { container } = render(<Text>{undefined}</Text>);
+
     expect(container.firstChild).toBeNull();
   });
 

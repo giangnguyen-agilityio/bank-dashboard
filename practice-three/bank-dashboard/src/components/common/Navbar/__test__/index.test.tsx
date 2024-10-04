@@ -1,13 +1,22 @@
 import { useLocation } from '@tanstack/react-router';
-import { render, screen, fireEvent } from '@testing-library/react';
 
 // Utils
-import { getHeadingFromPathname } from '@app/utils';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  getHeadingFromPathname,
+} from '@app/utils';
+
+// Constants
+import { DESTINATION } from '@app/constants';
 
 // Components
 import { Navbar } from '@app/components';
 
 jest.mock('@tanstack/react-router', () => ({
+  ...jest.requireActual('@tanstack/react-router'),
   useLocation: jest.fn(),
 }));
 
@@ -21,7 +30,7 @@ describe('Navbar component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useLocation as jest.Mock).mockReturnValue('/dashboard');
+    (useLocation as jest.Mock).mockReturnValue(DESTINATION.DASHBOARD);
     (getHeadingFromPathname as jest.Mock).mockReturnValue('Dashboard');
   });
 
@@ -43,17 +52,20 @@ describe('Navbar component', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
-  it('should calls onToggleSidebar when sidebar button is clicked', () => {
+  it('should calls onToggleSidebar when sidebar button is clicked', async () => {
     render(<Navbar onToggleSidebar={mockOnToggleSidebar} />);
 
     const toggleButton = screen.getByLabelText('Open sidebar');
+
     fireEvent.click(toggleButton);
 
-    expect(mockOnToggleSidebar).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(mockOnToggleSidebar).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('should renders heading dynamically based on pathname', () => {
-    const mockLocation = { pathname: '/settings' };
+    const mockLocation = { pathname: DESTINATION.SETTING };
 
     (useLocation as jest.Mock).mockImplementation(({ select }) =>
       select(mockLocation),

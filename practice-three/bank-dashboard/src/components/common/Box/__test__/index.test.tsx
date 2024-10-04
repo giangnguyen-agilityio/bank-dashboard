@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+// Utils
+import { render } from '@app/utils';
 
 // Components
 import { Box } from '@app/components';

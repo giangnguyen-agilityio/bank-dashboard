@@ -1,4 +1,5 @@
-import { render, fireEvent, screen } from '@testing-library/react';
+// Utils
+import { render, fireEvent, screen } from '@app/utils';
 
 // Components
 import { ConfirmModal } from '@app/components';

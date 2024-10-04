@@ -1,8 +1,7 @@
 import { ElementType } from 'react';
-import { render, screen } from '@testing-library/react';
 
 // Utils
-import { getTransactionAmountStyles } from '@app/utils';
+import { getTransactionAmountStyles, render, screen } from '@app/utils';
 
 // Mocks
 import {

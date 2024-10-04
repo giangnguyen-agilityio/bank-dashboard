@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+// Utils
+import { render, screen } from '@app/utils';
 
 // Icons
 import { UserIcon } from '@app/assets';

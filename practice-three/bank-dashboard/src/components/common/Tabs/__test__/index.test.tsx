@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
-import { render, screen } from '@testing-library/react';
+
+// Utils
+import { render, screen } from '@app/utils';
 
 // Mock
 import { MOCK_TAB_DATA } from '@app/mocks';

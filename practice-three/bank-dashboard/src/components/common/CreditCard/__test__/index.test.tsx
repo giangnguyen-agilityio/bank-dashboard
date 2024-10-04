@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+// Utils
+import { render, screen } from '@app/utils';
 
 // Mocks
 import { MOCK_CREDIT_CARD_DATA } from '@app/mocks';
