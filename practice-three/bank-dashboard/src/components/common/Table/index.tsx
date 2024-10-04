@@ -86,6 +86,7 @@ const CustomTable = <T extends { id: string }>({
   return (
     <TableNextUI
       {...(isStriped && { isStriped: true })}
+      aria-label="Table"
       classNames={{
         wrapper: TableClasses.wrapper,
         th: TableClasses.header,
@@ -94,12 +95,13 @@ const CustomTable = <T extends { id: string }>({
       }}
       hideHeader={variant === 'secondary'}
     >
-      <TableHeader className="border-spacing-y-0">
+      <TableHeader aria-label="Table header" className="border-spacing-y-0">
         {columns.map((columnConfig, index) => {
           const { header } = columnConfig;
 
           return (
             <TableColumn
+              aria-label="Table column"
               key={`${header}${index}`}
               data-testid="table-column"
               className={TableClasses.header}
@@ -111,15 +113,21 @@ const CustomTable = <T extends { id: string }>({
       </TableHeader>
 
       <TableBody
+        aria-label="Table body"
         data-testid="table-body"
         isLoading={isLoading}
         loadingContent={<Spinner className="pt-10" />}
         emptyContent={NOTIFICATIONS.NO_RECORDS_FOUND}
       >
         {data?.map((item) => (
-          <TableRow key={item.id} data-id={`table-row-${item.id}`}>
+          <TableRow
+            key={item.id}
+            aria-label={`Table row ${item.id}`}
+            data-id={`table-row-${item.id}`}
+          >
             {columns.map((columnConfig, indexColumn) => (
               <TableCell
+                aria-label={`Table cell ${item.id}`}
                 key={`table-cell-${indexColumn}`}
                 data-testid="table-cell"
                 className={TableClasses.cell}

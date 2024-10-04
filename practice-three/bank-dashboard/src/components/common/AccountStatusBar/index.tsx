@@ -13,6 +13,7 @@ interface AccountStatusBarProps {
 
 const AccountStatusBar = ({ data = [] }: AccountStatusBarProps) => (
   <Box
+    aria-label="Account status bar"
     data-testid="account-status-bar"
     className="flex w-full overflow-auto bg-background-primary p-1 gap-5 md:gap-5.5 lg:gap-7.5"
   >

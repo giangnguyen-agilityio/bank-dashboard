@@ -41,9 +41,16 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
   };
 
   return (
-    <Card className={cardClass} data-testid="credit-card">
+    <Card
+      className={cardClass}
+      aria-label="Credit card"
+      data-testid="credit-card"
+    >
       {/* Card Body */}
-      <CardBody className="flex gap-5.75 p-0 px-5 py-4 lg:gap-7.5 lg:px-6.5 lg:pt-4.5 lg:pb-7">
+      <CardBody
+        aria-label="Credit card body"
+        className="flex gap-5.75 p-0 px-5 py-4 lg:gap-7.5 lg:px-6.5 lg:pt-4.5 lg:pb-7"
+      >
         <Box className="flex w-full justify-between items-center gap-3">
           {/* Card Balance */}
           <Box aria-label="Card Balance" data-testid="card-balance">
@@ -105,10 +112,13 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
         </Box>
       </CardBody>
 
-      <Divider />
+      <Divider aria-label="Credit card divider" />
 
       {/* Card Footer */}
-      <CardFooter className="relative px-5 py-4 h-12.5 lg:h-17.5 lg:px-6.5 lg:py-5.5">
+      <CardFooter
+        aria-label="Credit card footer"
+        className="relative px-5 py-4 h-12.5 lg:h-17.5 lg:px-6.5 lg:py-5.5"
+      >
         {isDefault && (
           <Box
             className="absolute w-full h-full top-0 left-0 bg-background-default opacity-15"

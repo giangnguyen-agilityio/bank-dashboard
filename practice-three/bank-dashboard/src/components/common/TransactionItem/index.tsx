@@ -30,9 +30,10 @@ const TransactionItem = ({
   const formattedAmount = `${symbol}$${transactionAmount.toLocaleString('en-US')}`;
 
   return (
-    <Box className="flex w-full">
+    <Box aria-label="Transaction item" className="flex w-full">
       {/* Icon Section */}
       <Box
+        aria-label="Transaction icon"
         data-testid="transaction-icon"
         className="mr-3.75 md:mr-2 lg:mr-4.25"
       >
@@ -45,11 +46,13 @@ const TransactionItem = ({
       {/* Info and Amount Section */}
       <Box className="flex w-full h-full items-center justify-between">
         <Box
+          aria-label="Transaction info"
           className="flex flex-col w-32.75 md:w-25.5 lg:w-40"
           data-testid="transaction-info"
         >
           {/* Transaction Title */}
           <Text
+            aria-label="Transaction title"
             data-testid="transaction-title"
             variant="title"
             customClass="mb-1 text-lg text-text-default md:text-md lg:mb-1.75 lg:text-2xl"
@@ -59,6 +62,7 @@ const TransactionItem = ({
 
           {/* Transaction Date */}
           <Text
+            aria-label="Transaction date"
             data-testid="transaction-date"
             variant="title"
             customClass="font-normal text-base lg:text-xl"
@@ -69,6 +73,7 @@ const TransactionItem = ({
 
         {/* Transaction Amount */}
         <Text
+          aria-label="Transaction amount"
           data-testid="transaction-amount"
           customClass={`h-full text-sm font-medium lg:text-2xl ${amountClassName}`}
         >

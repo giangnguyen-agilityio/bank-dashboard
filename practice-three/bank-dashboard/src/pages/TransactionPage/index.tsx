@@ -61,6 +61,7 @@ const TransactionPage = () => {
               My Card
             </Text>
             <Button
+              aria0-label="Add card button"
               color="default"
               className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"
             >

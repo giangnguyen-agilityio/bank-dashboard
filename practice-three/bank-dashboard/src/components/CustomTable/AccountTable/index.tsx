@@ -93,44 +93,51 @@ const AccountTable = ({
       header: '',
       accessor: (item) => {
         return (
-          <Dropdown classNames={{ content: 'min-w-25 md:min-w-27.5' }}>
-            <DropdownTrigger>
-              <button className="flex w-full items-center justify-end p-0">
-                <MoreVerticalIcon />
-              </button>
-            </DropdownTrigger>
-            <DropdownMenu
-              aria-label="Actions"
-              onAction={(key) =>
-                handleOpenModal(item.id, key as 'edit' | 'delete')
-              }
+          <Box className="flex w-full items-center justify-end p-0 data-[focus=true]:outline-none data-[focus-visible=true]:outline-none">
+            <Dropdown
+              aria-label="More actions"
+              classNames={{ content: 'min-w-25 md:min-w-27.5' }}
             >
-              <DropdownItem
-                key="edit"
-                className="data-[hover=true]:bg-green-50"
-                startContent={<EditIcon customClass="text-green-100" />}
+              <DropdownTrigger aria-label="More actions button">
+                <button>
+                  <MoreVerticalIcon />
+                </button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="More actions menu"
+                onAction={(key) =>
+                  handleOpenModal(item.id, key as 'edit' | 'delete')
+                }
               >
-                <Text
-                  variant="title"
-                  customClass="font-primary font-semibold text-lg lg:text-2xl text-green-100"
+                <DropdownItem
+                  key="edit"
+                  aria-label="Edit account button"
+                  className="data-[hover=true]:bg-green-50"
+                  startContent={<EditIcon customClass="text-green-100" />}
                 >
-                  Edit
-                </Text>
-              </DropdownItem>
-              <DropdownItem
-                key="delete"
-                className="data-[hover=true]:bg-red-100/35"
-                startContent={<DeleteIcon customClass="text-red-200" />}
-              >
-                <Text
-                  variant="title"
-                  customClass="font-primary font-semibold text-lg lg:text-2xl text-red-200"
+                  <Text
+                    variant="title"
+                    customClass="font-primary font-semibold text-lg lg:text-2xl text-green-100"
+                  >
+                    Edit
+                  </Text>
+                </DropdownItem>
+                <DropdownItem
+                  key="delete"
+                  aria-label="Delete account button"
+                  className="data-[hover=true]:bg-red-100/35"
+                  startContent={<DeleteIcon customClass="text-red-200" />}
                 >
-                  Delete
-                </Text>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+                  <Text
+                    variant="title"
+                    customClass="font-primary font-semibold text-lg lg:text-2xl text-red-200"
+                  >
+                    Delete
+                  </Text>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </Box>
         );
       },
     },
@@ -151,19 +158,21 @@ const AccountTable = ({
       accessor: () => {
         return (
           <Dropdown
+            aria-label="More actions"
             classNames={{
               content: 'min-w-25 md:min-w-27.5',
             }}
           >
-            <DropdownTrigger>
+            <DropdownTrigger aria-label="More actions button">
               <button className="flex w-full items-center justify-end p-0">
                 <MoreVerticalIcon />
               </button>
             </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions">
+            <DropdownMenu aria-label="More actions menu">
               <DropdownItem
-                className="data-[hover=true]:bg-green-50"
                 key="edit"
+                aria-label="Edit account button"
+                className="data-[hover=true]:bg-green-50"
                 startContent={<EditIcon customClass="text-green-100" />}
               >
                 <Text
@@ -175,6 +184,7 @@ const AccountTable = ({
               </DropdownItem>
               <DropdownItem
                 key="delete"
+                aria-label="Delete account button"
                 className="data-[hover=true]:bg-red-100/35"
                 startContent={<DeleteIcon customClass="text-red-200" />}
               >
@@ -196,6 +206,7 @@ const AccountTable = ({
     <Box className="flex flex-col gap-1">
       {/* Table */}
       <Table
+        aria-label="Account table"
         variant={isMobile ? 'secondary' : 'primary'}
         columns={
           isMobile ? COLUMN_ACCOUNT_LIST_MOBILE : COLUMN_ACCOUNT_LIST_DESKTOP
@@ -208,6 +219,7 @@ const AccountTable = ({
       {!isLoading && (
         <Box className="flex w-full justify-end mx-auto">
           <Pagination
+            aria-label="Account table pagination"
             totalPages={totalPage}
             currentPage={currentPage}
             onPageChange={onPageChange}
@@ -216,23 +228,40 @@ const AccountTable = ({
       )}
 
       {/* Modal */}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal
+        aria-label="Confirm modal"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="top-center"
+      >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader
+                aria-label="Confirm modal header"
+                className="flex flex-col gap-1"
+              >
                 {actionType === 'edit' ? 'Edit Account' : 'Delete Account'}
               </ModalHeader>
-              <ModalBody>
+              <ModalBody aria-label="Confirm modal body">
                 {actionType === 'edit'
                   ? `Are you sure you want to edit account with ID: ${selectedAccountId}?`
                   : `Are you sure you want to delete account with ID: ${selectedAccountId}?`}
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
+              <ModalFooter aria-label="Confirm modal footer">
+                <Button
+                  aria-label="Cancel modal button"
+                  color="danger"
+                  variant="flat"
+                  onPress={onClose}
+                >
                   Cancel
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button
+                  aria-label="Confirm modal button"
+                  color="primary"
+                  onPress={onClose}
+                >
                   Confirm
                 </Button>
               </ModalFooter>

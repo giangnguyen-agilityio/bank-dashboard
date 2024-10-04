@@ -10,6 +10,7 @@ const Spinner = ({ size = 'lg', classNames, ...props }: SpinnerProps) => {
   return (
     <div className="absolute inset-0 z-50">
       <SpinnerNextUI
+        aria-label="Spinner"
         data-testid="spinner"
         className="absolute inset-0 m-auto z-60"
         size={size}

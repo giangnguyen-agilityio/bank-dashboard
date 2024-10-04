@@ -28,6 +28,7 @@ const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
   return (
     <Box className={classes.container}>
       <Image
+        aria-label="Error image"
         classNames={{
           wrapper: classes.imageWrapper,
           img: classes.imageWrapper,
@@ -50,7 +51,11 @@ const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
 
       <Text customClass={classes.actionText}>
         Please refresh the page or&nbsp;
-        <Link href={DESTINATION.DASHBOARD} className={classes.link}>
+        <Link
+          href={DESTINATION.DASHBOARD}
+          aria-label="Link back to home"
+          className={classes.link}
+        >
           back to home
         </Link>
       </Text>

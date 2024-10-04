@@ -27,6 +27,7 @@ const NotFoundFallback = ({
   return (
     <Box className={classes.container}>
       <Image
+        aria-label="Not found image"
         classNames={{
           wrapper: classes.imageWrapper,
           img: classes.imageWrapper,
@@ -44,7 +45,11 @@ const NotFoundFallback = ({
         </Text>
       )}
 
-      <Link href={DESTINATION.DASHBOARD} className={classes.link}>
+      <Link
+        href={DESTINATION.DASHBOARD}
+        className={classes.link}
+        aria-label="Link back to home"
+      >
         Back to home
       </Link>
     </Box>

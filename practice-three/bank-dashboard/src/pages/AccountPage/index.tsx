@@ -66,7 +66,7 @@ const AccountPage = () => {
 
   return (
     <Box className="min-h-screen flex flex-col gap-5.5 md:gap-5 lg:gap-6">
-      <Box>
+      <Box aria-label="Account status bar">
         <AccountStatusBar data={ACCOUNT_STATUS_BAR_DATA} />
       </Box>
 
@@ -74,12 +74,14 @@ const AccountPage = () => {
       <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
         <Box className="card-action flex justify-between items-center">
           <Text
+            aria-label="Title of list accounts"
             variant="heading"
             customClass="text-2xl md:text-4xl lg:text-6xl"
           >
             List Accounts
           </Text>
           <Button
+            aria-label="Add new account button"
             color="default"
             className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"
           >
@@ -89,6 +91,7 @@ const AccountPage = () => {
 
         {/* Transaction Table */}
         <AccountTable
+          aria-label="Account table"
           accounts={accounts}
           totalAccounts={totalAccounts}
           currentPage={page}

@@ -164,6 +164,7 @@ const TransactionTable = ({
       title: TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.TITLE,
       tabContent: (
         <Table
+          aria-label="All transactions table"
           variant={isMobile ? 'secondary' : 'primary'}
           columns={
             isMobile
@@ -180,6 +181,7 @@ const TransactionTable = ({
       title: TRANSACTION_TABLE_TABS.INCOME_TRANSACTIONS.TITLE,
       tabContent: (
         <Table
+          aria-label="Income transactions table"
           variant={isMobile ? 'secondary' : 'primary'}
           columns={
             isMobile
@@ -196,6 +198,7 @@ const TransactionTable = ({
       title: TRANSACTION_TABLE_TABS.EXPENSE_TRANSACTIONS.TITLE,
       tabContent: (
         <Table
+          aria-label="Expense transactions table"
           variant={isMobile ? 'secondary' : 'primary'}
           columns={
             isMobile
@@ -213,6 +216,7 @@ const TransactionTable = ({
     <Box>
       {/* CustomTabs */}
       <CustomTabs
+        aria-label="Transaction table tabs"
         tabs={tabs}
         selectedKey={selected}
         onSelectionChange={handleTabChange}
@@ -222,6 +226,7 @@ const TransactionTable = ({
       {!isLoading && (
         <Box className="flex w-full justify-end mx-auto">
           <Pagination
+            aria-label="Transaction table pagination"
             totalPages={totalPage}
             currentPage={currentPage}
             onPageChange={onPageChange}

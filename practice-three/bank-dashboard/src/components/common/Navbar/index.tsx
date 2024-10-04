@@ -36,10 +36,15 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
       }}
     >
       <NavbarContent
+        aria-label="Navbar content"
         data-testid="navbar-content"
         className="flex w-full items-center gap-4 !justify-between md:justify-end"
       >
-        <NavbarItem data-testid="navbar-item" className="md:hidden">
+        <NavbarItem
+          aria-label="Navbar item button"
+          data-testid="navbar-item"
+          className="md:hidden"
+        >
           <Button
             aria-label="Open sidebar"
             variant="light"
@@ -50,7 +55,11 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
             <MenuIcon />
           </Button>
         </NavbarItem>
-        <NavbarItem data-testid="navbar-item" className="h-full flex">
+        <NavbarItem
+          aria-label="Navbar item heading"
+          data-testid="navbar-item"
+          className="h-full flex"
+        >
           <Text
             as="h2"
             variant="heading"
@@ -60,6 +69,7 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
           </Text>
         </NavbarItem>
         <NavbarItem
+          aria-label="Navbar item settings and notifications"
           data-testid="navbar-item"
           className="flex items-center gap-4"
         >

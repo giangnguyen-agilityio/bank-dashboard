@@ -63,7 +63,12 @@ const Avatar = ({
 
   return (
     <div className="avatar-container relative inline-block">
-      <AvatarNextUI classNames={classNames} data-testid="avatar" {...rest} />
+      <AvatarNextUI
+        classNames={classNames}
+        aria-label="User avatar"
+        data-testid="avatar"
+        {...rest}
+      />
       {isShowIcon && (
         <div className="absolute bottom-3.75 right-0" data-testid="icon">
           <div

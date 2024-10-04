@@ -76,6 +76,7 @@ const LoginForm = () => {
           }) => (
             <Input
               {...rest}
+              aria-label="Username input field"
               data-testid="username-input"
               name={name}
               isRequired
@@ -112,6 +113,7 @@ const LoginForm = () => {
           }) => (
             <Input
               {...rest}
+              aria-label="Password input field"
               data-testid="password-input"
               name={name}
               isRequired
@@ -153,6 +155,7 @@ const LoginForm = () => {
       {/* Other form fields */}
       <Box className="w-full flex items-center justify-between">
         <Checkbox
+          aria-label="Remember me checkbox"
           classNames={{ label: 'text-text-default text-lg md:text-xl' }}
         >
           Remember me
@@ -160,6 +163,8 @@ const LoginForm = () => {
 
         <Link
           to={DESTINATION.FORGOT_PASSWORD}
+          aria-label="Forgot password link"
+          data-testid="forgot-password-link"
           className="text-blue-200 font-semibold text-lg hover:underline"
         >
           Forgot your password?
@@ -167,7 +172,7 @@ const LoginForm = () => {
       </Box>
 
       <Button
-        aria-label="Sign in"
+        aria-label="Sign in button"
         data-testid="login-button"
         type="submit"
         className="w-full font-semibold text-lg tracking-wide text-text-tertiary"
@@ -181,6 +186,7 @@ const LoginForm = () => {
         Don't have an account?&nbsp;
         <Link
           to={DESTINATION.SIGN_UP}
+          aria-label="Register button"
           data-testid="register-button"
           className="text-blue-200 font-semibold hover:underline"
         >

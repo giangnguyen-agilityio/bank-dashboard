@@ -25,6 +25,7 @@ const SidebarItem = ({
 
   return (
     <li
+      aria-label="Sidebar item"
       data-testid="sidebar-item"
       className={`pl-7.5 py-3.75 lg:py-4.5 rounded-r-3xl border-l-5 list-none ${
         isActive ? 'border-blue-200' : 'border-transparent'
@@ -33,6 +34,7 @@ const SidebarItem = ({
     >
       <Link
         to={link}
+        aria-label={`Link to ${label}`}
         className={`flex items-center transition-colors ${
           isActive ? 'text-blue-200' : 'text-gray-100'
         } hover:text-blue-200`}

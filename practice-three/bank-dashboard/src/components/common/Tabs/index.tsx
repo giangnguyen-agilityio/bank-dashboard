@@ -37,6 +37,7 @@ const CustomTabs = ({
 
   return (
     <Tabs
+      aria-label="Tabs"
       classNames={{
         base: cn(classes.base, base),
         tabList: cn(classes.tabList, tabList),
@@ -50,7 +51,12 @@ const CustomTabs = ({
       {...props}
     >
       {tabs?.map((tab) => (
-        <Tab data-testid="custom-tab-item" key={tab.key} title={tab.title}>
+        <Tab
+          aria-label={`${tab.title}`}
+          data-testid="custom-tab-item"
+          key={tab.key}
+          title={tab.title}
+        >
           {tab.tabContent}
         </Tab>
       ))}
