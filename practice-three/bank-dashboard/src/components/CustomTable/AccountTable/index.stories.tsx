@@ -1,30 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Mocks
-import { MOCK_TRANSACTION_DATA } from '@app/mocks';
+import { MOCK_ACCOUNTS_DATA } from '@app/mocks';
 
 // Components
-import TransactionTable from '.';
+import AccountTable from '.';
 
 const meta = {
-  title: 'Components/TransactionTable',
-  component: TransactionTable,
+  title: 'Components/AccountTable',
+  component: AccountTable,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
     actions: { argTypesRegex: '^on.*' },
   },
-} satisfies Meta<typeof TransactionTable>;
+} satisfies Meta<typeof AccountTable>;
 
 export default meta;
 
-type Story = StoryObj<typeof TransactionTable>;
+type Story = StoryObj<typeof AccountTable>;
 
 export const Default: Story = {
   args: {
     currentPage: 1,
-    totalTransactions: MOCK_TRANSACTION_DATA.length,
-    transactions: MOCK_TRANSACTION_DATA,
+    totalAccounts: MOCK_ACCOUNTS_DATA.length,
+    accounts: MOCK_ACCOUNTS_DATA,
     isLoading: false,
   },
 };
