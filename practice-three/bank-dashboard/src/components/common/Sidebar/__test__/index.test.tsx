@@ -9,7 +9,7 @@ import { SIDEBAR_LIST } from '@app/constants';
 // Components
 import { Sidebar } from '@app/components';
 
-describe('Sidebar', () => {
+describe('Sidebar Component', () => {
   const mockToggleSidebar = jest.fn();
   const defaultProps = {
     isOpen: false,

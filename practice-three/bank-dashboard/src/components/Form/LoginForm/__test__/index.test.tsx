@@ -15,7 +15,7 @@ jest.mock('@app/hooks', () => ({
   useAuth: jest.fn(),
 }));
 
-describe('LoginForm', () => {
+describe('LoginForm Component', () => {
   const mockMutate = jest.fn();
 
   beforeEach(() => {

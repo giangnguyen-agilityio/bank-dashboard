@@ -25,7 +25,7 @@ jest.mock('@app/utils', () => ({
   getHeadingFromPathname: jest.fn(),
 }));
 
-describe('Navbar component', () => {
+describe('Navbar Component', () => {
   const mockOnToggleSidebar = jest.fn();
 
   beforeEach(() => {
