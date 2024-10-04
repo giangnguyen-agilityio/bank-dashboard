@@ -9,9 +9,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-  },
-  args: {
-    onToggleSidebar: () => alert('Sidebar toggled'),
+    actions: { argTypesRegex: '^on.*' },
   },
   decorators: [
     (Story) => (

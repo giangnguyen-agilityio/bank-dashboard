@@ -4,23 +4,21 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SIDEBAR_LIST } from '@app/constants';
 
 // Components
-import Sidebar from '.';
+import SidebarItem from '.';
 
 const meta = {
-  title: 'Components/Sidebar',
-  component: Sidebar,
+  title: 'Components/SidebarItem',
+  component: SidebarItem,
   tags: ['autodocs'],
-  parameters: {
-    layout: 'centered',
-    actions: { argTypesRegex: '^on.*' },
-  },
+  parameters: { actions: { argTypesRegex: '^on.*' } },
   decorators: [
     (Story) => (
       <div
         className="container"
         style={{
           width: '100vw',
-          padding: '0 20px',
+          height: 'fit-content',
+          padding: '20px',
           maxWidth: '1440px',
         }}
       >
@@ -28,15 +26,16 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof Sidebar>;
+} satisfies Meta<typeof SidebarItem>;
 
 export default meta;
 
-type Story = StoryObj<typeof Sidebar>;
+type Story = StoryObj<typeof SidebarItem>;
 
 export const Default: Story = {
   args: {
-    items: SIDEBAR_LIST,
-    isOpen: true,
+    icon: SIDEBAR_LIST[0].icon,
+    label: SIDEBAR_LIST[0].label,
+    link: SIDEBAR_LIST[0].link,
   },
 };

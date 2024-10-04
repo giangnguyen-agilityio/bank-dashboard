@@ -26,7 +26,7 @@ const SidebarItem = ({
   return (
     <li
       data-testid="sidebar-item"
-      className={`pl-7.5 py-3.75 lg:py-4.5 rounded-r-3xl border-l-5 ${
+      className={`pl-7.5 py-3.75 lg:py-4.5 rounded-r-3xl border-l-5 list-none ${
         isActive ? 'border-blue-200' : 'border-transparent'
       }`}
       onClick={onToggleSidebar}
