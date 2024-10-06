@@ -1,4 +1,5 @@
-import { Image, Link } from '@nextui-org/react';
+import { Link } from '@tanstack/react-router';
+import { Image } from '@nextui-org/react';
 
 // Constants
 import { DESTINATION, ERROR_IMAGE, WIDTH_IMAGE } from '@app/constants';
@@ -52,7 +53,7 @@ const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
       <Text customClass={classes.actionText}>
         Please refresh the page or&nbsp;
         <Link
-          href={DESTINATION.DASHBOARD}
+          to={DESTINATION.DASHBOARD}
           aria-label="Link back to home"
           className={classes.link}
         >
