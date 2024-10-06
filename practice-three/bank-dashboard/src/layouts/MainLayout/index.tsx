@@ -1,8 +1,12 @@
-import { ReactElement, useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { ReactElement, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 // Constants
-import { SIDEBAR_LIST, TOAST_CONFIG } from '@app/constants';
+import { DESTINATION, SIDEBAR_LIST, TOAST_CONFIG } from '@app/constants';
+
+// Stores
+import { useAuthStore } from '@app/stores';
 
 // Components
 import { Container, Navbar, Sidebar } from '@app/components';
@@ -13,6 +17,17 @@ export interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const checkAuthStatus = useAuthStore((state) => state.checkAuthStatus);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkAuthStatus();
+
+    if (!isAuthenticated) {
+      navigate({ to: DESTINATION.LOGIN });
+    }
+  }, [isAuthenticated, checkAuthStatus, navigate]);
 
   const handleToggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 

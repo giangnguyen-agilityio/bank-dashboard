@@ -6,13 +6,20 @@ import { rootRoute } from '@app/routes';
 // Constants
 import { DESTINATION } from '@app/constants';
 
+// MainLayout
+import { MainLayout } from '@app/layouts';
+
 // Pages
 import { AccountPage, LoginPage, TransactionPage } from '@app/pages';
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: () => <div>Dashboard</div>,
+  component: () => (
+    <MainLayout>
+      <div>Dashboard</div>
+    </MainLayout>
+  ),
 });
 
 const loginRoute = createRoute({
@@ -24,25 +31,41 @@ const loginRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.DASHBOARD,
-  component: () => <div>Dashboard</div>,
+  component: () => (
+    <MainLayout>
+      <div>Dashboard</div>
+    </MainLayout>
+  ),
 });
 
 const transactionRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.TRANSACTIONS,
-  component: () => <TransactionPage />,
+  component: () => (
+    <MainLayout>
+      <TransactionPage />
+    </MainLayout>
+  ),
 });
 
 const accountsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.ACCOUNTS,
-  component: () => <AccountPage />,
+  component: () => (
+    <MainLayout>
+      <AccountPage />
+    </MainLayout>
+  ),
 });
 
 const settingRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.SETTING,
-  component: () => <div>Setting</div>,
+  component: () => (
+    <MainLayout>
+      <div>Setting</div>
+    </MainLayout>
+  ),
 });
 
 export {

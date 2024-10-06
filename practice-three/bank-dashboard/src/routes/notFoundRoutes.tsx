@@ -6,6 +6,9 @@ import { DESTINATION, NOTIFICATIONS } from '@app/constants';
 // Routes
 import { rootRoute } from '@app/routes';
 
+// Layouts
+import { MainLayout } from '@app/layouts';
+
 // Components
 import { NotFoundFallback } from '@app/components';
 
@@ -20,10 +23,12 @@ const notFoundRoutes = [
     getParentRoute: () => rootRoute,
     path,
     component: () => (
-      <NotFoundFallback
-        title="Coming Soon!!"
-        message={NOTIFICATIONS.COMING_SOON_PAGE}
-      />
+      <MainLayout>
+        <NotFoundFallback
+          title="Coming Soon!!"
+          message={NOTIFICATIONS.COMING_SOON_PAGE}
+        />
+      </MainLayout>
     ),
   }),
 );
