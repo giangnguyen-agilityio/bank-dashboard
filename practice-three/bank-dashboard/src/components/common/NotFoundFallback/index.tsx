@@ -1,4 +1,5 @@
-import { Image, Link } from '@nextui-org/react';
+import { Link } from '@tanstack/react-router';
+import { Image } from '@nextui-org/react';
 
 // Constants
 import { DESTINATION, NOT_FOUND_URL_IMAGE } from '@app/constants';
@@ -46,7 +47,7 @@ const NotFoundFallback = ({
       )}
 
       <Link
-        href={DESTINATION.DASHBOARD}
+        to={DESTINATION.DASHBOARD}
         className={classes.link}
         aria-label="Link back to home"
       >
