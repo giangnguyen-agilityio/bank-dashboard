@@ -3,6 +3,10 @@ import {
   Navbar as NavbarNextUI,
   NavbarContent,
   NavbarItem,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
 } from '@nextui-org/react';
 
 // Icons
@@ -10,6 +14,9 @@ import { MenuIcon, SettingIcon, NotificationIcon } from '@app/assets';
 
 // Utils
 import { getHeadingFromPathname } from '@app/utils';
+
+// Stores
+import { useAuthStore } from '@app/stores';
 
 // Components
 import { Text, Button, Avatar } from '@app/components';
@@ -23,7 +30,13 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
     select: (location) => location.pathname,
   });
 
+  const clearCredentials = useAuthStore((state) => state.clearCredentials);
+
   const heading = getHeadingFromPathname(pathname);
+
+  const handleLogout = () => {
+    clearCredentials();
+  };
 
   return (
     <NavbarNextUI
@@ -90,7 +103,16 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
             <NotificationIcon />
           </Button>
 
-          <Avatar size="sm" />
+          <Dropdown>
+            <DropdownTrigger>
+              <Button variant="circle" className="p-0">
+                <Avatar size="sm" />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="More actions" onAction={handleLogout}>
+              <DropdownItem aria-label="Logout button">Logout</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </NavbarItem>
       </NavbarContent>
     </NavbarNextUI>
