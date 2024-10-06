@@ -4,9 +4,6 @@ import { persist } from 'zustand/middleware';
 // Interfaces
 import { AccountRole, AuthResponse } from '@app/interfaces';
 
-// Constants
-import { DESTINATION } from '@app/constants';
-
 interface AuthData {
   role: AccountRole;
   exp: string;
@@ -32,9 +29,7 @@ const useAuthStore = create<AuthStore>()(
           role: users[0].role,
           exp,
         };
-        set({ data: newData });
-        // Recalculate authentication status after setting credentials
-        get().checkAuthStatus();
+        set({ data: newData, isAuthenticated: true });
       },
 
       clearCredentials: () => {
@@ -46,7 +41,6 @@ const useAuthStore = create<AuthStore>()(
 
         if (!data || !data.exp) {
           get().clearCredentials();
-          window.location.href = DESTINATION.LOGIN;
 
           return;
         }
@@ -57,11 +51,8 @@ const useAuthStore = create<AuthStore>()(
         // If the token has expired
         if (expTimestamp < currentTimestamp) {
           get().clearCredentials();
-          window.location.href = DESTINATION.LOGIN;
-
           return;
         }
-
         set({ isAuthenticated: true });
       },
     }),
