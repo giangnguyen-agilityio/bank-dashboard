@@ -1,5 +1,5 @@
 // Utils
-import { render, screen } from '@app/utils';
+import { wrapper, screen } from '@app/utils';
 
 // Components
 import { NotFoundFallback } from '@app/components';
@@ -9,7 +9,7 @@ describe('NotFoundFallback Component', () => {
     const customTitle = 'The sample title';
     const customMessage = 'The sample message';
 
-    render(<NotFoundFallback title={customTitle} message={customMessage} />);
+    wrapper(<NotFoundFallback title={customTitle} message={customMessage} />);
 
     const title = screen.getByTestId('title');
     const message = screen.getByTestId('message');
@@ -19,7 +19,7 @@ describe('NotFoundFallback Component', () => {
   });
 
   it('should renders correctly without crashing', () => {
-    render(<NotFoundFallback />);
+    wrapper(<NotFoundFallback />);
 
     expect(screen.getByText(/Sorry, page not found/i)).toBeInTheDocument();
     expect(

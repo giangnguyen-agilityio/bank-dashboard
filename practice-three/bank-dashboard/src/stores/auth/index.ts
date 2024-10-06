@@ -51,6 +51,7 @@ const useAuthStore = create<AuthStore>()(
         // If the token has expired
         if (expTimestamp < currentTimestamp) {
           get().clearCredentials();
+
           return;
         }
         set({ isAuthenticated: true });

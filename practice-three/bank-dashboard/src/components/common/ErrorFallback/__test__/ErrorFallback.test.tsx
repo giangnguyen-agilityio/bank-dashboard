@@ -1,5 +1,5 @@
 // Utils
-import { render, screen } from '@app/utils';
+import { wrapper, screen } from '@app/utils';
 
 // Components
 import { ErrorFallback } from '@app/components';
@@ -8,7 +8,7 @@ describe('ErrorFallback Component', () => {
   it('should renders correctly with error message', () => {
     const customMessage = 'Network Error';
 
-    render(<ErrorFallback message={customMessage} />);
+    wrapper(<ErrorFallback message={customMessage} />);
 
     const errorMessage = screen.getByTestId('error-message');
 
@@ -17,7 +17,7 @@ describe('ErrorFallback Component', () => {
   });
 
   it('should renders correctly without crashing', () => {
-    render(<ErrorFallback />);
+    wrapper(<ErrorFallback />);
 
     expect(screen.getByText(/Oops! Something went wrong/i)).toBeInTheDocument();
     expect(
