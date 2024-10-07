@@ -25,3 +25,4 @@ export * from './CloseIcon';
 export * from './EyeFilledIcon';
 export * from './EyeSlashFilledIcon';
 export * from './DeleteIcon';
+export * from './LoadingIcon';

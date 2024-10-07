@@ -5,10 +5,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox, useDisclosure } from '@nextui-org/react';
 
 // Assets
-import { EyeFilledIcon, EyeSlashFilledIcon, UserIcon } from '@app/assets';
-
-// Hooks
-import { useAuth } from '@app/hooks';
+import {
+  EyeFilledIcon,
+  EyeSlashFilledIcon,
+  LoadingIcon,
+  UserIcon,
+} from '@app/assets';
 
 // Interfaces
 import { LoginFormData } from '@app/interfaces';
@@ -27,7 +29,12 @@ const DEFAULT_VALUE: LoginFormData = {
   password: '',
 };
 
-const LoginForm = () => {
+interface LoginFormProps {
+  isPendingLogin: boolean;
+  handleLogin: (data: LoginFormData) => void;
+}
+
+const LoginForm = ({ isPendingLogin, handleLogin }: LoginFormProps) => {
   const {
     control,
     formState: { isValid, isDirty, isLoading, errors },
@@ -42,12 +49,6 @@ const LoginForm = () => {
 
   const { isOpen: isPasswordVisible, onOpenChange: togglePasswordVisibility } =
     useDisclosure();
-
-  const { mutate } = useAuth();
-
-  const handleLogin = (data: LoginFormData) => {
-    mutate(data);
-  };
 
   const handleInputChange = useCallback(
     (name: keyof LoginFormData, onChange: (value: string) => void) => {
@@ -89,6 +90,7 @@ const LoginForm = () => {
               label="Username"
               labelPlacement="outside"
               radius="sm"
+              autoComplete="off"
               placeholder="Enter your username"
               endContent={
                 <Button variant="light" color="default" className="p-1">
@@ -126,6 +128,7 @@ const LoginForm = () => {
               label="Password"
               labelPlacement="outside"
               radius="sm"
+              autoComplete="off"
               placeholder="Enter your password"
               endContent={
                 <Button
@@ -172,12 +175,14 @@ const LoginForm = () => {
       </Box>
 
       <Button
+        isIconOnly
         aria-label="Sign in button"
         data-testid="login-button"
         type="submit"
         className="w-full font-semibold text-lg tracking-wide text-text-tertiary"
-        isDisabled={!isValid || !isDirty}
-        isLoading={isLoading}
+        isDisabled={!isValid || !isDirty || isPendingLogin}
+        isLoading={isPendingLogin}
+        spinner={<LoadingIcon />}
       >
         Sign in
       </Button>

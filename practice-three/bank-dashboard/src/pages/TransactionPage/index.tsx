@@ -49,7 +49,7 @@ const TransactionPage = () => {
   );
 
   return (
-    <Box className="min-h-screen flex flex-col gap-5.5 md:gap-5 lg:gap-6">
+    <Box className="min-h-fit flex flex-col gap-5.5 md:gap-5 lg:gap-6">
       <Box className="flex flex-col md:flex-row gap-5.5 md:gap-6.25 lg:gap-7.5">
         <Box className="flex flex-col gap-3 md:gap-4 lg:gap-5">
           {/* Card Action */}

@@ -4,10 +4,22 @@ import { Card, CardBody } from '@nextui-org/react';
 // Assets
 import { LogoIcon } from '@app/assets';
 
+// Hooks
+import { useAuth } from '@app/hooks';
+
+// Interfaces
+import { LoginFormData } from '@app/interfaces';
+
 // Components
 import { Box, LoginForm, Text } from '@app/components';
 
 const LoginPage = () => {
+  const { isPendingLogin, mutate } = useAuth();
+
+  const handleLogin = (data: LoginFormData) => {
+    mutate(data);
+  };
+
   return (
     <Box className="min-h-screen">
       {/* Logo */}
@@ -29,7 +41,10 @@ const LoginPage = () => {
           >
             Sign in
           </Text>
-          <LoginForm />
+          <LoginForm
+            handleLogin={handleLogin}
+            isPendingLogin={isPendingLogin}
+          />
         </CardBody>
       </Card>
     </Box>

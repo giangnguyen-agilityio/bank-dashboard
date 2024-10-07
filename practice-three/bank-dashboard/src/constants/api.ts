@@ -1,3 +1,4 @@
 const LIMIT_PER_PAGE = 10;
+const SECRET_KEY = 'U2FsdGVkX19noq+Mbb2QaDrVnLnZwd4O1tSOJ/RN8mE=';
 
-export { LIMIT_PER_PAGE };
+export { LIMIT_PER_PAGE, SECRET_KEY };
