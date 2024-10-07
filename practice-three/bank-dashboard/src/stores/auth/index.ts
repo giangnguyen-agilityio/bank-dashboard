@@ -1,11 +1,15 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import CryptoJS from 'crypto-js';
 
 // Interfaces
-import { AccountRole, AuthResponse } from '@app/interfaces';
+import { AuthResponse, IAccountData } from '@app/interfaces';
+
+// Constants
+import { SECRET_KEY } from '@app/constants';
 
 interface AuthData {
-  role: AccountRole;
+  userInfo: IAccountData;
   exp: string;
 }
 
@@ -24,11 +28,23 @@ const useAuthStore = create<AuthStore>()(
       isAuthenticated: false,
 
       setCredentials: (authResponse: AuthResponse) => {
-        const { users, exp } = authResponse;
-        const newData = {
-          role: users[0].role,
+        const {
+          users: [userInfo],
           exp,
+        } = authResponse;
+
+        const encryptedPassword = CryptoJS.AES.encrypt(
+          userInfo.password,
+          SECRET_KEY,
+        ).toString();
+
+        const newUserInfo = {
+          ...userInfo,
+          password: encryptedPassword,
         };
+
+        const newData = { userInfo: newUserInfo, exp };
+
         set({ data: newData, isAuthenticated: true });
       },
 
@@ -54,12 +70,16 @@ const useAuthStore = create<AuthStore>()(
 
           return;
         }
+
         set({ isAuthenticated: true });
       },
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ data: state.data }),
+      partialize: (state) => ({
+        data: state.data,
+        isAuthenticated: state.isAuthenticated,
+      }),
     },
   ),
 );
