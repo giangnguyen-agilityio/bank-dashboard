@@ -13,10 +13,8 @@ export const loginSchema = z.object({
 
   password: z
     .string()
+    .min(1, VALIDATION_MESSAGES.PASSWORD.REQUIRED)
     .min(6, VALIDATION_MESSAGES.PASSWORD.MIN_LENGTH)
     .max(50, VALIDATION_MESSAGES.PASSWORD.MAX_LENGTH)
     .regex(REGEX_PATTERN.PASSWORD, VALIDATION_MESSAGES.PASSWORD.REQUIREMENTS),
 });
-
-// Create a type based on the schema
-export type LoginFormData = z.infer<typeof loginSchema>;
