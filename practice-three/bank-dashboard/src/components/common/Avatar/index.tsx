@@ -73,12 +73,12 @@ const Avatar = ({
         <div className="absolute bottom-3.75 right-0" data-testid="icon">
           <div
             className={cn(
-              'flex justify-center items-center rounded-full bg-background-secondary ',
+              'flex justify-center items-center rounded-full bg-background-secondary',
               iconSizeClass,
             )}
             aria-label="Edit Avatar Icon"
           >
-            <EditIcon />
+            <EditIcon customClass="text-white-100 w-4.5 h-5 md:w-3.5" />
           </div>
         </div>
       )}
