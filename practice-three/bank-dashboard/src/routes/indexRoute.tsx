@@ -10,7 +10,12 @@ import { DESTINATION } from '@app/constants';
 import { MainLayout } from '@app/layouts';
 
 // Pages
-import { AccountPage, LoginPage, TransactionPage } from '@app/pages';
+import {
+  AccountPage,
+  LoginPage,
+  SettingPage,
+  TransactionPage,
+} from '@app/pages';
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -63,7 +68,7 @@ const settingRoute = createRoute({
   path: DESTINATION.SETTING,
   component: () => (
     <MainLayout>
-      <div>Setting</div>
+      <SettingPage />
     </MainLayout>
   ),
 });
