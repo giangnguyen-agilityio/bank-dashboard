@@ -65,7 +65,7 @@ const AccountPage = () => {
   );
 
   return (
-    <Box className="min-h-screen flex flex-col gap-5.5 md:gap-5 lg:gap-6">
+    <Box className="min-h-fit flex flex-col gap-5.5 md:gap-5 lg:gap-6">
       <Box aria-label="Account status bar">
         <AccountStatusBar data={ACCOUNT_STATUS_BAR_DATA} />
       </Box>
