@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
 // Hooks
-import { useFetchAccounts } from '@app/hooks';
+import { useFetchAccounts, useAccount } from '@app/hooks';
 
 // Constants
 import { LIMIT_PER_PAGE, ACCOUNT_STATUS } from '@app/constants';
@@ -19,16 +19,22 @@ import {
   AccountTable,
   AccountStatusBar,
   Button,
+  ConfirmModal,
 } from '@app/components';
 
 const AccountPage = () => {
   const [page, setPage] = useState(1);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedAccountId, setSelectedAccountId] = useState<string | null>(
+    null,
+  );
+
   const { data: totalAccountsPerPage, isLoading } = useFetchAccounts(
     page,
     LIMIT_PER_PAGE,
   );
-
   const { data: { users = [] } = {} } = useFetchAccounts();
+  const { isDeletingAccount, deleteAccount } = useAccount();
 
   const { users: accounts, count: totalAccounts } = totalAccountsPerPage || {};
 
@@ -57,12 +63,29 @@ const AccountPage = () => {
     },
   ];
 
-  const handlePageChange = useCallback(
-    (newPage: number) => {
-      setPage(newPage);
-    },
-    [setPage],
-  );
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+  }, []);
+
+  const handleOpenModal = useCallback((id: string) => {
+    setSelectedAccountId(id);
+    setModalOpen(true);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setModalOpen(false);
+    setSelectedAccountId(null);
+  }, []);
+
+  const handleDeleteAction = useCallback(() => {
+    if (selectedAccountId) {
+      deleteAccount(selectedAccountId, {
+        onSuccess: () => {
+          handleCloseModal();
+        },
+      });
+    }
+  }, [selectedAccountId, deleteAccount, handleCloseModal]);
 
   return (
     <Box className="min-h-fit flex flex-col gap-5.5 md:gap-5 lg:gap-6">
@@ -70,7 +93,7 @@ const AccountPage = () => {
         <AccountStatusBar data={ACCOUNT_STATUS_BAR_DATA} />
       </Box>
 
-      {/* Transactions List */}
+      {/* Account List */}
       <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
         <Box className="card-action flex justify-between items-center">
           <Text
@@ -89,7 +112,7 @@ const AccountPage = () => {
           </Button>
         </Box>
 
-        {/* Transaction Table */}
+        {/* Account Table */}
         <AccountTable
           aria-label="Account table"
           accounts={accounts}
@@ -97,8 +120,20 @@ const AccountPage = () => {
           currentPage={page}
           isLoading={isLoading}
           onPageChange={handlePageChange}
+          onDelete={handleOpenModal}
         />
       </Box>
+
+      {/* Modal */}
+      <ConfirmModal
+        size="md"
+        isOpen={isModalOpen}
+        title="Confirm"
+        content={`Are you sure you want to delete the account with ID: ${selectedAccountId}?\nThis action cannot be undone.`}
+        onConfirm={handleDeleteAction}
+        onCancel={handleCloseModal}
+        isLoading={isDeletingAccount}
+      />
     </Box>
   );
 };
