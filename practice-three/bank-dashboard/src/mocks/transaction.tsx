@@ -240,8 +240,42 @@ const MOCK_TRANSACTION_DATA: TransactionData[] = [
   },
 ];
 
+const MOCK_TRANSACTION_RESPONSE = {
+  transactions: [
+    {
+      description: 'Withdrawal',
+      id: 'TXN001',
+      type: 'Expense',
+      category: 'Withdrawal',
+      date: '2024-09-23',
+      amount: 150,
+      cardNumber: '5849210731624890',
+    },
+    {
+      description: 'Payment',
+      id: 'TXN002',
+      type: 'Expense',
+      category: 'Payment',
+      date: '2024-09-22',
+      amount: 300,
+      cardNumber: '9302458674019285',
+    },
+    {
+      description: 'Debit',
+      id: 'TXN003',
+      type: 'Expense',
+      category: 'Debit',
+      date: '2024-09-21',
+      amount: 50,
+      cardNumber: '8174592306841527',
+    },
+  ],
+  count: 3,
+};
+
 export {
   MOCK_DEFAULT_TRANSACTION_ITEMS,
   MOCK_TRANSACTION_ITEMS,
   MOCK_TRANSACTION_DATA,
+  MOCK_TRANSACTION_RESPONSE,
 };
