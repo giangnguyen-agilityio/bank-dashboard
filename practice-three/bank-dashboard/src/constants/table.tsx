@@ -25,9 +25,21 @@ const TRANSACTION_TABLE_TABS = {
   },
 };
 
+const SETTING_TABS = {
+  EDIT_PROFILE: {
+    KEY: 'edit-profile',
+    TITLE: 'Edit Profile',
+  },
+  SECURITY: {
+    KEY: 'security',
+    TITLE: 'Security',
+  },
+};
+
 export {
   WIDTH_COLUMN_CONFIG,
   SIZE_COLUMN_DEFAULT,
   TRANSACTION_TABLE_TABS,
   UN_SET_COLUMN_CONFIG,
+  SETTING_TABS,
 };

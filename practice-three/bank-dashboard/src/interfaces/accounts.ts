@@ -28,4 +28,16 @@ interface IAccountData {
   role: AccountRole;
 }
 
-export type { IAccountStatusItem, IAccountData };
+interface SecurityFormData {
+  password: string;
+  newPassword: string;
+}
+
+type SettingFormData = Omit<IAccountData, 'id' | 'role' | 'status'>;
+
+export type {
+  IAccountStatusItem,
+  IAccountData,
+  SettingFormData,
+  SecurityFormData,
+};
