@@ -9,7 +9,7 @@ import { login } from '@app/services';
 import { LoginFormData } from '@app/interfaces';
 
 // Stores
-import { DESTINATION, ERROR_MESSAGE, SUCCESS_MESSAGE } from '@app/constants';
+import { DESTINATION, ERROR_MESSAGE } from '@app/constants';
 
 // Stores
 import { useAuthStore } from '@app/stores';
@@ -24,7 +24,6 @@ export const useAuth = () => {
       if (data?.users) {
         setCredentials(data);
         navigate({ to: DESTINATION.DASHBOARD });
-        toast.success(SUCCESS_MESSAGE.LOGIN);
 
         return;
       }
