@@ -7,6 +7,9 @@ import {
   ModalProps,
 } from '@nextui-org/react';
 
+// Icons
+import { LoadingIcon } from '@app/assets';
+
 // Components
 import { Button } from '@app/components';
 
@@ -14,6 +17,7 @@ interface ConfirmModalProps extends Omit<ModalProps, 'children'> {
   isOpen: boolean;
   content: string;
   title?: string;
+  isLoading?: boolean;
   onConfirm?: () => void;
   onCancel?: () => void;
 }
@@ -22,6 +26,7 @@ const ConfirmModal = ({
   isOpen,
   title,
   content,
+  isLoading = false,
   onConfirm,
   onCancel,
   ...props
@@ -72,10 +77,12 @@ const ConfirmModal = ({
             className="flex justify-center gap-4"
           >
             <Button
+              size="xs"
               aria-label="Confirm Button"
               data-testid="confirm-button"
               className="flex-1 font-semibold"
-              size="xs"
+              isLoading={isLoading}
+              spinner={<LoadingIcon />}
               onPress={onConfirm}
             >
               Submit
