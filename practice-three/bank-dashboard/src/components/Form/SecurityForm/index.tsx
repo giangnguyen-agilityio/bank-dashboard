@@ -67,8 +67,7 @@ const SecurityForm = () => {
     isNewPasswordVisible: false,
   });
 
-  const { mutate: updatePassword, isUpdatingAccount: isUpdatingPassword } =
-    useAccount();
+  const { editAccount, isUpdatingAccount: isUpdatingPassword } = useAccount();
   const setCredentials = useAuthStore((state) => state.setCredentials);
   const userData = useAuthStore((state) => state.data);
   const { userInfo, exp } = userData || {};
@@ -122,7 +121,7 @@ const SecurityForm = () => {
       password: data.newPassword,
     } as IAccountData;
 
-    updatePassword(newData, {
+    editAccount(newData, {
       onSuccess: () => {
         setCredentials({ users: newData, exp: exp || '' });
         toast.success(SUCCESS_MESSAGE.UPDATE_PASSWORD);

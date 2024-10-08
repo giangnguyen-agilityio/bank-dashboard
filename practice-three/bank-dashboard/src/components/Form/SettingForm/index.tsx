@@ -68,7 +68,7 @@ const SettingForm = () => {
 
   const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
 
-  const { mutate: updateAccount, isUpdatingAccount } = useAccount();
+  const { editAccount, isUpdatingAccount } = useAccount();
   const setCredentials = useAuthStore((state) => state.setCredentials);
   const userData = useAuthStore((state) => state.data);
   const { userInfo, exp } = userData || {};
@@ -79,7 +79,7 @@ const SettingForm = () => {
       ...data,
     } as IAccountData;
 
-    updateAccount(newData, {
+    editAccount(newData, {
       onSuccess: () => {
         setCredentials({ users: newData, exp: exp || '' });
         toast.success(SUCCESS_MESSAGE.UPDATE_ACCOUNT);
