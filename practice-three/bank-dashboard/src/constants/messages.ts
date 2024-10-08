@@ -80,6 +80,7 @@ const ERROR_MESSAGE = {
 const SUCCESS_MESSAGE = {
   LOGIN: 'Login successfully.',
   UPDATE_PASSWORD: 'Password changed successfully.',
+  UPDATE_ACCOUNT: 'Account updated successfully.',
 };
 
 export {
