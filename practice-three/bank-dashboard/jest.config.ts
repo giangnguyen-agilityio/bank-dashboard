@@ -27,6 +27,7 @@ const config: Config = {
 
   coveragePathIgnorePatterns: [
     'node_modules',
+    '<rootDir>/src/schemas/*',
     '<rootDir>/src/constants/*',
     '<rootDir>/src/assets/*',
     '<rootDir>/src/interfaces/*',
