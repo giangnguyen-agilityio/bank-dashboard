@@ -1,14 +1,19 @@
 import toast from 'react-hot-toast';
-import { useQuery, keepPreviousData, useMutation } from '@tanstack/react-query';
+import {
+  useQuery,
+  keepPreviousData,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 // Constants
-import { END_POINTS, ERROR_MESSAGE } from '@app/constants';
+import { END_POINTS, ERROR_MESSAGE, SUCCESS_MESSAGE } from '@app/constants';
 
 // Interface
 import { IAccountData } from '@app/interfaces';
 
 // Services
-import { getAccounts, updateAccount } from '@app/services';
+import { getAccounts, removeAccount, updateAccount } from '@app/services';
 
 const useFetchAccounts = (page?: number, limit?: number) =>
   useQuery({
@@ -18,18 +23,36 @@ const useFetchAccounts = (page?: number, limit?: number) =>
   });
 
 const useAccount = () => {
-  const { data, isPending, isSuccess, mutate } = useMutation({
+  const queryClient = useQueryClient();
+
+  const {
+    data,
+    isSuccess,
+    isPending: isUpdatingAccount,
+    mutate: editAccount,
+  } = useMutation({
     mutationFn: (data: IAccountData) => updateAccount(data),
     onError: () => {
-      toast.success(ERROR_MESSAGE.UNKNOWN_ERROR);
+      toast.error(ERROR_MESSAGE.UNKNOWN_ERROR);
     },
+  });
+
+  const { isPending: isDeletingAccount, mutate: deleteAccount } = useMutation({
+    mutationFn: async (id: IAccountData['id']) => await removeAccount(id),
+    onSuccess: () => {
+      toast.success(SUCCESS_MESSAGE.DELETE_ACCOUNT);
+      queryClient.invalidateQueries({ queryKey: [END_POINTS.USERS] });
+    },
+    onError: () => toast.error(ERROR_MESSAGE.UNKNOWN_ERROR),
   });
 
   return {
     user: data,
     isSuccess,
-    isUpdatingAccount: isPending,
-    mutate,
+    isUpdatingAccount,
+    isDeletingAccount,
+    editAccount,
+    deleteAccount,
   };
 };
 
