@@ -5,6 +5,11 @@ import { wrapper, screen } from '@app/utils';
 import { ErrorFallback } from '@app/components';
 
 describe('ErrorFallback Component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+  });
+
   it('should renders correctly with error message', () => {
     const customMessage = 'Network Error';
 

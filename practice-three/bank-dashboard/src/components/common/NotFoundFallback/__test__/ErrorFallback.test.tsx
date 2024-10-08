@@ -5,6 +5,11 @@ import { wrapper, screen } from '@app/utils';
 import { NotFoundFallback } from '@app/components';
 
 describe('NotFoundFallback Component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+  });
+
   it('should renders correctly with title and message', () => {
     const customTitle = 'The sample title';
     const customMessage = 'The sample message';
