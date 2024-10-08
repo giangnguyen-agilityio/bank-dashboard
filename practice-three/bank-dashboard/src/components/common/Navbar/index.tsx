@@ -103,9 +103,14 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
             <NotificationIcon />
           </Button>
 
-          <Dropdown>
+          <Dropdown aria-label="More actions" data-testid="more-actions">
             <DropdownTrigger>
-              <Button variant="circle" className="p-0">
+              <Button
+                aria-label="avatar-wrapper"
+                data-testid="avatar-wrapper"
+                variant="circle"
+                className="p-0"
+              >
                 <Avatar size="sm" />
               </Button>
             </DropdownTrigger>

@@ -3,14 +3,19 @@ import { useLocation } from '@tanstack/react-router';
 // Utils
 import {
   render,
+  wrapper,
   screen,
   fireEvent,
   waitFor,
   getHeadingFromPathname,
+  userEvent,
 } from '@app/utils';
 
 // Constants
 import { DESTINATION } from '@app/constants';
+
+// Stores
+import { useAuthStore } from '@app/stores';
 
 // Components
 import { Navbar } from '@app/components';
@@ -25,8 +30,14 @@ jest.mock('@app/utils', () => ({
   getHeadingFromPathname: jest.fn(),
 }));
 
+jest.mock('@app/stores', () => ({
+  ...jest.requireActual('@app/stores'),
+  useAuthStore: jest.fn(),
+}));
+
 describe('Navbar Component', () => {
   const mockOnToggleSidebar = jest.fn();
+  const clearCredentialsMock = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -77,5 +88,27 @@ describe('Navbar Component', () => {
 
     // Ensure the correct heading is displayed
     expect(screen.getByText('Settings')).toBeInTheDocument();
+  });
+
+  it('should perform the logout action correctly', async () => {
+    (useAuthStore as unknown as jest.Mock).mockImplementation((selector) =>
+      selector({
+        clearCredentials: clearCredentialsMock,
+      }),
+    );
+
+    wrapper(<Navbar onToggleSidebar={mockOnToggleSidebar} />);
+
+    const avatarButton = screen.getByTestId('avatar-wrapper');
+    await userEvent.click(avatarButton);
+
+    const logoutButton = screen.getByText('Logout');
+    expect(logoutButton).toBeInTheDocument();
+
+    await userEvent.click(logoutButton);
+
+    await waitFor(() => {
+      expect(clearCredentialsMock).toHaveBeenCalled();
+    });
   });
 });
