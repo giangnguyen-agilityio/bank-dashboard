@@ -3,6 +3,9 @@ import { z } from 'zod';
 // Constants
 import { REGEX_PATTERN, VALIDATION_MESSAGES } from '@app/constants';
 
+// Utils
+import { calculateAge } from '@app/utils';
+
 export const accountSchema = z.object({
   name: z
     .string()
@@ -28,8 +31,25 @@ export const accountSchema = z.object({
     .min(1, VALIDATION_MESSAGES.EMAIL.REQUIRED)
     .email(VALIDATION_MESSAGES.EMAIL.INVALID),
 
-  dateOfBirth: z.string().optional(),
-  // .min(1, VALIDATION_MESSAGES.DATE_OF_BIRTH.REQUIRED)
+  dateOfBirth: z
+    .string()
+    .refine(
+      (value) => {
+        const today = new Date();
+        const dob = new Date(value);
+
+        return dob <= today;
+      },
+      { message: VALIDATION_MESSAGES.DATE_OF_BIRTH.MAX },
+    )
+    .refine(
+      (value) => {
+        const dob = new Date(value);
+
+        return calculateAge(dob) >= 18;
+      },
+      { message: VALIDATION_MESSAGES.DATE_OF_BIRTH.MIN },
+    ),
   presentAddress: z
     .string()
     .min(1, VALIDATION_MESSAGES.PRESENT_ADDRESS.REQUIRED)
