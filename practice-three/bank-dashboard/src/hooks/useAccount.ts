@@ -1,10 +1,14 @@
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { useQuery, keepPreviousData, useMutation } from '@tanstack/react-query';
 
 // Constants
-import { END_POINTS } from '@app/constants';
+import { END_POINTS, ERROR_MESSAGE } from '@app/constants';
+
+// Interface
+import { IAccountData } from '@app/interfaces';
 
 // Services
-import { getAccounts } from '@app/services';
+import { getAccounts, updateAccount } from '@app/services';
 
 const useFetchAccounts = (page?: number, limit?: number) =>
   useQuery({
@@ -13,4 +17,20 @@ const useFetchAccounts = (page?: number, limit?: number) =>
     placeholderData: keepPreviousData,
   });
 
-export { useFetchAccounts };
+const useAccount = () => {
+  const { data, isPending, isSuccess, mutate } = useMutation({
+    mutationFn: (data: IAccountData) => updateAccount(data),
+    onError: () => {
+      toast.success(ERROR_MESSAGE.UNKNOWN_ERROR);
+    },
+  });
+
+  return {
+    user: data,
+    isSuccess,
+    isUpdatingAccount: isPending,
+    mutate,
+  };
+};
+
+export { useFetchAccounts, useAccount };
