@@ -6,7 +6,7 @@ interface LoginFormData {
 }
 
 interface AuthResponse {
-  users: IAccountData[];
+  users: IAccountData;
   exp: string;
 }
 

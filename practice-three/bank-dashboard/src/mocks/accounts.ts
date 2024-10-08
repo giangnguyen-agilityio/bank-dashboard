@@ -26,11 +26,9 @@ const MOCK_ACCOUNTS_DATA: IAccountData[] = [
   {
     id: 'ACC001',
     name: 'John Doe',
-    username:
-      'loremipsumdasdsad5as65d58q5s7d8q7w8e7qw8e78qw7e89wq79e87wq8e75as4da2s4545',
+    username: 'jdoe',
     password: 'password123',
-    email:
-      'jdoe@example.comloremipsumdasdsad5as65d58q5s7d8q7w8e7qw8e78qw7e89wq79e87wq8e75as4da2s4545',
+    email: 'jdoe@example.com',
     dateOfBirth: '1990-01-01',
     presentAddress: '123 Main St, Apt 4',
     permanentAddress: '456 Maple St',

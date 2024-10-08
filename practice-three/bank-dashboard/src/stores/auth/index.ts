@@ -28,10 +28,7 @@ const useAuthStore = create<AuthStore>()(
       isAuthenticated: false,
 
       setCredentials: (authResponse: AuthResponse) => {
-        const {
-          users: [userInfo],
-          exp,
-        } = authResponse;
+        const { users: userInfo, exp } = authResponse;
 
         const encryptedPassword = CryptoJS.AES.encrypt(
           userInfo.password,

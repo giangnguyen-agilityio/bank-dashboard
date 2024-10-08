@@ -21,14 +21,18 @@ export const useAuth = () => {
   const { data, isPending, isSuccess, mutate } = useMutation({
     mutationFn: (user: LoginFormData) => login(user),
     onSuccess: (data) => {
-      if (data) {
+      if (data?.users) {
         setCredentials(data);
-        toast.success(SUCCESS_MESSAGE.LOGIN);
         navigate({ to: DESTINATION.DASHBOARD });
+        toast.success(SUCCESS_MESSAGE.LOGIN);
+
+        return;
       }
+
+      toast.error(ERROR_MESSAGE.LOGIN);
     },
     onError: () => {
-      toast.error(ERROR_MESSAGE.LOGIN);
+      toast.error(ERROR_MESSAGE.UNEXPECTED_ERROR);
     },
   });
 
