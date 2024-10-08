@@ -61,7 +61,7 @@ const LoginForm = ({ isPendingLogin, handleLogin }: LoginFormProps) => {
         }
       };
     },
-    [clearErrors, errors],
+    [errors, clearErrors],
   );
 
   return (
