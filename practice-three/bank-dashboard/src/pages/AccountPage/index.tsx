@@ -97,6 +97,7 @@ const AccountPage = () => {
       <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
         <Box className="card-action flex justify-between items-center">
           <Text
+            as="h2"
             aria-label="Title of list accounts"
             variant="heading"
             customClass="text-2xl md:text-4xl lg:text-6xl"
@@ -104,6 +105,7 @@ const AccountPage = () => {
             List Accounts
           </Text>
           <Button
+            as="h3"
             aria-label="Add new account button"
             color="default"
             className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"

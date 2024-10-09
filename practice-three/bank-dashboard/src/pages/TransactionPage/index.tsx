@@ -57,6 +57,7 @@ const TransactionPage = () => {
           {/* Card Action */}
           <Box className="card-action flex justify-between items-center">
             <Text
+              as="h3"
               variant="heading"
               customClass="text-2xl md:text-4xl lg:text-6xl"
             >
@@ -99,7 +100,11 @@ const TransactionPage = () => {
 
       {/* Transactions List */}
       <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
-        <Text variant="heading" customClass="text-2xl md:text-4xl lg:text-6xl">
+        <Text
+          as="h3"
+          variant="heading"
+          customClass="text-2xl md:text-4xl lg:text-6xl"
+        >
           Recent Transactions
         </Text>
 
