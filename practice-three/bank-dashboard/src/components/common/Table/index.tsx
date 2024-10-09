@@ -127,7 +127,7 @@ const CustomTable = <T extends { id: string }>({
           >
             {columns.map((columnConfig, indexColumn) => (
               <TableCell
-                aria-label={`Table cell ${item.id}`}
+                aria-label="Table-cell"
                 key={`table-cell-${indexColumn}`}
                 data-testid="table-cell"
                 className={TableClasses.cell}
