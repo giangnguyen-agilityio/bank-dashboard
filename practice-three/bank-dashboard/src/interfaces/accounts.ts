@@ -8,8 +8,8 @@ interface IAccountStatusItem {
 }
 
 export enum AccountRole {
-  Admin,
-  User,
+  Admin = 'Admin',
+  User = 'User',
 }
 
 interface IAccountData {

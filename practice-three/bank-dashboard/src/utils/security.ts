@@ -1,5 +1,8 @@
 import CryptoJS from 'crypto-js';
 
+// Interfaces
+import { AccountRole } from '@app/interfaces';
+
 /**
  * Decrypts an AES-encrypted string using a provided secret key.
  * @param {string} encryptedString - The AES-encrypted string to decrypt.
@@ -19,3 +22,21 @@ export function decryptString(
     return '';
   }
 }
+
+/**
+ * Checks if the user is an admin.
+ * @returns {boolean} True if the user is an admin, false otherwise.
+ */
+const checkUserRole = (): boolean => {
+  const storedData = localStorage.getItem('auth-storage');
+  if (!storedData) return false;
+
+  const parsedData = JSON.parse(storedData);
+  const { data } = parsedData?.state || {};
+
+  if (!data || !data.userInfo || !data.userInfo.role) return false;
+
+  return data.userInfo.role === AccountRole.Admin;
+};
+
+export { checkUserRole };

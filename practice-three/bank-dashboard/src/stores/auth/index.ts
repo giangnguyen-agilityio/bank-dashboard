@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import CryptoJS from 'crypto-js';
 
 // Interfaces
-import { AuthResponse, IAccountData } from '@app/interfaces';
+import { AccountRole, AuthResponse, IAccountData } from '@app/interfaces';
 
 // Constants
 import { SECRET_KEY } from '@app/constants';
@@ -16,6 +16,7 @@ interface AuthData {
 interface AuthStore {
   data: AuthData | null;
   isAuthenticated: boolean;
+  isAdmin?: boolean;
   setCredentials: (data: AuthResponse) => void;
   clearCredentials: () => void;
   checkAuthStatus: () => void;
@@ -26,6 +27,7 @@ const useAuthStore = create<AuthStore>()(
     (set, get) => ({
       data: null,
       isAuthenticated: false,
+      isAdmin: false,
 
       setCredentials: (authResponse: AuthResponse) => {
         const { users: userInfo, exp } = authResponse;
@@ -42,11 +44,13 @@ const useAuthStore = create<AuthStore>()(
 
         const newData = { userInfo: newUserInfo, exp };
 
-        set({ data: newData, isAuthenticated: true });
+        const isAdmin = userInfo.role === AccountRole.Admin;
+
+        set({ data: newData, isAuthenticated: true, isAdmin });
       },
 
       clearCredentials: () => {
-        set({ data: null, isAuthenticated: false });
+        set({ data: null, isAuthenticated: false, isAdmin: false });
       },
 
       checkAuthStatus: () => {
@@ -68,7 +72,9 @@ const useAuthStore = create<AuthStore>()(
           return;
         }
 
-        set({ isAuthenticated: true });
+        const isAdmin = data.userInfo.role === AccountRole.Admin;
+
+        set({ isAuthenticated: true, isAdmin });
       },
     }),
     {
@@ -76,6 +82,7 @@ const useAuthStore = create<AuthStore>()(
       partialize: (state) => ({
         data: state.data,
         isAuthenticated: state.isAuthenticated,
+        isAdmin: state.isAdmin,
       }),
     },
   ),

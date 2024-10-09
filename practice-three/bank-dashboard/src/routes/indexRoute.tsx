@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { createRoute } from '@tanstack/react-router';
+import { createRoute, redirect } from '@tanstack/react-router';
 
 // Routes
 import { rootRoute } from '@app/routes';
@@ -10,8 +10,11 @@ import { DESTINATION } from '@app/constants';
 // MainLayout
 import { MainLayout } from '@app/layouts';
 
+// Utils
+import { checkUserRole } from '@app/utils';
+
 // Pages
-const AccountPage = lazy(() => import('@app/pages/AccountPage/'));
+const AccountPage = lazy(() => import('@app/pages/AccountPage'));
 const LoginPage = lazy(() => import('@app/pages/LoginPage'));
 const SettingPage = lazy(() => import('@app/pages/SettingPage'));
 const TransactionPage = lazy(() => import('@app/pages/TransactionPage'));
@@ -40,6 +43,13 @@ const transactionRoute = createRoute({
       <TransactionPage />
     </MainLayout>
   ),
+  loader: async () => {
+    if (checkUserRole()) {
+      throw redirect({
+        to: DESTINATION.UNAUTHORIZED,
+      });
+    }
+  },
 });
 
 const accountsRoute = createRoute({
@@ -50,6 +60,13 @@ const accountsRoute = createRoute({
       <AccountPage />
     </MainLayout>
   ),
+  loader: async () => {
+    if (!checkUserRole()) {
+      throw redirect({
+        to: DESTINATION.UNAUTHORIZED,
+      });
+    }
+  },
 });
 
 const settingRoute = createRoute({

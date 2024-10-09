@@ -9,6 +9,7 @@ import {
   accountsRoute,
   settingRoute,
   notFoundRoutes,
+  unauthorizedRoute,
 } from '@app/routes';
 
 const routeTree = rootRoute.addChildren([
@@ -18,6 +19,7 @@ const routeTree = rootRoute.addChildren([
   accountsRoute,
   settingRoute,
   ...notFoundRoutes,
+  unauthorizedRoute,
 ]);
 
 const router = createRouter({ routeTree });

@@ -14,6 +14,7 @@ import { MainLayout } from '@app/layouts';
 const NotFoundFallback = lazy(
   () => import('@app/components/common/NotFoundFallback'),
 );
+const UnauthorizedPage = lazy(() => import('@app/pages/UnauthorizedPage'));
 
 const notFoundRoutes = [
   DESTINATION.DASHBOARD,
@@ -37,4 +38,14 @@ const notFoundRoutes = [
   }),
 );
 
-export { notFoundRoutes };
+const unauthorizedRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: DESTINATION.UNAUTHORIZED,
+  component: () => (
+    <MainLayout>
+      <UnauthorizedPage />
+    </MainLayout>
+  ),
+});
+
+export { notFoundRoutes, unauthorizedRoute };

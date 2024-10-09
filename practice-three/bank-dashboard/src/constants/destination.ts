@@ -11,6 +11,7 @@ const DESTINATION = {
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot-password',
   SIGN_UP: '/sign-up',
+  UNAUTHORIZED: '/unauthorized',
 };
 
 const END_POINTS = {
