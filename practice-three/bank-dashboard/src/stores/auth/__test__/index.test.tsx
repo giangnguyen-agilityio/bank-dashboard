@@ -8,7 +8,7 @@ import { useAuthStore } from '@app/stores';
 import { MOCK_ACCOUNTS_DATA } from '@app/mocks';
 
 // Interfaces
-import { AuthResponse } from '@app/interfaces';
+import { AccountRole, AuthResponse } from '@app/interfaces';
 
 const mockAuthResponse = {
   users: MOCK_ACCOUNTS_DATA[0],
@@ -30,18 +30,47 @@ describe('Auth Store', () => {
     act(() => clearCredentials());
   });
 
-  it('should set credentials and encrypt password', () => {
+  it('should set credentials, encrypt password, and set isAdmin if user is Admin', () => {
     const { result } = renderHook(() => useAuthStore());
 
+    const adminAuthResponse = {
+      ...mockAuthResponse,
+      users: {
+        ...mockAuthResponse.users,
+        role: AccountRole.Admin,
+      },
+    };
+
     act(() => {
-      result.current.setCredentials(mockAuthResponse);
+      result.current.setCredentials(adminAuthResponse);
     });
 
-    const { data, isAuthenticated } = result.current;
+    const { data, isAuthenticated, isAdmin } = result.current;
 
-    expect(data?.userInfo.username).toEqual(mockAuthResponse.users.username);
+    expect(data?.userInfo.username).toEqual(adminAuthResponse.users.username);
     expect(data?.userInfo.password).toEqual('encryptedPassword');
     expect(isAuthenticated).toBe(true);
+    expect(isAdmin).toBe(true); // Ensure isAdmin is true for admin user
+  });
+
+  it('should set isAdmin to false if user is not an Admin', () => {
+    const { result } = renderHook(() => useAuthStore());
+
+    const nonAdminAuthResponse = {
+      ...mockAuthResponse,
+      users: {
+        ...mockAuthResponse.users,
+        role: AccountRole.User,
+      },
+    };
+
+    act(() => {
+      result.current.setCredentials(nonAdminAuthResponse);
+    });
+
+    const { isAdmin } = result.current;
+
+    expect(isAdmin).toBe(false);
   });
 
   it('should clear credentials', () => {
@@ -52,10 +81,11 @@ describe('Auth Store', () => {
       result.current.clearCredentials();
     });
 
-    const { data, isAuthenticated } = result.current;
+    const { data, isAuthenticated, isAdmin } = result.current;
 
     expect(data).toBeNull();
     expect(isAuthenticated).toBe(false);
+    expect(isAdmin).toBe(false);
   });
 
   it('should check authentication status and clear credentials if expired', () => {
@@ -71,13 +101,14 @@ describe('Auth Store', () => {
       result.current.checkAuthStatus();
     });
 
-    const { data, isAuthenticated } = result.current;
+    const { data, isAuthenticated, isAdmin } = result.current;
 
     expect(data).toBeNull();
     expect(isAuthenticated).toBe(false);
+    expect(isAdmin).toBe(false);
   });
 
-  it('should remain authenticated if token is valid', () => {
+  it('should remain authenticated and keep isAdmin if token is valid', () => {
     const { result } = renderHook(() => useAuthStore());
 
     act(() => {
@@ -85,9 +116,10 @@ describe('Auth Store', () => {
       result.current.checkAuthStatus();
     });
 
-    const { isAuthenticated } = result.current;
+    const { isAuthenticated, isAdmin } = result.current;
 
     expect(isAuthenticated).toBe(true);
+    expect(isAdmin).toBe(false);
   });
 
   it('should clear credentials if data or exp is null', () => {
@@ -97,10 +129,11 @@ describe('Auth Store', () => {
       result.current.checkAuthStatus();
     });
 
-    const { data, isAuthenticated } = result.current;
+    const { data, isAuthenticated, isAdmin } = result.current;
 
     expect(data).toBeNull();
     expect(isAuthenticated).toBe(false);
+    expect(isAdmin).toBe(false);
 
     const invalidAuthResponse = {
       users: {
@@ -120,9 +153,11 @@ describe('Auth Store', () => {
     const {
       data: dataAfterExpNull,
       isAuthenticated: isAuthenticatedAfterExpNull,
+      isAdmin: isAdminAfterExpNull,
     } = result.current;
 
     expect(dataAfterExpNull).toBeNull();
     expect(isAuthenticatedAfterExpNull).toBe(false);
+    expect(isAdminAfterExpNull).toBe(false);
   });
 });

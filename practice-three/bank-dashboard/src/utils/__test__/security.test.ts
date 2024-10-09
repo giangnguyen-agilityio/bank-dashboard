@@ -1,7 +1,10 @@
 import CryptoJS from 'crypto-js';
 
+// Interfaces
+import { AccountRole } from '@app/interfaces';
+
 // Utils
-import { decryptString } from '@app/utils';
+import { checkUserRole, decryptString } from '@app/utils';
 
 jest.mock('crypto-js', () => ({
   AES: {
@@ -65,5 +68,79 @@ describe('decryptString', () => {
 
     const result = decryptString(mockEncryptedValue, mockSecretKey);
     expect(result).toBe('');
+  });
+});
+
+describe('checkUserRole', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('should return false if there is no stored data', () => {
+    expect(checkUserRole()).toBe(false);
+  });
+
+  it('should return false if state is undefined', () => {
+    localStorage.setItem('auth-storage', JSON.stringify({}));
+
+    expect(checkUserRole()).toBe(false);
+  });
+
+  it('should return false if data is undefined', () => {
+    localStorage.setItem('auth-storage', JSON.stringify({ state: {} }));
+
+    expect(checkUserRole()).toBe(false);
+  });
+
+  it('should return false if userInfo is undefined', () => {
+    localStorage.setItem(
+      'auth-storage',
+      JSON.stringify({ state: { data: {} } }),
+    );
+
+    expect(checkUserRole()).toBe(false);
+  });
+
+  it('should return false if role is undefined', () => {
+    localStorage.setItem(
+      'auth-storage',
+      JSON.stringify({ state: { data: { userInfo: {} } } }),
+    );
+
+    expect(checkUserRole()).toBe(false);
+  });
+
+  it('should return true if the user role is Admin', () => {
+    localStorage.setItem(
+      'auth-storage',
+      JSON.stringify({
+        state: {
+          data: {
+            userInfo: {
+              role: AccountRole.Admin,
+            },
+          },
+        },
+      }),
+    );
+
+    expect(checkUserRole()).toBe(true);
+  });
+
+  it('should return false if the user role is not Admin', () => {
+    localStorage.setItem(
+      'auth-storage',
+      JSON.stringify({
+        state: {
+          data: {
+            userInfo: {
+              role: AccountRole.User,
+            },
+          },
+        },
+      }),
+    );
+
+    expect(checkUserRole()).toBe(false);
   });
 });
