@@ -343,7 +343,7 @@ const SettingForm = () => {
                 <Input
                   {...rest}
                   aria-label="Permanent address input field"
-                  data-testid="present-address-input"
+                  data-testid="permanent-address-input"
                   name={name}
                   isRequired
                   classNames={{
