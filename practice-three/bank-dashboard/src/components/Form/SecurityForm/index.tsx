@@ -232,7 +232,7 @@ const SecurityForm = () => {
                   <Button
                     variant="light"
                     color="default"
-                    aria-label="toggle password visibility"
+                    aria-label="toggle new password visibility"
                     className="p-1"
                     onClick={handleToggleNewPasswordVisibility}
                   >
