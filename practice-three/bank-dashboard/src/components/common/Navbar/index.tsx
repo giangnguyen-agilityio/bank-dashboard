@@ -10,7 +10,12 @@ import {
 } from '@nextui-org/react';
 
 // Icons
-import { MenuIcon, SettingIcon, NotificationIcon } from '@app/assets';
+import {
+  MenuIcon,
+  SettingIcon,
+  NotificationIcon,
+  LogoutIcon,
+} from '@app/assets';
 
 // Utils
 import { getHeadingFromPathname } from '@app/utils';
@@ -103,7 +108,11 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
             <NotificationIcon />
           </Button>
 
-          <Dropdown aria-label="More actions" data-testid="more-actions">
+          <Dropdown
+            classNames={{ content: 'min-w-32.5' }}
+            aria-label="More actions"
+            data-testid="more-actions"
+          >
             <DropdownTrigger>
               <Button
                 aria-label="avatar-wrapper"
@@ -115,7 +124,12 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
               </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="More actions" onAction={handleLogout}>
-              <DropdownItem aria-label="Logout button">Logout</DropdownItem>
+              <DropdownItem
+                aria-label="Logout button"
+                endContent={<LogoutIcon />}
+              >
+                Logout
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </NavbarItem>

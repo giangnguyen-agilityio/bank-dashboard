@@ -96,6 +96,7 @@ const width = {
 };
 
 const height = {
+  45.75: '11.4375rem', // 183px
   92.5: '23.125rem', // 370px
   125: '31.25rem', // 500px
 };

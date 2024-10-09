@@ -1,8 +1,10 @@
-import { Skeleton } from '@nextui-org/react';
 import { useState, useCallback } from 'react';
 
 // Mocks
 import { MOCK_CREDIT_CARD_DATA } from '@app/mocks';
+
+// Images
+import { ExpenseChart } from '@app/assets';
 
 // Hooks
 import { useFetchTransactions } from '@app/hooks';
@@ -91,7 +93,7 @@ const TransactionPage = () => {
             My Expense
           </Text>
 
-          <Skeleton className="w-full rounded-3xl md:w-57.75 lg:w-87.5 h-52.75 md:h-full" />
+          <ExpenseChart customClass="w-fit rounded-3xl md:h-45.75 lg:w-87.5 lg:h-full alabatrapp" />
         </Box>
       </Box>
 

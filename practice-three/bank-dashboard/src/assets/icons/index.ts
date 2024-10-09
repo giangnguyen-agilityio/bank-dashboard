@@ -26,3 +26,5 @@ export * from './EyeFilledIcon';
 export * from './EyeSlashFilledIcon';
 export * from './DeleteIcon';
 export * from './LoadingIcon';
+export * from './LogoutIcon';
+export * from './ExpenseChart';
