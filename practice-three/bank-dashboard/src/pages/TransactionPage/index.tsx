@@ -94,7 +94,7 @@ const TransactionPage = () => {
             My Expense
           </Text>
 
-          <ExpenseChart customClass="w-fit rounded-3xl md:h-45.75 lg:w-87.5 lg:h-full alabatrapp" />
+          <ExpenseChart customClass="w-fit rounded-3xl md:h-45.75 lg:w-87.5 lg:h-full" />
         </Box>
       </Box>
 
