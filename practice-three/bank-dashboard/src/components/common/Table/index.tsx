@@ -74,7 +74,7 @@ const CustomTable = <T extends { id: string }>({
     tr: cn(
       'border-b border-solid border-blue-20',
       '[&:last-child]:border-none',
-      `${variant === 'secondary' ? 'flex justify-between' : ''}`,
+      `${variant === 'secondary' ? 'flex justify-between md:justify-none' : ''}`,
     ),
     td: 'first:rounded-l-lg last:rounded-r-lg',
     cell: cn(
