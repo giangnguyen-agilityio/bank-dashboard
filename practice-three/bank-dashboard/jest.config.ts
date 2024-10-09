@@ -41,6 +41,8 @@ const config: Config = {
     '<rootDir>/jest.config.ts',
     '<rootDir>/tailwind.config.ts',
     '<rootDir>/vite.config.ts',
+    '<rootDir>/src/App.tsx',
+    '<rootDir>/src/main.tsx',
     '^.*\\.stories\\.[jt]sx?$',
   ],
 
