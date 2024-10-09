@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { createRoute } from '@tanstack/react-router';
 
 // Constants
@@ -10,7 +11,9 @@ import { rootRoute } from '@app/routes';
 import { MainLayout } from '@app/layouts';
 
 // Components
-import { NotFoundFallback } from '@app/components';
+const NotFoundFallback = lazy(
+  () => import('@app/components/common/NotFoundFallback'),
+);
 
 const notFoundRoutes = [
   DESTINATION.DASHBOARD,

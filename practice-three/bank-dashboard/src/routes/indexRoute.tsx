@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { createRoute } from '@tanstack/react-router';
 
 // Routes
@@ -10,12 +11,10 @@ import { DESTINATION } from '@app/constants';
 import { MainLayout } from '@app/layouts';
 
 // Pages
-import {
-  AccountPage,
-  LoginPage,
-  SettingPage,
-  TransactionPage,
-} from '@app/pages';
+const AccountPage = lazy(() => import('@app/pages/AccountPage/'));
+const LoginPage = lazy(() => import('@app/pages/LoginPage'));
+const SettingPage = lazy(() => import('@app/pages/SettingPage'));
+const TransactionPage = lazy(() => import('@app/pages/TransactionPage'));
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,

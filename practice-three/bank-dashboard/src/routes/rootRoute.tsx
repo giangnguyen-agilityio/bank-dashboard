@@ -1,8 +1,14 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 
 // Components
-import { ErrorFallback, NotFoundFallback, Spinner } from '@app/components';
+const ErrorFallback = lazy(
+  () => import('@app/components/common/ErrorFallback'),
+);
+const NotFoundFallback = lazy(
+  () => import('@app/components/common/NotFoundFallback'),
+);
+const Spinner = lazy(() => import('@app/components/common/Spinner'));
 
 const rootRoute = createRootRoute({
   component: () => (
