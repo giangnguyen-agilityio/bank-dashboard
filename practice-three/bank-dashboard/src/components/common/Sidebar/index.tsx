@@ -52,7 +52,7 @@ const Sidebar = ({
         </Link>
 
         {/* Sidebar List */}
-        <ul data-testid="sidebar-list" className="" role="navigation">
+        <ul data-testid="sidebar-list">
           {items?.map((item) => (
             <SidebarItem
               key={item.label}

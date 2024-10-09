@@ -13,7 +13,7 @@ export type ErrorFallbackProps = {
 
 const classes = {
   container: 'flex flex-col items-center gap-6 p-4',
-  imageWrapper: 'h-92.5 md:h-125',
+  imageWrapper: 'w-[500px] md:w-[1000px] h-80 md:h-125 aspect-video',
   errorMessage: 'text-center text-6xl md:text-8xl',
   detailErrorMessage:
     'w-full text-gray-150 text-center whitespace-pre-line text-2xl md:text-3xl',

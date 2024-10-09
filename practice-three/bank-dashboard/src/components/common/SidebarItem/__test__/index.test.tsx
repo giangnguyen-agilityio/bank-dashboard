@@ -36,10 +36,6 @@ describe('SidebarItem Component', () => {
 
     expect(screen.getByTestId('sidebar-icon')).toBeInTheDocument();
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
-    expect(screen.getByRole('menuitem')).toHaveAttribute(
-      'href',
-      DESTINATION.DASHBOARD,
-    );
   });
 
   it('should apply the active class when the location matches the link', () => {

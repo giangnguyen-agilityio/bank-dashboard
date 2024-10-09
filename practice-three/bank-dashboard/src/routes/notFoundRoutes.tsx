@@ -13,6 +13,7 @@ import { MainLayout } from '@app/layouts';
 import { NotFoundFallback } from '@app/components';
 
 const notFoundRoutes = [
+  DESTINATION.DASHBOARD,
   DESTINATION.INVESTMENTS,
   DESTINATION.CREDIT_CARDS,
   DESTINATION.LOANS,

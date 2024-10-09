@@ -34,11 +34,9 @@ const SidebarItem = ({
     >
       <Link
         to={link}
-        aria-label={`Link to ${label}`}
         className={`flex items-center transition-colors ${
           isActive ? 'text-blue-200' : 'text-gray-100'
         } hover:text-blue-200`}
-        role="menuitem"
       >
         {icon}
         <span className="ml-5 lg:ml-6.5 font-primary font-medium text-2xl lg:text-4xl">

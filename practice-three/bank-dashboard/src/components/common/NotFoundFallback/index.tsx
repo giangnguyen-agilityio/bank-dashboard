@@ -14,7 +14,7 @@ export type NotFoundFallbackProps = {
 
 const classes = {
   container: 'flex flex-col items-center gap-4 p-4',
-  imageWrapper: 'h-87.5 md:h-125',
+  imageWrapper: 'w-[500px] md:w-[1000px] h-80 md:h-125 aspect-video',
   title: 'font-medium text-center text-6xl md:text-8xl',
   message:
     'max-w-lg text-gray-150 text-center whitespace-pre-line text-2xl md:text-3xl',

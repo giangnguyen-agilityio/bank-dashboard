@@ -22,7 +22,7 @@ const indexRoute = createRoute({
   path: '/',
   component: () => (
     <MainLayout>
-      <div>Dashboard</div>
+      <TransactionPage />
     </MainLayout>
   ),
 });
@@ -31,16 +31,6 @@ const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.LOGIN,
   component: () => <LoginPage />,
-});
-
-const dashboardRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: DESTINATION.DASHBOARD,
-  component: () => (
-    <MainLayout>
-      <div>Dashboard</div>
-    </MainLayout>
-  ),
 });
 
 const transactionRoute = createRoute({
@@ -76,7 +66,6 @@ const settingRoute = createRoute({
 export {
   indexRoute,
   loginRoute,
-  dashboardRoute,
   transactionRoute,
   accountsRoute,
   settingRoute,
