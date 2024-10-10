@@ -17,17 +17,15 @@
 
   - **Admin**:
 
-    - When logged in, the Admin can access the Dashboard tab to view information.
     - The Admin can monitor the total number of accounts through the Status bar in the Accounts tab (including both active and inactive accounts).
-    - The Admin can access the Accounts tab to perform CRUD operations on the user database.
+    - The Admin can access the Accounts tab to perform delete operations on the account database.
     - The Admin can access the Settings tab to update their personal profile information.
     - The Admin can access the Settings tab to change their current password.
 
   - **User**:
 
-    - When logged in, the User can also access the Dashboard tab to view information.
     - The User can access the Transaction tab to view recent transaction details.
-    - The User can filter recent transactions by type, either Income or Expense, to display the corresponding data in the table.
+    - The User can filter recent transactions by type, either **Income** or **Expense**, to display the corresponding data in the table.
     - The User can also access the Settings tab to update their personal profile information.
     - The User can also access the Settings tab to change their current password.
 
@@ -86,20 +84,21 @@
 ├── .husky
 ├── .storybook
 ├── public/
+│   └── images/
 ├── src/
 │   ├── assets/
 │   │   ├── fonts/
 │   │   ├── icons/
-│   │   └── images/
 │   ├── components/
+│   │   ├── common/
 │   ├── constants/
-│   ├── contexts/
 │   ├── hooks/
 │   ├── interfaces/
 │   ├── layouts/
 │   ├── mocks/
 │   ├── pages/
 │   ├── routes/
+│   ├── schemas/
 │   ├── services/
 │   ├── stores/
 │   ├── styles/
@@ -147,6 +146,16 @@
 - `pnpm dev`: run project on dev mode
 - `pnpm build`: build project prepare for deployment
 - `pnpm storybook`: run storybook
+
+**_Admin account:_**
+
+- **Username:** admin
+- **Password:** adminPass123
+
+**_User account:_**
+
+- **Username:** user
+- **Password:** userPass456
 
 ## 👨‍💻 Author
 
