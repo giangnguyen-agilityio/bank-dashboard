@@ -1,44 +1,27 @@
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, useCallback, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import toast from 'react-hot-toast';
 
 // Assets
 import { LoadingIcon } from '@app/assets';
 
 // Hooks
-import { useAccount, useMediaQuery } from '@app/hooks';
+import { useMediaQuery } from '@app/hooks';
 
 // Interfaces
-import { IAccountData, SettingFormData } from '@app/interfaces';
+import { SettingFormData } from '@app/interfaces';
 
 // Schemas
 import { accountSchema } from '@app/schemas';
 
 // Constants
-import { SCREEN_WIDTH, SUCCESS_MESSAGE } from '@app/constants';
-
-// Stores
-import { useAuthStore } from '@app/stores';
+import { SCREEN_WIDTH, SECRET_KEY } from '@app/constants';
 
 // Utils
-import { getCurrentDate } from '@app/utils';
+import { decryptString, getCurrentDate } from '@app/utils';
 
 // Components
 import { Avatar, Box, Button, Input } from '@app/components';
-
-const DEFAULT_VALUE: SettingFormData = {
-  name: '',
-  username: '',
-  password: '',
-  email: '',
-  dateOfBirth: '',
-  presentAddress: '',
-  permanentAddress: '',
-  city: '',
-  postalCode: '',
-  county: '',
-};
 
 const classes = {
   inputContainer:
@@ -52,7 +35,13 @@ const classes = {
   errorMessage: 'font-primary text-base lg:text-xl',
 };
 
-const SettingForm = () => {
+interface SettingFormProps {
+  isLoading?: boolean;
+  infoField: SettingFormData;
+  onSubmit: (data: SettingFormData) => void;
+}
+
+const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
   const {
     control,
     formState: { isValid, isDirty, errors },
@@ -62,30 +51,19 @@ const SettingForm = () => {
   } = useForm<SettingFormData>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
-    defaultValues: DEFAULT_VALUE,
+    defaultValues: infoField,
     resolver: zodResolver(accountSchema),
   });
 
   const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
 
-  const { editAccount, isUpdatingAccount } = useAccount();
-  const setCredentials = useAuthStore((state) => state.setCredentials);
-  const userData = useAuthStore((state) => state.data);
-  const { userInfo, exp } = userData || {};
-
-  const handleLogin = (data: SettingFormData) => {
+  const handleUpdateProfile = (data: SettingFormData) => {
     const newData = {
-      ...userInfo,
+      ...infoField,
       ...data,
-    } as IAccountData;
+    };
 
-    editAccount(newData, {
-      onSuccess: () => {
-        setCredentials({ users: newData, exp: exp || '' });
-        toast.success(SUCCESS_MESSAGE.UPDATE_ACCOUNT);
-        reset();
-      },
-    });
+    onSubmit(newData);
   };
 
   const handleInputChange = useCallback(
@@ -102,8 +80,15 @@ const SettingForm = () => {
     [errors, clearErrors],
   );
 
+  useEffect(() => {
+    reset({
+      ...infoField,
+      password: decryptString(infoField.password, SECRET_KEY),
+    });
+  }, [infoField, reset]);
+
   return (
-    <form className="space-y-5" onSubmit={handleSubmit(handleLogin)}>
+    <form className="space-y-5" onSubmit={handleSubmit(handleUpdateProfile)}>
       <Box
         aria-label="Form"
         className="form-content flex justify-center items-center flex-col md:items-start md:flex-row space-y-5.25 md:space-y-0 md:space-x-11.25 lg:space-x-13"
@@ -147,7 +132,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your name"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -181,7 +166,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your username"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -217,7 +202,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your email"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -251,7 +236,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your password"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -289,7 +274,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your date of birth"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -323,7 +308,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your present address"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -359,7 +344,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your permanent address"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -393,7 +378,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your city"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -429,7 +414,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your postal code"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -463,7 +448,7 @@ const SettingForm = () => {
                   autoComplete="off"
                   placeholder="Enter your country"
                   isInvalid={!!error?.message}
-                  isDisabled={isUpdatingAccount}
+                  isDisabled={isLoading}
                   errorMessage={error?.message}
                   onChange={handleInputChange(name, onChange)}
                 />
@@ -483,8 +468,8 @@ const SettingForm = () => {
           aria-label="Save button"
           data-testid="save-button"
           className="w-full h-10 font-semibold text-xl tracking-wide text-text-tertiary lg:text-4xl lg:h-12.5 md:w-32.5 lg:w-47.75"
-          isDisabled={!isValid || !isDirty || isUpdatingAccount}
-          isLoading={isUpdatingAccount}
+          isDisabled={!isValid || !isDirty || isLoading}
+          isLoading={isLoading}
           spinner={<LoadingIcon />}
         >
           Save
