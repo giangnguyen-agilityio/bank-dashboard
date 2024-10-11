@@ -28,16 +28,13 @@ const SIZE_CLASSES = {
 };
 
 const getIconSize = (size: AvatarProps['size']) => {
-  switch (size) {
-    case 'xl':
-      return 'w-6.25 h-6.25';
-    case '2xl':
-      return 'w-7.5 h-7.5';
-    case '3xl':
-      return 'w-10 h-10';
-    default:
-      return '';
-  }
+  const ICON_SIZE_CLASSES: Record<string, string> = {
+    xl: 'w-6.25 h-6.25',
+    '2xl': 'w-7.5 h-7.5',
+    '3xl': 'w-10 h-10',
+  };
+
+  return ICON_SIZE_CLASSES[size as keyof typeof ICON_SIZE_CLASSES] || '';
 };
 
 const Avatar = ({
@@ -46,6 +43,7 @@ const Avatar = ({
   size = 'md',
   hasBorder = false,
   isEdit = false,
+  radius,
   ...rest
 }: AvatarProps) => {
   const sizeClass = SIZE_CLASSES[size];
@@ -59,14 +57,16 @@ const Avatar = ({
   };
   const iconSizeClass = getIconSize(size);
   const isShowIcon =
-    isEdit && (size === 'xl' || size === '2xl' || size === '3xl');
-
+    isEdit &&
+    radius === 'full' &&
+    (size === 'xl' || size === '2xl' || size === '3xl');
   return (
     <div className="avatar-container relative inline-block">
       <AvatarNextUI
         classNames={classNames}
         aria-label="User avatar"
         data-testid="avatar"
+        radius={radius}
         {...rest}
       />
       {isShowIcon && (
