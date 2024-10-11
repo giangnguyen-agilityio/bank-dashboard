@@ -33,6 +33,9 @@ const meta = {
     isEdit: {
       control: 'boolean',
     },
+    radius: {
+      options: ['none', 'sm', 'md', 'lg', 'full'],
+    },
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -69,5 +72,16 @@ export const WithIcon: Story = {
     src: 'https://i.pravatar.cc/300',
     hasBorder: true,
     isEdit: true,
+  },
+};
+
+export const WithRadius: Story = {
+  args: {
+    size: 'lg',
+    color: 'primary',
+    src: 'https://i.pravatar.cc/300',
+    hasBorder: false,
+    isEdit: false,
+    radius: 'md',
   },
 };

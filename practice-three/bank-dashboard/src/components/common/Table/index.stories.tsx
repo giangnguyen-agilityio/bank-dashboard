@@ -33,6 +33,7 @@ type Story = StoryObj<typeof Table>;
 
 export const Primary: Story = {
   args: {
+    isStriped: false,
     data: MOCK_ACCOUNTS_DATA,
     columns: MOCK_COLUMNS_ACCOUNT_LIST as TableColumnType<unknown>[],
   },
@@ -41,6 +42,14 @@ export const Primary: Story = {
 export const WithoutData: Story = {
   args: {
     data: [],
+    columns: MOCK_COLUMNS_ACCOUNT_LIST as TableColumnType<unknown>[],
+  },
+};
+
+export const WithoutLoading: Story = {
+  args: {
+    data: [],
+    isLoading: true,
     columns: MOCK_COLUMNS_ACCOUNT_LIST as TableColumnType<unknown>[],
   },
 };
