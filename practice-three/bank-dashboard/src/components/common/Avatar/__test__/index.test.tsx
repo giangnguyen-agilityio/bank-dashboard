@@ -49,7 +49,7 @@ describe('Avatar Component', () => {
     const sizes: ('xl' | '2xl' | '3xl')[] = ['xl', '2xl', '3xl'];
 
     sizes.forEach((size) => {
-      const { container } = render(<Avatar size={size} isEdit />);
+      const { container } = render(<Avatar size={size} radius="full" isEdit />);
       const editIcon = container.querySelector('[data-testid="icon"]');
 
       expect(editIcon).toBeInTheDocument();

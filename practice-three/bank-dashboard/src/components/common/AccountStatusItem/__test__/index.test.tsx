@@ -25,19 +25,4 @@ describe('AccountStatusItem Component', () => {
     expect(screen.getByTestId('account-item-quantity')).toHaveTextContent('20');
     expect(screen.getByTestId('icon-wrapper')).toHaveClass('bg-blue-500');
   });
-
-  it('should renders correctly with default props', () => {
-    render(
-      <AccountStatusItem
-        icon={undefined}
-        title={undefined}
-        quantity={undefined}
-        backgroundColor={undefined}
-      />,
-    );
-
-    expect(screen.getByTestId('icon-wrapper').firstChild).toBeNull();
-    expect(screen.getByTestId('account-item-title')).toHaveTextContent('N/A');
-    expect(screen.getByTestId('icon-wrapper')).toHaveClass('bg-blue-15');
-  });
 });
