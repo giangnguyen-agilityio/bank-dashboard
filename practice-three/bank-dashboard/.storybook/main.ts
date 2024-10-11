@@ -9,6 +9,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     '@storybook/addon-postcss',
+    '@storybook/preview-api',
   ],
   framework: {
     name: '@storybook/react-vite',

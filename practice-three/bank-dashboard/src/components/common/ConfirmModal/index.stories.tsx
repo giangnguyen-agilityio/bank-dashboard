@@ -1,8 +1,8 @@
+import { useArgs } from '@storybook/preview-api';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useDisclosure } from '@nextui-org/react';
 
 // Components
-import { Button, ConfirmModal } from '..';
+import { Button, ConfirmModal } from '@app/components';
 
 const meta = {
   title: 'Components/ConfirmModal',
@@ -11,35 +11,59 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    isLoading: {
+      description: 'Show the loading state of the modal',
+      control: 'boolean',
+    },
+    title: {
+      description: 'This is the title of the modal',
+      control: 'text',
+    },
+    content: {
+      description: 'This is the content of the modal',
+      control: 'text',
+    },
+    onConfirm: {
+      description: 'Callback function to confirm action',
+      action: 'onConfirm',
+    },
+    onCancel: {
+      description: 'Callback function to cancel action',
+      action: 'onCancel',
+    },
+  },
 } satisfies Meta<typeof ConfirmModal>;
 
 export default meta;
 
 type Story = StoryObj<typeof ConfirmModal>;
 
-const ConfirmModalStory = ({ title }: { title?: string }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure({
-    defaultOpen: false,
-  });
-
-  return (
-    <>
-      <Button onPress={onOpen}>Open Modal</Button>
-      <ConfirmModal
-        isOpen={isOpen}
-        title={title}
-        content="This is the sample content"
-        onConfirm={onClose}
-        onCancel={onClose}
-      />
-    </>
-  );
-};
-
 export const Primary: Story = {
-  render: () => <ConfirmModalStory />,
-};
+  args: {
+    isOpen: false,
+    isLoading: false,
+    title: 'Confirm',
+    content: 'Are you sure you want to proceed?',
+    onConfirm: () => {},
+    onCancel: () => {},
+  },
+  render: function Render(args) {
+    const [isOpen, setIsOpen] = useArgs<typeof args>();
 
-export const Secondary: Story = {
-  render: () => <ConfirmModalStory title={'The sample title'} />,
+    const handleOpen = () => setIsOpen({ isOpen: true });
+    const handleClose = () => setIsOpen({ isOpen: false });
+
+    return (
+      <>
+        <Button onClick={handleOpen}>Open Modal</Button>
+        <ConfirmModal
+          {...args}
+          isOpen={isOpen.isOpen}
+          onConfirm={handleClose}
+          onCancel={handleClose}
+        />
+      </>
+    );
+  },
 };
