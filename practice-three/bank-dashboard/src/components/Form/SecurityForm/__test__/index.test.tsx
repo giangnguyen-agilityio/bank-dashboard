@@ -32,10 +32,6 @@ jest.mock('@app/utils', () => ({
   decryptString: jest.fn(),
 }));
 
-jest.mock('react-hot-toast', () => ({
-  success: jest.fn(),
-}));
-
 describe('SecurityForm', () => {
   const mockEditAccount = jest.fn();
   const mockSetCredentials = jest.fn();

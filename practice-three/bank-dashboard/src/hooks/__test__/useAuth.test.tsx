@@ -34,12 +34,6 @@ jest.mock('@app/stores', () => ({
   useAuthStore: jest.fn(),
 }));
 
-jest.mock('react-hot-toast', () => ({
-  ...jest.requireActual('react-hot-toast'),
-  success: jest.fn(),
-  error: jest.fn(),
-}));
-
 jest.mock('@tanstack/react-router', () => ({
   ...jest.requireActual('@tanstack/react-router'),
   useNavigate: jest.fn(),

@@ -17,12 +17,6 @@ import { getAccounts, removeAccount, updateAccount } from '@app/services';
 // Mocks
 import { MOCK_ACCOUNT_RESPONSE, MOCK_ACCOUNTS_DATA } from '@app/mocks';
 
-jest.mock('react-hot-toast', () => ({
-  ...jest.requireActual('react-hot-toast'),
-  success: jest.fn(),
-  error: jest.fn(),
-}));
-
 jest.mock('@app/services', () => ({
   ...jest.requireActual('@app/services'),
   getAccounts: jest.fn(),

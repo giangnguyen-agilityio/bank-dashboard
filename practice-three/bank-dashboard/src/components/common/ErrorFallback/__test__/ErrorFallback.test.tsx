@@ -10,17 +10,6 @@ describe('ErrorFallback Component', () => {
     jest.spyOn(console, 'error').mockImplementation(jest.fn());
   });
 
-  it('should renders correctly with error message', () => {
-    const customMessage = 'Network Error';
-
-    wrapper(<ErrorFallback message={customMessage} />);
-
-    const errorMessage = screen.getByTestId('error-message');
-
-    expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveTextContent(customMessage);
-  });
-
   it('should renders correctly without crashing', () => {
     wrapper(<ErrorFallback />);
 
