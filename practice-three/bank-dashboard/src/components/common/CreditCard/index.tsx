@@ -79,7 +79,7 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
           <Box aria-label="Card Holder" data-testid="card-holder">
             <Text
               customClass={textClass(
-                'font-secondary font-normal uppercase opacity-70 text-text-primary text-xs lg:text-base',
+                'font-secondary font-normal uppercase text-text-primary text-xs lg:text-base',
               )}
             >
               Card Holder
@@ -97,7 +97,7 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
           <Box aria-label="Card Date" data-testid="card-date">
             <Text
               customClass={textClass(
-                'font-secondary font-normal uppercase opacity-70 text-text-primary text-xs lg:text-base',
+                'font-secondary font-normal uppercase text-text-primary text-xs lg:text-base',
               )}
             >
               Valid Thru

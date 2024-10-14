@@ -12,7 +12,7 @@ const colorPalette = {
     15: '#e7edff', // Light Steel Blue
     20: '#e6eff5', // Light Alice Blue
     25: '#dfeaf2', // Light Powder Blue
-    50: '#718ebf', // Wild Blue Yonder
+    50: '#3169a3', // Wild Blue Yonder
     100: '#343c6a', // Dark Slate Blue
     200: '#1814f3', // Blue (dark)
     300: '#2d60ff', // Dodger Blue
@@ -25,12 +25,12 @@ const colorPalette = {
   green: {
     50: '#dcfaf8', // Mint Cream
     100: '#41D4A8', // Eucalyptus
-    150: '#16DBAA', // Light Green Turquoise
+    150: '#0A8570', // Light Green Turquoise
     200: '#16DBCC', // Medium Turquoise
     300: '#2b6d6d', // Teal Green
   },
   red: {
-    100: '#FE5C73', // Coral Pink
+    100: '#E60000', // Coral Pink
     200: '#FF4B4A', // Red Salsa
   },
   yellow: {

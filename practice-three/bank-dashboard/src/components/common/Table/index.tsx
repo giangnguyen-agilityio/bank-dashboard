@@ -102,7 +102,7 @@ const CustomTable = <T extends { id: string }>({
           return (
             <TableColumn
               aria-label="Table column"
-              key={`${header}${index}`}
+              key={`${header}-${index}`}
               data-testid="table-column"
               className={TableClasses.header}
             >

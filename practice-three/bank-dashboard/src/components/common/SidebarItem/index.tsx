@@ -35,7 +35,7 @@ const SidebarItem = ({
       <Link
         to={link}
         className={`flex items-center transition-colors ${
-          isActive ? 'text-blue-200' : 'text-gray-100'
+          isActive ? 'text-blue-200' : 'text-gray-200 opacity-80'
         } hover:text-blue-200`}
       >
         {icon}

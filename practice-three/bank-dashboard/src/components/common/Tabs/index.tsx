@@ -31,7 +31,7 @@ const CustomTabs = ({
       'w-fit bg-transparent rounded-none pb-0 gap-8.75 md:gap-10 lg:gap-12.5',
     tab: 'px-2 data-[hover-unselected=true]:opacity-100',
     tabContent:
-      'w-fit font-primary font-medium text-text-primary text-md lg:text-2xl group-data-[selected=true]:text-blue-200',
+      'w-fit font-primary font-medium text-md lg:text-2xl group-data-[selected=true]:text-blue-200',
     cursor: 'shadow-none rounded-none border-b-2 border-blue-200',
   };
 
