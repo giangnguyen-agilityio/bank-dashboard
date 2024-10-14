@@ -4,6 +4,9 @@ import { Image } from '@nextui-org/react';
 // Constants
 import { DESTINATION, NOT_FOUND_URL_IMAGE } from '@app/constants';
 
+// Stores
+import { useAuthStore } from '@app/stores';
+
 // Components
 import { Box, Text } from '@app/components';
 
@@ -25,6 +28,8 @@ const NotFoundFallback = ({
   title = 'Sorry, page not found',
   message = "The page you are looking for doesn't exist or another error occurred. Please go back to the Homepage.",
 }: NotFoundFallbackProps) => {
+  const isAdmin = useAuthStore((state) => state.isAdmin);
+
   return (
     <Box className={classes.container}>
       <Image
@@ -47,7 +52,7 @@ const NotFoundFallback = ({
       )}
 
       <Link
-        to={DESTINATION.DASHBOARD}
+        to={isAdmin ? DESTINATION.ACCOUNTS : DESTINATION.TRANSACTIONS}
         className={classes.link}
         aria-label="Link back to home"
       >

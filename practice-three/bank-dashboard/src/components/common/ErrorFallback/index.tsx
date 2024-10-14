@@ -4,12 +4,11 @@ import { Image } from '@nextui-org/react';
 // Constants
 import { DESTINATION, ERROR_IMAGE, WIDTH_IMAGE } from '@app/constants';
 
+// Stores
+import { useAuthStore } from '@app/stores';
+
 // Components
 import { Box, Text } from '@app/components';
-
-export type ErrorFallbackProps = {
-  message?: string;
-};
 
 const classes = {
   container: 'flex flex-col items-center gap-6 p-4',
@@ -22,7 +21,8 @@ const classes = {
   link: 'text-blue-200 text-2xl hover:underline md:text-3xl',
 };
 
-const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
+const ErrorFallback = () => {
+  const isAdmin = useAuthStore((state) => state.isAdmin);
   const errorMessage = `Oops! Something went wrong :(`;
   const detailErrorMessage = `An error occurred. For more help, feel free to reach out to our support team`;
 
@@ -41,19 +41,10 @@ const ErrorFallback = ({ message = '' }: ErrorFallbackProps) => {
       <Text customClass={classes.errorMessage}>{errorMessage}</Text>
       <Text customClass={classes.detailErrorMessage}>{detailErrorMessage}</Text>
 
-      {message && (
-        <Text
-          data-testid="error-message"
-          customClass={classes.detailErrorMessage}
-        >
-          {`Detail error:\n${message}`}
-        </Text>
-      )}
-
       <Text customClass={classes.actionText}>
         Please refresh the page or&nbsp;
         <Link
-          to={DESTINATION.DASHBOARD}
+          to={isAdmin ? DESTINATION.ACCOUNTS : DESTINATION.TRANSACTIONS}
           aria-label="Link back to home"
           className={classes.link}
         >
