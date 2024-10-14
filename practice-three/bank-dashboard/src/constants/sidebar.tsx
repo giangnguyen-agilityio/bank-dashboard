@@ -14,14 +14,23 @@ import {
 // Constants
 import { DESTINATION } from '@app/constants';
 
+// Interfaces
+import { AccountRole } from '@app/interfaces';
+
 const SIDEBAR_LIST = [
   { icon: <HomeIcon />, label: 'Dashboard', link: DESTINATION.DASHBOARD },
   {
     icon: <TransferIcon />,
     label: 'Transactions',
     link: DESTINATION.TRANSACTIONS,
+    hiddenForRoles: [AccountRole.Admin],
   },
-  { icon: <UserIcon />, label: 'Accounts', link: DESTINATION.ACCOUNTS },
+  {
+    icon: <UserIcon />,
+    label: 'Accounts',
+    link: DESTINATION.ACCOUNTS,
+    hiddenForRoles: [AccountRole.User],
+  },
   {
     icon: <InvestmentIcon />,
     label: 'Investments',

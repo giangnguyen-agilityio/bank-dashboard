@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 // Constants
@@ -7,6 +7,9 @@ import { DESTINATION, SIDEBAR_LIST, TOAST_CONFIG } from '@app/constants';
 
 // Stores
 import { useAuthStore } from '@app/stores';
+
+// Interfaces
+import { AccountRole } from '@app/interfaces';
 
 // Components
 import { Container, Navbar, Sidebar } from '@app/components';
@@ -18,6 +21,7 @@ export interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const isAdmin = useAuthStore((state) => state.isAdmin);
   const checkAuthStatus = useAuthStore((state) => state.checkAuthStatus);
   const navigate = useNavigate();
 
@@ -29,7 +33,17 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     }
   }, [isAuthenticated, checkAuthStatus, navigate]);
 
-  const handleToggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const handleToggleSidebar = useCallback(() => {
+    setIsSidebarOpen((prevState) => !prevState);
+  }, []);
+
+  const userRole = isAdmin ? AccountRole.Admin : AccountRole.User;
+
+  const filteredSidebarList = useMemo(() => {
+    return SIDEBAR_LIST.filter(
+      (item) => !item.hiddenForRoles?.includes(userRole),
+    );
+  }, [userRole]);
 
   return (
     <>
@@ -38,7 +52,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <Sidebar
           isOpen={isSidebarOpen}
           toggleSidebar={handleToggleSidebar}
-          items={SIDEBAR_LIST}
+          items={filteredSidebarList}
         />
 
         {/* Main Content */}

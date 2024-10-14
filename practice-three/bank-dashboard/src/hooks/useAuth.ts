@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { login } from '@app/services';
 
 // Interface
-import { LoginFormData } from '@app/interfaces';
+import { AccountRole, LoginFormData } from '@app/interfaces';
 
 // Stores
 import { DESTINATION, ERROR_MESSAGE } from '@app/constants';
@@ -15,7 +15,8 @@ import { DESTINATION, ERROR_MESSAGE } from '@app/constants';
 import { useAuthStore } from '@app/stores';
 
 export const useAuth = () => {
-  const { setCredentials } = useAuthStore();
+  const setCredentials = useAuthStore((state) => state.setCredentials);
+
   const navigate = useNavigate();
 
   const { data, isPending, isSuccess, mutate } = useMutation({
@@ -23,7 +24,10 @@ export const useAuth = () => {
     onSuccess: (data) => {
       if (data?.users) {
         setCredentials(data);
-        navigate({ to: DESTINATION.DASHBOARD });
+        const isAdmin = data.users.role === AccountRole.Admin;
+        navigate({
+          to: isAdmin ? DESTINATION.ACCOUNTS : DESTINATION.TRANSACTIONS,
+        });
 
         return;
       }

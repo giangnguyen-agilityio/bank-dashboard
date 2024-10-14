@@ -63,14 +63,16 @@ const env = ({ children }: { children: ReactNode }) => (
 
 describe('useAuth hook', () => {
   beforeEach(() => {
-    (useAuthStore as unknown as jest.Mock).mockReturnValue({
-      setCredentials: mockSetCredentials,
-    });
+    (useAuthStore as unknown as jest.Mock).mockImplementation((selector) =>
+      selector({
+        setCredentials: mockSetCredentials,
+      }),
+    );
 
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
   });
 
-  it('logs in successfully and navigates to the dashboard', async () => {
+  it('logs in successfully and navigates to the dashboard with the user role', async () => {
     const mockUserData = { users: MOCK_ACCOUNTS_DATA[0] };
     (login as jest.Mock).mockResolvedValue(mockUserData);
 
@@ -82,7 +84,22 @@ describe('useAuth hook', () => {
 
     // Assert successful login and navigation
     expect(mockSetCredentials).toHaveBeenCalledWith(mockUserData);
-    expect(mockNavigate).toHaveBeenCalledWith({ to: DESTINATION.DASHBOARD });
+    expect(mockNavigate).toHaveBeenCalledWith({ to: DESTINATION.TRANSACTIONS });
+  });
+
+  it('logs in successfully and navigates to the dashboard with the admin role', async () => {
+    const mockUserData = { users: MOCK_ACCOUNTS_DATA[2] };
+    (login as jest.Mock).mockResolvedValue(mockUserData);
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: env,
+    });
+
+    await waitFor(() => result.current.mutate(loginData));
+
+    // Assert successful login and navigation
+    expect(mockSetCredentials).toHaveBeenCalledWith(mockUserData);
+    expect(mockNavigate).toHaveBeenCalledWith({ to: DESTINATION.ACCOUNTS });
   });
 
   it('handles login failure when users data is missing', async () => {
