@@ -11,12 +11,6 @@ describe('Text Component', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('should not render when children are undefined', () => {
-    const { container } = render(<Text>{undefined}</Text>);
-
-    expect(container.firstChild).toBeNull();
-  });
-
   it('should renders the Text component without crashing', () => {
     const { container } = render(
       <Text

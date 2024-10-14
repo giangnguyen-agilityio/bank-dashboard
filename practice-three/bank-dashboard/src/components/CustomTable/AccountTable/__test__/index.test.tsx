@@ -40,14 +40,7 @@ describe('AccountTable Component', () => {
   });
 
   it('should render a loading state when isLoading is true', () => {
-    render(
-      <AccountTable
-        currentPage={1}
-        isLoading={true}
-        accounts={undefined}
-        totalAccounts={undefined}
-      />,
-    );
+    render(<AccountTable currentPage={1} isLoading={true} />);
 
     const loading = screen.getByLabelText('Loading');
 

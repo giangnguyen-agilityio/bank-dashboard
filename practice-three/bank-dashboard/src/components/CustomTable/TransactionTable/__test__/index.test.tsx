@@ -32,14 +32,7 @@ describe('TransactionTable Component', () => {
   });
 
   it('should render a loading state when isLoading is true', () => {
-    render(
-      <TransactionTable
-        currentPage={1}
-        transactions={undefined}
-        totalTransactions={undefined}
-        isLoading={true}
-      />,
-    );
+    render(<TransactionTable currentPage={1} isLoading={true} />);
 
     const loading = screen.getByLabelText('Loading');
 

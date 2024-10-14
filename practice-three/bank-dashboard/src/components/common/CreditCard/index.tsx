@@ -15,7 +15,7 @@ import { cn, maskCardNumber } from '@app/utils';
 
 interface CreditCardProps {
   isDefault?: boolean;
-  data: ICreditCard;
+  data?: ICreditCard;
 }
 
 const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {

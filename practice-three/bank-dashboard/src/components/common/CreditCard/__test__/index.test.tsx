@@ -30,7 +30,7 @@ describe('CreditCard Component', () => {
   });
 
   it('should render with default values when data is undefined', () => {
-    render(<CreditCard data={undefined as unknown as ICreditCard} />);
+    render(<CreditCard />);
 
     expect(screen.getByText('$0')).toBeInTheDocument();
     expect(screen.getAllByText('')[0]).toBeInTheDocument();
