@@ -75,7 +75,7 @@ export const accountSchema = z.object({
     .max(4, VALIDATION_MESSAGES.POSTAL_CODE.MAX_LENGTH)
     .regex(REGEX_PATTERN.POSTAL_CODE, VALIDATION_MESSAGES.POSTAL_CODE.PATTERN),
 
-  county: z
+  country: z
     .string()
     .min(1, VALIDATION_MESSAGES.COUNTRY.REQUIRED)
     .min(3, VALIDATION_MESSAGES.COUNTRY.MIN_LENGTH)

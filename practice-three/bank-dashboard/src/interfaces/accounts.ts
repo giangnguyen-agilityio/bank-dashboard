@@ -23,7 +23,7 @@ interface IAccountData {
   permanentAddress: string;
   city: string;
   postalCode: string;
-  county: string;
+  country: string;
   status: boolean;
   role: AccountRole;
 }

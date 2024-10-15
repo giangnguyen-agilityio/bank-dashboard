@@ -28,7 +28,7 @@ const defaultValues: SettingFormData = {
   permanentAddress: '',
   city: '',
   postalCode: '',
-  county: '',
+  country: '',
 };
 
 const SettingPage = () => {

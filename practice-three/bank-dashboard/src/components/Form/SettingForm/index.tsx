@@ -423,7 +423,7 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
 
             {/* Country Input */}
             <Controller
-              name="county"
+              name="country"
               control={control}
               render={({
                 field: { name, onChange, ...rest },
