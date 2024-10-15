@@ -18,6 +18,8 @@ const useFetchTransactions = (
     queryKey: [END_POINTS.TRANSACTIONS, filter, page, limit],
     queryFn: () => getTransactions(filter, page, limit),
     placeholderData: keepPreviousData,
+    staleTime: 60000,
+    refetchInterval: 30000,
   });
 
 export { useFetchTransactions };

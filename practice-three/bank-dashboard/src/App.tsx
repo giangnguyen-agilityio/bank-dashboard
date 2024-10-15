@@ -5,7 +5,13 @@ import { NextUIProvider } from '@nextui-org/system';
 // Routes
 import { router } from '@app/routes';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App = () => {
   return (

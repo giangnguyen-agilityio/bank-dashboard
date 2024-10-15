@@ -20,6 +20,8 @@ const useFetchAccounts = (page?: number, limit?: number) =>
     queryKey: [END_POINTS.USERS, page, limit],
     queryFn: () => getAccounts(page, limit),
     placeholderData: keepPreviousData,
+    staleTime: 60000,
+    refetchInterval: 60000,
   });
 
 const useAccount = () => {
