@@ -1,12 +1,21 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
-import EnvironmentPlugin from "vite-plugin-environment";
+import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import EnvironmentPlugin from 'vite-plugin-environment';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  define: {
-    "process.env": process.env,
+  plugins: [react(), tsconfigPaths(), EnvironmentPlugin(['VITE_APP_API_URL'])],
+  build: {
+    sourcemap: true,
   },
-  plugins: [react(), tsconfigPaths(), EnvironmentPlugin("all")],
+  resolve: {
+    alias: {
+      '@app': path.resolve(__dirname, './src'),
+    },
+  },
+  server: {
+    open: true,
+  },
 });
