@@ -15,7 +15,7 @@ import { AccountRole } from '@app/interfaces';
 // Components
 import { Container, Navbar, Sidebar } from '@app/components';
 
-export interface MainLayoutProps {
+interface MainLayoutProps {
   children: ReactElement;
 }
 

@@ -11,7 +11,7 @@ import { useAuthStore } from '@app/stores';
 // Components
 import { Box, Text } from '@app/components';
 
-export type NotFoundFallbackProps = {
+type NotFoundFallbackProps = {
   title?: string;
   message?: string;
 };

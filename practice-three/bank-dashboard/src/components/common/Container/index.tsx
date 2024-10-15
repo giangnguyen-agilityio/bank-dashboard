@@ -3,8 +3,7 @@ import { createElement, memo, ReactNode } from 'react';
 // Utils
 import { cn } from '@app/utils';
 
-export interface ContainerProps
-  extends Partial<Omit<HTMLDivElement, 'children'>> {
+interface ContainerProps extends Partial<Omit<HTMLDivElement, 'children'>> {
   children?: ReactNode;
   as?: string;
 }

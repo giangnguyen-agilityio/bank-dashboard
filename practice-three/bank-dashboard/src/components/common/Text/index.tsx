@@ -3,7 +3,7 @@ import { createElement, HTMLAttributes, memo, ReactNode } from 'react';
 // Utils
 import { cn } from '@app/utils';
 
-export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
+interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   as?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   variant?:
     | 'default'

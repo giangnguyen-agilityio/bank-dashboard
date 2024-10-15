@@ -34,22 +34,6 @@ const getAccounts = async (
   }
 };
 
-const addNewAccount = async (
-  data: Omit<IAccountData, 'id'>,
-): Promise<IAccountData> => {
-  try {
-    const response = await httpClient.post(END_POINTS.USERS, data);
-
-    return response.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      handleAxiosError(error);
-    }
-
-    throw new Error(ERROR_MESSAGE.UNKNOWN_ERROR);
-  }
-};
-
 const updateAccount = async (data: IAccountData): Promise<IAccountData> => {
   try {
     const response = await httpClient.put(
@@ -79,4 +63,4 @@ const removeAccount = async (id: IAccountData['id']): Promise<void> => {
   }
 };
 
-export { getAccounts, addNewAccount, updateAccount, removeAccount };
+export { getAccounts, updateAccount, removeAccount };
