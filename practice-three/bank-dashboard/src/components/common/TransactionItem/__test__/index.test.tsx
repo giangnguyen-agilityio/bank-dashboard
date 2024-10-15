@@ -31,17 +31,11 @@ describe('TransactionItem Component', () => {
       symbol: '-',
     });
 
-    render(<TransactionItem {...MOCK_TRANSACTION_ITEMS[0]} />);
+    const { container } = render(
+      <TransactionItem {...MOCK_TRANSACTION_ITEMS[0]} />,
+    );
 
-    const iconElement = screen.getByLabelText('Wallet Icon');
-    const titleElement = screen.getByTestId('transaction-title');
-    const dateElement = screen.getByTestId('transaction-date');
-    const amountElement = screen.getByTestId('transaction-amount');
-
-    expect(iconElement).toBeInTheDocument();
-    expect(titleElement).toHaveTextContent('Deposit from my Card');
-    expect(dateElement).toHaveTextContent('28 January 2021');
-    expect(amountElement).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should use default icon and background color when transactionIcon is not provided', () => {

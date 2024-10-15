@@ -15,11 +15,9 @@ import { CreditCard } from '@app/components';
 
 describe('CreditCard Component', () => {
   it('should render the CreditCard component', () => {
-    render(<CreditCard data={MOCK_CREDIT_CARD_DATA} />);
+    const { container } = render(<CreditCard data={MOCK_CREDIT_CARD_DATA} />);
 
-    expect(screen.getByTestId('card-balance')).toBeInTheDocument();
-    expect(screen.getByTestId('card-holder')).toBeInTheDocument();
-    expect(screen.getByTestId('card-date')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should render with default values when data is missing', () => {

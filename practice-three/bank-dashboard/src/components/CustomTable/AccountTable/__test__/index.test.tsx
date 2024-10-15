@@ -22,7 +22,7 @@ describe('AccountTable Component', () => {
   const mockAccounts: IAccountData[] = MOCK_ACCOUNTS_DATA;
 
   it('should render the table with accounts data', () => {
-    render(
+    const { container } = render(
       <AccountTable
         currentPage={1}
         accounts={mockAccounts}
@@ -30,13 +30,7 @@ describe('AccountTable Component', () => {
       />,
     );
 
-    expect(screen.getByText('John Doe')).toBeInTheDocument();
-    expect(screen.getByText('Jane Smith')).toBeInTheDocument();
-
-    expect(screen.getByText('User Name')).toBeInTheDocument();
-    expect(screen.getByText('Email')).toBeInTheDocument();
-
-    expect(screen.getByTestId('pagination')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should render a loading state when isLoading is true', () => {

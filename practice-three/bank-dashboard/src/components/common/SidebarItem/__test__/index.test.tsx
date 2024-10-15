@@ -32,10 +32,9 @@ describe('SidebarItem Component', () => {
   it('should render the sidebar item correctly without crashing', () => {
     (useLocation as jest.Mock).mockReturnValue({ pathname: '/' });
 
-    wrapper(<SidebarItem {...defaultProps} />);
+    const { container } = wrapper(<SidebarItem {...defaultProps} />);
 
-    expect(screen.getByTestId('sidebar-icon')).toBeInTheDocument();
-    expect(screen.getByText('Dashboard')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should apply the active class when the location matches the link', () => {

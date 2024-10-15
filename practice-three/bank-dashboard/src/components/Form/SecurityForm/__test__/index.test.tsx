@@ -62,12 +62,9 @@ describe('SecurityForm', () => {
   });
 
   it('should render SecurityForm component correctly', () => {
-    render(<SecurityForm />);
+    const { container } = render(<SecurityForm />);
 
-    expect(screen.getByLabelText('Password input field')).toBeInTheDocument();
-    expect(
-      screen.getByLabelText('New password input field'),
-    ).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
     expect(screen.getByLabelText('Save button')).toBeDisabled();
   });
 
@@ -154,6 +151,7 @@ describe('SecurityForm', () => {
     render(<SecurityForm />);
 
     const saveButton = screen.getByLabelText('Save button');
+
     expect(saveButton).toBeDisabled();
   });
 
@@ -161,17 +159,27 @@ describe('SecurityForm', () => {
     render(<SecurityForm />);
 
     const passwordInput = screen.getByTestId('password-input');
-    const newPasswordInput = screen.getByTestId('new-password-input');
+    const saveButton = screen.getByLabelText('Save button');
 
-    await userEvent.type(passwordInput, 'decryptedPassword12');
-    await userEvent.type(newPasswordInput, 'decryptedPassword12');
+    await userEvent.clear(passwordInput);
+    await userEvent.type(passwordInput, 'decryptedPassword');
 
-    fireEvent.blur(newPasswordInput);
+    fireEvent.blur(passwordInput);
 
     await userEvent.type(passwordInput, 'decryptedPassword123');
 
-    const saveButton = screen.getByLabelText('Save button');
-
     await userEvent.click(saveButton);
+  });
+
+  it('should render the defaults value when the user information is not provided', async () => {
+    (useAuthStore as unknown as jest.Mock).mockImplementation((selector) =>
+      selector({
+        setCredentials: mockSetCredentials,
+      }),
+    );
+
+    render(<SecurityForm />);
+
+    expect(screen.getByLabelText('Save button')).toBeDisabled();
   });
 });

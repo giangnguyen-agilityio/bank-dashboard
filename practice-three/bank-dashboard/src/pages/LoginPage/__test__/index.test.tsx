@@ -29,12 +29,9 @@ describe('LoginPage', () => {
   });
 
   it('should renders the Login page without crashing', () => {
-    wrapper(<LoginPage />);
+    const { container } = wrapper(<LoginPage />);
 
-    expect(screen.getByLabelText('Logo')).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /sign in/i }),
-    ).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should perform the login action correctly', async () => {

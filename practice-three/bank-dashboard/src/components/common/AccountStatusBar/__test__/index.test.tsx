@@ -12,15 +12,11 @@ import { AccountStatusBar } from '@app/components';
 
 describe('AccountStatusBar Component', () => {
   it('should renders correct props for AccountStatusItem', () => {
-    render(<AccountStatusBar data={MOCK_ACCOUNT_STATUS_BAR_DATA} />);
+    const { container } = render(
+      <AccountStatusBar data={MOCK_ACCOUNT_STATUS_BAR_DATA} />,
+    );
 
-    MOCK_ACCOUNT_STATUS_BAR_DATA.forEach(({ title, quantity }) => {
-      const itemTitle = screen.getByText(title);
-      const itemQuantity = screen.getByText(quantity.toString());
-
-      expect(itemTitle).toBeInTheDocument();
-      expect(itemQuantity).toBeInTheDocument();
-    });
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders notification when data is empty', () => {

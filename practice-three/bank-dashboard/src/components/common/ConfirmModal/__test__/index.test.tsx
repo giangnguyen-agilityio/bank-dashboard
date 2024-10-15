@@ -20,12 +20,9 @@ describe('ConfirmModal Component', () => {
   });
 
   it('should render the modal when isOpen is true', () => {
-    render(<ConfirmModal {...defaultProps} />);
+    const { container } = render(<ConfirmModal {...defaultProps} />);
 
-    expect(screen.getByText('Confirm Action')).toBeInTheDocument();
-    expect(
-      screen.getByText('Are you sure you want to proceed?'),
-    ).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should not render the modal when isOpen is false', () => {

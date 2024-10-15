@@ -11,7 +11,7 @@ import { CustomTabs } from '@app/components';
 
 describe('CustomTabs Component', () => {
   it('should renders the CustomTabs correctly without crashing', () => {
-    render(
+    const { container } = render(
       <CustomTabs
         tabs={MOCK_TAB_DATA}
         selectedKey="login"
@@ -19,8 +19,7 @@ describe('CustomTabs Component', () => {
       />,
     );
 
-    expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should not renders the CustomTabs when the tabs is empty', () => {

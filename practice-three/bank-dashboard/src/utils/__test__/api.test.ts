@@ -33,9 +33,7 @@ describe('handleAxiosError', () => {
 
   it('should throw unexpected error message if error is undefined', () => {
     const mockError = {
-      response: {
-        status: undefined,
-      },
+      response: {},
     } as unknown as AxiosError;
 
     expect(() => handleAxiosError(mockError)).toThrow(

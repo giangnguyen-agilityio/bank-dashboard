@@ -23,14 +23,11 @@ describe('Sidebar Component', () => {
   });
 
   it('should renders the sidebar correctly without crashing', () => {
-    wrapper(<Sidebar {...defaultProps} />);
+    const { container } = wrapper(<Sidebar {...defaultProps} />);
 
-    const logo = screen.getByLabelText('Logo Icon');
-    const sidebar = screen.getByTestId('sidebar');
     const items = screen.getAllByTestId('sidebar-item');
 
-    expect(logo).toBeInTheDocument();
-    expect(sidebar).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
     expect(items).toHaveLength(defaultProps.items.length);
   });
 

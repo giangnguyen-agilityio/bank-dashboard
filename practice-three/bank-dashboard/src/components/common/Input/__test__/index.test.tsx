@@ -18,5 +18,6 @@ describe('Input Component', () => {
       'rounded-lg',
       'shadow-none',
     );
+    expect(container).toMatchSnapshot();
   });
 });

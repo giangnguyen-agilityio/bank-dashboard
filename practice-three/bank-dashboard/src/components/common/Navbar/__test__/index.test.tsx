@@ -46,21 +46,11 @@ describe('Navbar Component', () => {
   });
 
   it('should renders the Navbar component correctly without crashing', () => {
-    render(<Navbar onToggleSidebar={mockOnToggleSidebar} />);
+    const { container } = render(
+      <Navbar onToggleSidebar={mockOnToggleSidebar} />,
+    );
 
-    // Check if navbar is rendered
-    expect(screen.getByTestId('navbar')).toBeInTheDocument();
-
-    // Check if the heading is rendered
-    expect(screen.getByText('Dashboard')).toBeInTheDocument();
-
-    // Check if icons are rendered
-    expect(screen.getByLabelText('Menu Icon')).toBeInTheDocument();
-    expect(screen.getByLabelText('Setting Icon')).toBeInTheDocument();
-    expect(screen.getByLabelText('Notification Icon')).toBeInTheDocument();
-
-    // Check if Avatar is rendered
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should calls onToggleSidebar when sidebar button is clicked', async () => {

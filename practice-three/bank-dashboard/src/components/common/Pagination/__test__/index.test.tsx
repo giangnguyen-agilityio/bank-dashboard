@@ -23,11 +23,9 @@ describe('Pagination Component', () => {
   });
 
   it('should render pagination correctly', () => {
-    renderPagination();
+    const { container } = renderPagination();
 
-    expect(screen.getByTestId('pagination')).toBeInTheDocument();
-    expect(screen.getByTestId('prev-button')).toBeInTheDocument();
-    expect(screen.getByTestId('next-button')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should call onPageChange with currentPage - 1 when clicking the prev button', () => {

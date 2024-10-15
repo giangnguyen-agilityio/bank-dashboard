@@ -21,10 +21,8 @@ describe('Spinner Component', () => {
   });
 
   it('should render Spinner component correctly', () => {
-    render(<Spinner />);
+    const { container } = render(<Spinner />);
 
-    const spinner = screen.getByTestId('spinner');
-
-    expect(spinner).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });

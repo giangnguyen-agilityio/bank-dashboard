@@ -21,5 +21,6 @@ describe('Button Component', () => {
       'px-12',
       'py-3',
     );
+    expect(container).toMatchSnapshot();
   });
 });

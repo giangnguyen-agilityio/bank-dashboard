@@ -10,9 +10,6 @@ describe('Container Component', () => {
 
     const container = screen.getByText(/Default Container/i);
 
-    expect(container).toBeInTheDocument();
-    expect(container.tagName).toBe('DIV');
-    expect(container).toHaveClass('m-auto');
-    expect(container).toHaveClass('container');
+    expect(container).toMatchSnapshot();
   });
 });

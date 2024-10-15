@@ -115,7 +115,7 @@ describe('checkUserRole', () => {
   });
 
   it('should return false if userInfo is undefined', () => {
-    mockLocalStorage({ state: undefined });
+    mockLocalStorage({});
     const result = checkUserRole(AccountRole.Admin);
 
     expect(result).toBe(false);

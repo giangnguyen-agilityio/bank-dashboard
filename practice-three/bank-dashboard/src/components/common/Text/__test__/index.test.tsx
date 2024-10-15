@@ -23,11 +23,7 @@ describe('Text Component', () => {
         Full Props Text
       </Text>,
     );
-    const textElement = container.querySelector('div');
 
-    expect(textElement).toHaveClass('font-primary text-text-error font-medium');
-    expect(textElement).toHaveClass('text-3xl');
-    expect(textElement).toHaveClass('break-all whitespace-normal');
-    expect(textElement).toHaveClass('extra-class');
+    expect(container).toMatchSnapshot();
   });
 });

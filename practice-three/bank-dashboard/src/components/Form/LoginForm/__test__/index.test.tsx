@@ -25,12 +25,11 @@ describe('LoginForm Component', () => {
   });
 
   it('should render the form with username and password fields', () => {
-    wrapper(<LoginForm isPendingLogin={false} handleLogin={mockMutate} />);
+    const { container } = wrapper(
+      <LoginForm isPendingLogin={false} handleLogin={mockMutate} />,
+    );
 
-    expect(screen.getByTestId(/username-input/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/password-input/i)).toBeInTheDocument();
-    expect(screen.getByText(/forgot your password/i)).toBeInTheDocument();
-    expect(screen.getByText(/register here/i)).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should disable "Sign in" button when form is invalid or untouched', () => {

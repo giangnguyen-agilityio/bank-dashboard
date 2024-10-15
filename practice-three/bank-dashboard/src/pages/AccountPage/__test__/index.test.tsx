@@ -143,12 +143,7 @@ describe('AccountPage', () => {
   });
 
   it('should render the default value correctly when data is null', () => {
-    (useFetchAccounts as jest.Mock).mockReturnValue({
-      data: {
-        users: undefined,
-        count: null,
-      },
-    });
+    (useFetchAccounts as jest.Mock).mockReturnValue({});
 
     render(<AccountPage />);
 

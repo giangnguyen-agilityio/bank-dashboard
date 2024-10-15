@@ -11,10 +11,7 @@ describe('Box Component', () => {
         Section Box
       </Box>,
     );
-    const boxElement = container.querySelector('section');
 
-    expect(boxElement).toBeInTheDocument();
-    expect(boxElement).toHaveClass('section-class');
-    expect(boxElement).toHaveTextContent('Section Box');
+    expect(container).toMatchSnapshot();
   });
 });

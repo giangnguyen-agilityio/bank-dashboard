@@ -21,7 +21,7 @@ describe('CustomTable Component', () => {
   });
 
   it('should renders the table with data and headers correctly', () => {
-    render(
+    const { container } = render(
       <Table
         columns={MOCK_COLUMNS_ACCOUNT_LIST}
         data={MOCK_ACCOUNTS_DATA}
@@ -32,11 +32,7 @@ describe('CustomTable Component', () => {
     const headers = screen.getAllByTestId('table-column');
 
     expect(headers).toHaveLength(MOCK_COLUMNS_ACCOUNT_LIST.length);
-    expect(headers[0]).toHaveTextContent('Name');
-    expect(headers[1]).toHaveTextContent('User Name');
-    expect(headers[2]).toHaveTextContent('Email');
-    expect(headers[3]).toHaveTextContent('Date Of Birth');
-    expect(headers[4]).toHaveTextContent('Address');
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders the secondary variant without headers', () => {

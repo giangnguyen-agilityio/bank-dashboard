@@ -9,7 +9,7 @@ import { AccountStatusItem } from '@app/components';
 
 describe('AccountStatusItem Component', () => {
   it('should renders correctly with provided props', () => {
-    render(
+    const { container } = render(
       <AccountStatusItem
         icon={UserIcon}
         title="Total Accounts"
@@ -18,12 +18,7 @@ describe('AccountStatusItem Component', () => {
       />,
     );
 
-    expect(screen.getByTestId('icon-wrapper')).toBeInTheDocument();
-    expect(screen.getByTestId('account-item-title')).toHaveTextContent(
-      'Total Accounts',
-    );
-    expect(screen.getByTestId('account-item-quantity')).toHaveTextContent('20');
-    expect(screen.getByTestId('icon-wrapper')).toHaveClass('bg-blue-500');
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders correctly with default props', () => {

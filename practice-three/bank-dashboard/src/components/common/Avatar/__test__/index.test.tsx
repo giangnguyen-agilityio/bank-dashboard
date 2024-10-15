@@ -6,11 +6,9 @@ import { Avatar } from '@app/components';
 
 describe('Avatar Component', () => {
   it('should render the Avatar with default size (md)', () => {
-    render(<Avatar />);
+    const { container } = render(<Avatar />);
 
-    const avatar = screen.getByTestId('avatar');
-
-    expect(avatar).toHaveClass('w-15 h-15');
+    expect(container).toMatchSnapshot();
   });
 
   it('should apply the custom class if provided', () => {

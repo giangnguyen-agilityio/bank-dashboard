@@ -19,7 +19,7 @@ describe('TransactionTable Component', () => {
   it('should render the table with transactions data', () => {
     (useMediaQuery as jest.Mock).mockReturnValue(false);
 
-    render(
+    const { container } = render(
       <TransactionTable
         currentPage={1}
         transactions={MOCK_TRANSACTION_DATA}
@@ -28,7 +28,7 @@ describe('TransactionTable Component', () => {
       />,
     );
 
-    expect(screen.getByTestId('pagination')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it('should render a loading state when isLoading is true', () => {
