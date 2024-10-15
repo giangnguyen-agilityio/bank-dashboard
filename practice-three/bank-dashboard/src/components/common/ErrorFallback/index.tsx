@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Image } from '@nextui-org/react';
+import { useShallow } from 'zustand/react/shallow';
 
 // Constants
 import { DESTINATION, ERROR_IMAGE, WIDTH_IMAGE } from '@app/constants';
@@ -22,7 +23,7 @@ const classes = {
 };
 
 const ErrorFallback = () => {
-  const isAdmin = useAuthStore((state) => state.isAdmin);
+  const isAdmin = useAuthStore(useShallow((state) => state.isAdmin));
   const errorMessage = `Oops! Something went wrong :(`;
   const detailErrorMessage = `An error occurred. For more help, feel free to reach out to our support team`;
 

@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { useShallow } from 'zustand/react/shallow';
 
 // Constants
 import { DESTINATION, SIDEBAR_LIST, TOAST_CONFIG } from '@app/constants';
@@ -20,9 +21,13 @@ export interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const isAdmin = useAuthStore((state) => state.isAdmin);
-  const checkAuthStatus = useAuthStore((state) => state.checkAuthStatus);
+  const isAuthenticated = useAuthStore(
+    useShallow((state) => state.isAuthenticated),
+  );
+  const isAdmin = useAuthStore(useShallow((state) => state.isAdmin));
+  const checkAuthStatus = useAuthStore(
+    useShallow((state) => state.checkAuthStatus),
+  );
   const navigate = useNavigate();
 
   useEffect(() => {

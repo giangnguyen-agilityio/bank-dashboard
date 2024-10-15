@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from '@nextui-org/react';
+import { useShallow } from 'zustand/react/shallow';
 
 // Icons
 import {
@@ -35,7 +36,9 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
     select: (location) => location.pathname,
   });
 
-  const clearCredentials = useAuthStore((state) => state.clearCredentials);
+  const clearCredentials = useAuthStore(
+    useShallow((state) => state.clearCredentials),
+  );
 
   const heading = getHeadingFromPathname(pathname);
 

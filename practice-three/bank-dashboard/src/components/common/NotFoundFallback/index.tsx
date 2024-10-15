@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Image } from '@nextui-org/react';
+import { useShallow } from 'zustand/react/shallow';
 
 // Constants
 import { DESTINATION, NOT_FOUND_URL_IMAGE } from '@app/constants';
@@ -28,7 +29,7 @@ const NotFoundFallback = ({
   title = 'Sorry, page not found',
   message = "The page you are looking for doesn't exist or another error occurred. Please go back to the Homepage.",
 }: NotFoundFallbackProps) => {
-  const isAdmin = useAuthStore((state) => state.isAdmin);
+  const isAdmin = useAuthStore(useShallow((state) => state.isAdmin));
 
   return (
     <Box className={classes.container}>

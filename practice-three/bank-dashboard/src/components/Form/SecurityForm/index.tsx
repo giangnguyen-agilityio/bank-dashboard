@@ -2,6 +2,7 @@ import { ChangeEvent, useState, useCallback, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
+import { useShallow } from 'zustand/react/shallow';
 
 // Interfaces
 import { IAccountData, SecurityFormData } from '@app/interfaces';
@@ -68,8 +69,10 @@ const SecurityForm = () => {
   });
 
   const { editAccount, isUpdatingAccount: isUpdatingPassword } = useAccount();
-  const setCredentials = useAuthStore((state) => state.setCredentials);
-  const userData = useAuthStore((state) => state.data);
+  const setCredentials = useAuthStore(
+    useShallow((state) => state.setCredentials),
+  );
+  const userData = useAuthStore(useShallow((state) => state.data));
   const { userInfo, exp } = userData || {};
 
   const encryptedPassword = userInfo?.password || '';

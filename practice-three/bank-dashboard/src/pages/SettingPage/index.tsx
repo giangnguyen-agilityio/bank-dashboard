@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card } from '@nextui-org/react';
 import toast from 'react-hot-toast';
+import { useShallow } from 'zustand/react/shallow';
 
 // Constants
 import { SETTING_TABS, SUCCESS_MESSAGE } from '@app/constants';
@@ -37,8 +38,10 @@ const SettingPage = () => {
   const [infoField, setInfoField] = useState(defaultValues);
 
   const { isUpdatingAccount, editAccount } = useAccount();
-  const setCredentials = useAuthStore((state) => state.setCredentials);
-  const userData = useAuthStore((state) => state.data);
+  const setCredentials = useAuthStore(
+    useShallow((state) => state.setCredentials),
+  );
+  const userData = useAuthStore(useShallow((state) => state.data));
   const { userInfo, exp } = userData || {};
 
   const handleTabChange = (key: string | number) => {
