@@ -1,8 +1,11 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 
 // Icons
 import { LogoIcon, CloseIcon } from '@app/assets';
+
+// Utils
+import { cn } from '@app/utils';
 
 // Components
 import { Button, SidebarItem } from '@app/components';
@@ -25,9 +28,12 @@ const Sidebar = ({
   return (
     <aside
       data-testid="sidebar"
-      className={`fixed top-0 left-0 z-50 h-screen w-57.5 lg:w-[250px] border-r border-border-secondary bg-background-default transition-transform ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      } md:sticky md:translate-x-0`}
+      className={cn(
+        'fixed top-0 left-0 z-50 h-screen border-r border-border-secondary bg-background-default transition-transform',
+        'w-57.5 lg:w-[250px]',
+        'md:sticky md:translate-x-0',
+        isOpen ? 'translate-x-0' : '-translate-x-full',
+      )}
       aria-label="Sidebar Navigation"
     >
       <div className="h-full overflow-y-auto">
@@ -68,4 +74,4 @@ const Sidebar = ({
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

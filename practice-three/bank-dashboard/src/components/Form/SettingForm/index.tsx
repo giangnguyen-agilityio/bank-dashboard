@@ -18,7 +18,7 @@ import { accountSchema } from '@app/schemas';
 import { SCREEN_WIDTH, SECRET_KEY } from '@app/constants';
 
 // Utils
-import { decryptString, getCurrentDate } from '@app/utils';
+import { cn, decryptString, getCurrentDate } from '@app/utils';
 
 // Components
 import { Avatar, Box, Button, Input } from '@app/components';
@@ -91,7 +91,11 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
     <form className="space-y-5" onSubmit={handleSubmit(handleUpdateProfile)}>
       <Box
         aria-label="Form"
-        className="form-content flex justify-center items-center flex-col md:items-start md:flex-row space-y-5.25 md:space-y-0 md:space-x-11.25 lg:space-x-13"
+        className={cn(
+          'form-content flex justify-center items-center flex-col',
+          'md:items-start md:flex-row',
+          'space-y-5.25 md:space-y-0 md:space-x-11.25 lg:space-x-13',
+        )}
       >
         <Box
           className="upload-image-field cursor-pointer"
@@ -467,7 +471,10 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
           type="submit"
           aria-label="Save button"
           data-testid="save-button"
-          className="w-full h-10 font-semibold text-xl tracking-wide text-text-tertiary lg:text-4xl lg:h-12.5 md:w-32.5 lg:w-47.75"
+          className={cn(
+            'w-full h-10 lg:h-12.5 md:w-32.5 lg:w-47.75',
+            'font-semibold text-xl tracking-wide text-text-tertiary lg:text-4xl',
+          )}
           isDisabled={!isValid || !isDirty || isLoading}
           isLoading={isLoading}
           spinner={<LoadingIcon />}

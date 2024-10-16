@@ -24,7 +24,13 @@ const AccountStatusItem = ({
   return (
     <Box
       data-testid="account-item-content"
-      className="w-42.5 bg-background-default flex justify-center rounded-xl px-3.5 py-5 gap-3 md:rounded-2xl lg:w-63.75 lg:rounded-3xl md:px-4.5 md:py-5.5 lg:px-4.5 lg:py-6.25 md:gap-2.5 lg:gap-3.75"
+      className={cn(
+        'w-42.5 lg:w-63.75',
+        'bg-background-default flex justify-center',
+        'rounded-xl md:rounded-2xl lg:rounded-3xl',
+        'px-3.5 md:px-4.5 lg:px-4.5 py-5 md:py-5.5 lg:py-6.25',
+        'gap-3 md:gap-2.5 lg:gap-3.75',
+      )}
     >
       <CustomIcon
         aria-label={`${title} icon`}

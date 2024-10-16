@@ -24,7 +24,7 @@ import {
 } from '@app/constants';
 
 // Utils
-import { decryptString } from '@app/utils';
+import { cn, decryptString } from '@app/utils';
 
 // Hooks
 import { useAccount } from '@app/hooks';
@@ -265,7 +265,10 @@ const SecurityForm = () => {
           type="submit"
           aria-label="Save button"
           data-testid="save-button"
-          className="w-full h-10 font-semibold text-xl tracking-wide text-text-tertiary lg:text-4xl lg:h-12.5 md:w-32.5 lg:w-47.75"
+          className={cn(
+            'w-full h-10 lg:h-12.5 md:w-32.5 lg:w-47.75',
+            'font-semibold text-xl tracking-wide text-text-tertiary lg:text-4xl',
+          )}
           isDisabled={!isValid || !isDirty}
           isLoading={isUpdatingPassword}
           spinner={<LoadingIcon />}
