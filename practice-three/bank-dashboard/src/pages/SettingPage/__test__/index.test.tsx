@@ -51,9 +51,15 @@ describe('SettingPage', () => {
   });
 
   it('should render the SettingPage with tabs', () => {
+    const fixedDate = new Date('2024-10-15T00:00:00Z');
+
+    jest.spyOn(global, 'Date').mockImplementation(() => fixedDate);
+
     const { container } = render(<SettingPage />);
 
     expect(container).toMatchSnapshot();
+
+    jest.spyOn(global, 'Date').mockRestore();
   });
 
   it('should switch tabs when a tab is clicked', async () => {

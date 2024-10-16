@@ -6,13 +6,16 @@ import {
 } from '@tanstack/react-query';
 
 // Utils
-import { renderHook, waitFor } from '@app/utils';
+import { act, renderHook, waitFor } from '@app/utils';
 
 // Hooks
 import { useAccount, useFetchAccounts } from '@app/hooks';
 
 // Services
 import { getAccounts, removeAccount, updateAccount } from '@app/services';
+
+// Constants
+import { END_POINTS } from '@app/constants';
 
 // Mocks
 import { MOCK_ACCOUNT_RESPONSE, MOCK_ACCOUNTS_DATA } from '@app/mocks';
@@ -55,20 +58,36 @@ describe('useFetchAccounts hook', () => {
 });
 
 describe('useAccount hook', () => {
-  it('edits account successfully', async () => {
+  it('should update the account data optimistically', async () => {
     const accountData = MOCK_ACCOUNTS_DATA[0];
-    (updateAccount as jest.Mock).mockResolvedValueOnce(accountData);
+    const previousAccountData = {
+      ...MOCK_ACCOUNTS_DATA[0],
+      name: 'Updated Name',
+    };
 
-    const { result } = renderHook(() => useAccount(), {
-      wrapper: env,
+    // Set up initial data in the Query Client
+    queryClient.setQueryData(
+      [END_POINTS.USERS, accountData.id],
+      previousAccountData,
+    );
+
+    const { result } = renderHook(() => useAccount(), { wrapper: env });
+
+    // Trigger the mutation
+    await act(async () => {
+      result.current.editAccount(accountData);
     });
 
-    await waitFor(() => result.current.editAccount(accountData));
+    // Verify that the data in the cache was optimistically updated
+    const updatedData = queryClient.getQueryData([
+      END_POINTS.USERS,
+      accountData.id,
+    ]);
 
-    expect(updateAccount).toHaveBeenCalledWith(accountData);
+    expect(updatedData).toEqual(previousAccountData);
   });
 
-  it('handles account update error', async () => {
+  it('should handles account update error', async () => {
     const accountData = MOCK_ACCOUNTS_DATA[0];
 
     (updateAccount as jest.Mock).mockRejectedValue(new Error('Update failed'));
@@ -83,7 +102,7 @@ describe('useAccount hook', () => {
     expect(result.current.isUpdatingAccount).toBe(false);
   });
 
-  it('deletes account successfully', async () => {
+  it('should deletes account successfully', async () => {
     (removeAccount as jest.Mock).mockResolvedValue({});
 
     const { result } = renderHook(() => useAccount(), {
@@ -96,7 +115,7 @@ describe('useAccount hook', () => {
     expect(removeAccount).toHaveBeenCalled();
   });
 
-  it('handles account deletion error', async () => {
+  it('should handles account deletion error', async () => {
     (removeAccount as jest.Mock).mockRejectedValue(new Error('Delete failed'));
 
     const { result } = renderHook(() => useAccount(), {
