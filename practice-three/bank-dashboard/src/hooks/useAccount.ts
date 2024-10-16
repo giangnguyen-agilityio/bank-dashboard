@@ -34,8 +34,37 @@ const useAccount = () => {
     mutate: editAccount,
   } = useMutation({
     mutationFn: (data: IAccountData) => updateAccount(data),
-    onError: () => {
+
+    onMutate: async (data: IAccountData) => {
+      await queryClient.cancelQueries({
+        queryKey: [END_POINTS.USERS, data.id],
+      });
+
+      const previousAccounts = queryClient.getQueryData([
+        END_POINTS.USERS,
+        data.id,
+      ]);
+
+      queryClient.setQueryData([END_POINTS.USERS, data.id], data);
+
+      return { previousAccounts, data };
+    },
+
+    onError: (_, __, context) => {
       toast.error(ERROR_MESSAGE.UNKNOWN_ERROR);
+
+      if (context?.previousAccounts) {
+        queryClient.setQueryData(
+          [END_POINTS.USERS, context.data.id],
+          context.previousAccounts,
+        );
+      }
+    },
+
+    onSettled: (data?: IAccountData) => {
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.USERS, data?.id],
+      });
     },
   });
 
