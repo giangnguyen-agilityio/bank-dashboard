@@ -158,6 +158,10 @@ const TransactionTable = ({
     onTabChange?.(key as TransactionKind);
   };
 
+  const columns = isMobile
+    ? COLUMNS_TRANSACTION_LIST_MOBILE
+    : COLUMNS_TRANSACTION_LIST_DESKTOP;
+
   const tabs = [
     {
       key: TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.KEY,
@@ -166,11 +170,7 @@ const TransactionTable = ({
         <Table
           aria-label="All transactions table"
           variant={isMobile ? 'secondary' : 'primary'}
-          columns={
-            isMobile
-              ? COLUMNS_TRANSACTION_LIST_MOBILE
-              : COLUMNS_TRANSACTION_LIST_DESKTOP
-          }
+          columns={columns}
           data={transactions}
           isLoading={isLoading}
         />
@@ -183,11 +183,7 @@ const TransactionTable = ({
         <Table
           aria-label="Income transactions table"
           variant={isMobile ? 'secondary' : 'primary'}
-          columns={
-            isMobile
-              ? COLUMNS_TRANSACTION_LIST_MOBILE
-              : COLUMNS_TRANSACTION_LIST_DESKTOP
-          }
+          columns={columns}
           data={transactions}
           isLoading={isLoading}
         />
@@ -200,11 +196,7 @@ const TransactionTable = ({
         <Table
           aria-label="Expense transactions table"
           variant={isMobile ? 'secondary' : 'primary'}
-          columns={
-            isMobile
-              ? COLUMNS_TRANSACTION_LIST_MOBILE
-              : COLUMNS_TRANSACTION_LIST_DESKTOP
-          }
+          columns={columns}
           data={transactions}
           isLoading={isLoading}
         />

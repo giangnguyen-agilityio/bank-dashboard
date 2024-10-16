@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useLocation } from '@tanstack/react-router';
 import {
   Navbar as NavbarNextUI,
@@ -141,4 +142,4 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

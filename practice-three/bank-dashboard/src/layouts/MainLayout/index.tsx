@@ -1,10 +1,9 @@
 import { useNavigate } from '@tanstack/react-router';
 import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
 import { useShallow } from 'zustand/react/shallow';
 
 // Constants
-import { DESTINATION, SIDEBAR_LIST, TOAST_CONFIG } from '@app/constants';
+import { DESTINATION, SIDEBAR_LIST } from '@app/constants';
 
 // Stores
 import { useAuthStore } from '@app/stores';
@@ -71,15 +70,6 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           </section>
         </main>
       </Container>
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          duration: TOAST_CONFIG.DURATION,
-          success: TOAST_CONFIG.SUCCESS_COLOR,
-          error: TOAST_CONFIG.ERROR_COLOR,
-          style: TOAST_CONFIG.TEXT_COLOR,
-        }}
-      />
     </>
   );
 };

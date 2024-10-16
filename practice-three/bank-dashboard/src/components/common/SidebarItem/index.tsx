@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 
 // Constants
@@ -47,4 +47,4 @@ const SidebarItem = ({
   );
 };
 
-export default SidebarItem;
+export default memo(SidebarItem);
