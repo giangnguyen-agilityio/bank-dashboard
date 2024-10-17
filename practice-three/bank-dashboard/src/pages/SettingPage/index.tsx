@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Card } from '@nextui-org/react';
 import toast from 'react-hot-toast';
 import { useShallow } from 'zustand/react/shallow';
@@ -16,7 +16,9 @@ import { useAuthStore } from '@app/stores';
 import { IAccountData, SettingFormData } from '@app/interfaces';
 
 // Components
-import { Box, CustomTabs, SecurityForm, SettingForm } from '@app/components';
+import { Box, CustomTabs, SettingForm } from '@app/components';
+
+const SecurityForm = lazy(() => import('@app/components/Form/SecurityForm'));
 
 const defaultValues: SettingFormData = {
   name: '',
@@ -81,7 +83,9 @@ const SettingPage = () => {
       title: SETTING_TABS.SECURITY.TITLE,
       tabContent: (
         <Box className="p-5 md:px-6.25 lg:p-7.5">
-          <SecurityForm />
+          <Suspense fallback={null}>
+            <SecurityForm />
+          </Suspense>
         </Box>
       ),
     },

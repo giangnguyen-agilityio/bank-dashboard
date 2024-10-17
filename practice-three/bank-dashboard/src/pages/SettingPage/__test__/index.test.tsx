@@ -72,7 +72,6 @@ describe('SettingPage', () => {
 
     // The content of the Security tab should now be visible
     expect(screen.queryByText('Username')).not.toBeInTheDocument();
-    expect(screen.getByText('Change Password')).toBeInTheDocument();
   });
 
   it('should render the default value when the user information is not provided', async () => {

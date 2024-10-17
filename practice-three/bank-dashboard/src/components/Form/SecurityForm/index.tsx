@@ -110,7 +110,7 @@ const SecurityForm = () => {
     [errors, clearErrors],
   );
 
-  const handleLogin = (data: SecurityFormData) => {
+  const handleUpdatePassword = (data: SecurityFormData) => {
     if (currentPassword && currentPassword !== decryptedPassword) {
       setError('password', {
         message: VALIDATION_MESSAGES.PASSWORD.NOT_MATCH,
@@ -140,7 +140,7 @@ const SecurityForm = () => {
   }, [currentPassword, newPassword, clearErrors]);
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit(handleLogin)}>
+    <form className="space-y-5" onSubmit={handleSubmit(handleUpdatePassword)}>
       <Box
         aria-label="Form"
         className="form-content flex justify-center items-center flex-col space-y-3.5 lg:space-y-4"

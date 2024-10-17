@@ -1,12 +1,8 @@
-import { Toaster } from 'react-hot-toast';
 import { Link } from '@tanstack/react-router';
 import { Card, CardBody } from '@nextui-org/react';
 
 // Assets
 import { LogoIcon } from '@app/assets';
-
-// Constants
-import { TOAST_CONFIG } from '@app/constants';
 
 // Hooks
 import { useAuth } from '@app/hooks';
@@ -52,15 +48,6 @@ const LoginPage = () => {
           </CardBody>
         </Card>
       </Box>
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          duration: TOAST_CONFIG.DURATION,
-          success: TOAST_CONFIG.SUCCESS_COLOR,
-          error: TOAST_CONFIG.ERROR_COLOR,
-          style: TOAST_CONFIG.TEXT_COLOR,
-        }}
-      />
     </>
   );
 };

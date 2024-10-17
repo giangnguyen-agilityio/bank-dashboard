@@ -2,7 +2,7 @@ import { CustomClassType } from '@app/types/components';
 
 export const RightArrowIcon = ({ customClass }: CustomClassType) => (
   <svg
-    aria-label="Wallet Icon"
+    aria-label="Right Arrow Icon"
     className={customClass}
     width={9}
     height={15}

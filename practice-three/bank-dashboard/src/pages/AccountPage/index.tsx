@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 
 // Hooks
 import { useFetchAccounts, useAccount } from '@app/hooks';
@@ -19,8 +19,9 @@ import {
   AccountTable,
   AccountStatusBar,
   Button,
-  ConfirmModal,
 } from '@app/components';
+
+const ConfirmModal = lazy(() => import('@app/components/common/ConfirmModal'));
 
 const AccountPage = () => {
   const [page, setPage] = useState(1);
@@ -127,15 +128,19 @@ const AccountPage = () => {
       </Box>
 
       {/* Modal */}
-      <ConfirmModal
-        size="md"
-        isOpen={isModalOpen}
-        title="Confirm"
-        content={`Are you sure you want to delete the account with ID: ${selectedAccountId}?\nThis action cannot be undone.`}
-        onConfirm={handleDeleteAction}
-        onCancel={handleCloseModal}
-        isLoading={isDeletingAccount}
-      />
+      {isModalOpen && (
+        <Suspense fallback={null}>
+          <ConfirmModal
+            size="md"
+            isOpen={isModalOpen}
+            title="Confirm"
+            content={`Are you sure you want to delete the account with ID: ${selectedAccountId}?\nThis action cannot be undone.`}
+            onConfirm={handleDeleteAction}
+            onCancel={handleCloseModal}
+            isLoading={isDeletingAccount}
+          />
+        </Suspense>
+      )}
     </Box>
   );
 };

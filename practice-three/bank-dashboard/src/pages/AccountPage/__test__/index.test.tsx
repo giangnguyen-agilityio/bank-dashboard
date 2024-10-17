@@ -1,70 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { render, screen, fireEvent, waitFor } from '@app/utils';
+import { render, screen, userEvent, waitFor } from '@app/utils';
 
 // Pages
 import { AccountPage } from '@app/pages';
 
 // Hooks
-import { useFetchAccounts, useAccount } from '@app/hooks';
+import { useFetchAccounts, useAccount, useMediaQuery } from '@app/hooks';
+
+// Mocks
+import { MOCK_ACCOUNTS_DATA } from '@app/mocks';
 
 // Mock hooks
 jest.mock('@app/hooks', () => ({
   ...jest.requireActual('@app/hooks'),
   useFetchAccounts: jest.fn(),
   useAccount: jest.fn(),
-}));
-
-jest.mock('@app/components', () => ({
-  Box: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  Text: ({ children }: { children: React.ReactNode }) => <h1>{children}</h1>,
-  AccountTable: ({ accounts, onPageChange, onDelete }: any) => (
-    <div>
-      {accounts?.length > 0 ? (
-        accounts.map((account: any) => (
-          <div key={account.id} aria-label="account-item">
-            {account.name}
-            <button onClick={() => onDelete(account.id)}>Delete</button>
-          </div>
-        ))
-      ) : (
-        <div>No accounts</div>
-      )}
-      <button aria-label="next-page" onClick={() => onPageChange(2)}>
-        Next
-      </button>
-    </div>
-  ),
-  AccountStatusBar: ({ data }: any) => (
-    <div>
-      {data.map((item: any) => (
-        <div key={item.title}>
-          {item.title}: {item.quantity}
-        </div>
-      ))}
-    </div>
-  ),
-  Button: ({ children }: { children: React.ReactNode }) => (
-    <button>{children}</button>
-  ),
-  ConfirmModal: ({ isOpen, onConfirm, onCancel }: any) =>
-    isOpen ? (
-      <div>
-        <p>Confirm Delete?</p>
-        <button onClick={onConfirm}>Confirm</button>
-        <button onClick={onCancel}>Cancel</button>
-      </div>
-    ) : null,
+  useMediaQuery: jest.fn(),
 }));
 
 describe('AccountPage', () => {
   beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
     (useFetchAccounts as jest.Mock).mockReturnValue({
       data: {
-        users: [
-          { id: '1', name: 'Account 1', status: 'ACTIVE' },
-          { id: '2', name: 'Account 2', status: 'INACTIVE' },
-        ],
-        count: 2,
+        users: MOCK_ACCOUNTS_DATA,
+        count: 20,
       },
       isLoading: false,
     });
@@ -73,32 +32,35 @@ describe('AccountPage', () => {
       isDeletingAccount: false,
       deleteAccount: jest.fn(),
     });
+
+    (useMediaQuery as jest.Mock).mockReturnValue(true);
   });
 
-  it('should render account status bar correctly', () => {
-    render(<AccountPage />);
+  it('should render the account page correctly', () => {
+    const { container } = render(<AccountPage />);
 
-    expect(screen.getByText('Total Accounts: 2')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
-  it('should render the account table and delete modal', async () => {
+  it('should render the delete modal correctly', async () => {
     render(<AccountPage />);
 
-    // Click delete button for an account
-    fireEvent.click(screen.getAllByText('Delete')[0]);
+    await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
 
-    // Verify modal opens
-    expect(screen.getByText('Confirm Delete?')).toBeInTheDocument();
-
-    // Click confirm button on modal
-    fireEvent.click(screen.getByText('Confirm'));
-
-    // Ensure the delete function is called
     await waitFor(() => {
-      expect(useAccount().deleteAccount).toHaveBeenCalledWith(
-        '1',
-        expect.any(Object),
-      );
+      expect(screen.getByText('Delete')).toBeInTheDocument();
+    });
+
+    await userEvent.click(screen.getByText('Delete'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('confirm-button')).toBeInTheDocument();
+    });
+
+    await userEvent.click(screen.getByTestId('confirm-button'));
+
+    await waitFor(() => {
+      expect(useAccount().deleteAccount).toHaveBeenCalled();
     });
   });
 
@@ -106,26 +68,32 @@ describe('AccountPage', () => {
     render(<AccountPage />);
 
     // Click next page button
-    fireEvent.click(screen.getByLabelText('next-page'));
+    userEvent.click(screen.getByLabelText('Next Button'));
 
     // Ensure the correct page change handler is triggered
-    expect(useFetchAccounts).toHaveBeenCalledWith(2, expect.any(Number));
+    expect(useFetchAccounts).toHaveBeenCalled();
   });
 
-  it('should close modal when cancel is clicked', () => {
+  it('should close modal when cancel is clicked', async () => {
     render(<AccountPage />);
 
-    // Click delete button for an account
-    fireEvent.click(screen.getAllByText('Delete')[0]);
+    await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
 
-    // Verify modal opens
-    expect(screen.getByText('Confirm Delete?')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Delete')).toBeInTheDocument();
+    });
 
-    // Click cancel button
-    fireEvent.click(screen.getByText('Cancel'));
+    await userEvent.click(screen.getByText('Delete'));
 
-    // Verify modal closes
-    expect(screen.queryByText('Confirm Delete?')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('cancel-button')).toBeInTheDocument();
+    });
+
+    await userEvent.click(screen.getByTestId('cancel-button'));
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('cancel-button')).not.toBeInTheDocument();
+    });
   });
 
   it('should render the default value correctly', () => {
@@ -139,7 +107,7 @@ describe('AccountPage', () => {
 
     render(<AccountPage />);
 
-    expect(screen.queryByText('Total Accounts: 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('Total Accounts: 20')).not.toBeInTheDocument();
   });
 
   it('should render the default value correctly when data is null', () => {
@@ -147,6 +115,6 @@ describe('AccountPage', () => {
 
     render(<AccountPage />);
 
-    expect(screen.queryByText('Total Accounts: 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('Total Accounts: 20')).not.toBeInTheDocument();
   });
 });

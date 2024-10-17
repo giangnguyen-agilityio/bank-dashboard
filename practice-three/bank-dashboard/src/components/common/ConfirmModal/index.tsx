@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   Modal as ModalNextUI,
   ModalContent,
@@ -106,4 +107,4 @@ const ConfirmModal = ({
   );
 };
 
-export default ConfirmModal;
+export default memo(ConfirmModal);
