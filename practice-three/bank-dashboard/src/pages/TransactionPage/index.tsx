@@ -77,8 +77,13 @@ const TransactionPage = () => {
             <Box className="w-full overflow-x-auto gap-2 md:pb-0">
               <Box className="w-max">
                 <Box className="card-list w-fit flex gap-5 md:gap-6.25 lg:gap-7.5">
-                  <CreditCard data={MOCK_CREDIT_CARD_DATA} />
-                  <CreditCard data={MOCK_CREDIT_CARD_DATA} isDefault />
+                  {MOCK_CREDIT_CARD_DATA.map((card) => (
+                    <CreditCard
+                      key={card.id}
+                      data={card}
+                      isDefault={card.isDefault}
+                    />
+                  ))}
                 </Box>
               </Box>
             </Box>

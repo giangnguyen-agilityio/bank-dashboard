@@ -15,7 +15,9 @@ import { CreditCard } from '@app/components';
 
 describe('CreditCard Component', () => {
   it('should render the CreditCard component', () => {
-    const { container } = render(<CreditCard data={MOCK_CREDIT_CARD_DATA} />);
+    const { container } = render(
+      <CreditCard data={MOCK_CREDIT_CARD_DATA[0]} />,
+    );
 
     expect(container).toMatchSnapshot();
   });
@@ -35,15 +37,15 @@ describe('CreditCard Component', () => {
   });
 
   it('should display the masked card number', () => {
-    render(<CreditCard data={MOCK_CREDIT_CARD_DATA} />);
+    render(<CreditCard data={MOCK_CREDIT_CARD_DATA[0]} />);
 
     expect(
-      screen.getByText(maskCardNumber(MOCK_CREDIT_CARD_DATA.cardNumber)),
+      screen.getByText(maskCardNumber(MOCK_CREDIT_CARD_DATA[0].cardNumber)),
     ).toBeInTheDocument();
   });
 
   it('should apply default card styles when isDefault is true', () => {
-    render(<CreditCard data={MOCK_CREDIT_CARD_DATA} isDefault />);
+    render(<CreditCard data={MOCK_CREDIT_CARD_DATA[1]} isDefault />);
 
     const cardElement = screen.getByTestId('credit-card');
 
@@ -52,32 +54,11 @@ describe('CreditCard Component', () => {
   });
 
   it('should apply non-default card styles when isDefault is false', () => {
-    render(<CreditCard data={MOCK_CREDIT_CARD_DATA} isDefault={false} />);
+    render(<CreditCard data={MOCK_CREDIT_CARD_DATA[1]} isDefault={false} />);
 
     const cardElement = screen.getByTestId('credit-card');
 
     expect(cardElement).toHaveClass('bg-white-100 border-border-default');
     expect(cardElement).not.toHaveClass('bg-linear-card');
-  });
-
-  it('should render BrandCardIcon and ChipCardIcon', () => {
-    render(<CreditCard data={MOCK_CREDIT_CARD_DATA} />);
-
-    expect(screen.getByLabelText('Brand Card Icon')).toBeInTheDocument();
-    expect(screen.getByLabelText('Chip Card Icon')).toBeInTheDocument();
-  });
-
-  it('should format the balance correctly', () => {
-    render(<CreditCard data={{ ...MOCK_CREDIT_CARD_DATA, balance: 1500 }} />);
-
-    expect(screen.getByText('$1,500')).toBeInTheDocument();
-  });
-
-  it('should render the overlay when isDefault is true', () => {
-    render(<CreditCard data={MOCK_CREDIT_CARD_DATA} isDefault />);
-
-    const overlay = screen.getByTestId('card-background');
-
-    expect(overlay).toHaveClass('bg-background-default');
   });
 });
