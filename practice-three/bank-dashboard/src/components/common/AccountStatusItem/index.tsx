@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import { ElementType, memo } from 'react';
 
 // Utils
 import { cn } from '@app/utils';
@@ -63,4 +63,4 @@ const AccountStatusItem = ({
   );
 };
 
-export default AccountStatusItem;
+export default memo(AccountStatusItem);

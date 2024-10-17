@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { extendVariants, Input as NextUIInput } from '@nextui-org/react';
 
 const Input = extendVariants(NextUIInput, {
@@ -70,4 +71,4 @@ const Input = extendVariants(NextUIInput, {
   },
 });
 
-export default Input;
+export default memo(Input);
