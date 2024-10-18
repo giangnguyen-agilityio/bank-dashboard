@@ -1,9 +1,4 @@
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-} from '@nextui-org/react';
+import { memo, useMemo } from 'react';
 
 // Constants
 import {
@@ -23,10 +18,10 @@ import { TableColumnType } from '@app/types';
 import { useMediaQuery } from '@app/hooks';
 
 // Icons
-import { DeleteIcon, MoreVerticalIcon } from '@app/assets';
+import { DeleteIcon } from '@app/assets';
 
 // Components
-import { Box, Pagination, Table, Text } from '@app/components';
+import { Box, Dropdown, Pagination, Table } from '@app/components';
 
 interface AccountTableProps {
   currentPage: number;
@@ -46,121 +41,81 @@ const AccountTable = ({
   onDelete,
 }: AccountTableProps) => {
   const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
-  const totalPage = Math.ceil(totalAccounts / LIMIT_PER_PAGE);
+  const totalPage = useMemo(
+    () => Math.ceil(totalAccounts / LIMIT_PER_PAGE),
+    [totalAccounts],
+  );
   const isShowPagination = !isLoading && accounts.length > 0;
 
-  const COLUMN_ACCOUNT_LIST_DESKTOP: TableColumnType<IAccountData>[] = [
-    {
-      header: 'Name',
-      accessor: 'name',
-    },
-    {
-      header: 'User Name',
-      accessor: 'username',
-    },
-    {
-      header: 'Email',
-      accessor: 'email',
-      size: WIDTH_COLUMN_CONFIG.LARGE,
-    },
-    {
-      header: 'Date Of Birth',
-      accessor: 'dateOfBirth',
-    },
-    {
-      header: 'Address',
-      accessor: 'presentAddress',
-      size: WIDTH_COLUMN_CONFIG.LARGE,
-    },
-    {
-      header: '',
-      accessor: (item) => {
-        return (
-          <Box className="flex w-full items-center justify-end p-0 data-[focus=true]:outline-none data-[focus-visible=true]:outline-none">
-            <Dropdown
-              aria-label="More actions"
-              data-testid="dropdown"
-              classNames={{ content: 'min-w-25 md:min-w-27.5' }}
-            >
-              <DropdownTrigger aria-label="More actions button">
-                <button>
-                  <MoreVerticalIcon />
-                </button>
-              </DropdownTrigger>
-              <DropdownMenu
-                aria-label="More actions menu"
-                onAction={() => onDelete?.(item.id)}
-              >
-                <DropdownItem
-                  key="delete"
-                  aria-label="Delete account button"
-                  className="data-[hover=true]:bg-red-100/35"
-                  startContent={<DeleteIcon customClass="text-red-200" />}
-                >
-                  <Text
-                    variant="title"
-                    customClass="font-primary font-semibold text-lg lg:text-2xl text-red-200"
-                  >
-                    Delete
-                  </Text>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Box>
-        );
+  const actions = useMemo(
+    () => [
+      {
+        key: 'delete',
+        className: 'text-red-200 hover:outline-red-200',
+        icon: <DeleteIcon customClass="text-red-200" />,
       },
-    },
-  ];
+    ],
+    [],
+  );
 
-  const COLUMN_ACCOUNT_LIST_MOBILE: TableColumnType<IAccountData>[] = [
-    {
-      header: 'User Name',
-      accessor: 'username',
-      size: UN_SET_COLUMN_CONFIG,
-    },
-    {
-      header: 'Email',
-      accessor: 'email',
-    },
-    {
-      header: '',
-      accessor: (item) => {
-        return (
-          <Dropdown
-            aria-label="More actions"
-            data-testid="dropdown"
-            classNames={{
-              content: 'min-w-25 md:min-w-27.5',
-            }}
-          >
-            <DropdownTrigger aria-label="More actions button">
-              <button className="flex w-full items-center justify-end p-0">
-                <MoreVerticalIcon />
-              </button>
-            </DropdownTrigger>
-            <DropdownMenu
-              aria-label="More actions menu"
-              onAction={() => onDelete?.(item.id)}
-            >
-              <DropdownItem
-                key="delete"
-                aria-label="Delete account button"
-                className="data-[hover=true]:bg-red-100/35"
-                startContent={<DeleteIcon customClass="text-red-200" />}
-              >
-                <Text
-                  variant="title"
-                  customClass="font-primary font-semibold text-lg text-red-200"
-                >
-                  Delete
-                </Text>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        );
+  const COLUMN_ACCOUNT_LIST_DESKTOP: TableColumnType<IAccountData>[] = useMemo(
+    () => [
+      {
+        header: 'Name',
+        accessor: 'name',
       },
-    },
-  ];
+      {
+        header: 'User Name',
+        accessor: 'username',
+      },
+      {
+        header: 'Email',
+        accessor: 'email',
+        size: WIDTH_COLUMN_CONFIG.LARGE,
+      },
+      {
+        header: 'Date Of Birth',
+        accessor: 'dateOfBirth',
+      },
+      {
+        header: 'Address',
+        accessor: 'presentAddress',
+        size: WIDTH_COLUMN_CONFIG.LARGE,
+      },
+      {
+        header: '',
+        accessor: (item) => {
+          return (
+            <Dropdown id={item.id} actions={actions} onAction={onDelete} />
+          );
+        },
+      },
+    ],
+    [actions, onDelete],
+  );
+
+  const COLUMN_ACCOUNT_LIST_MOBILE: TableColumnType<IAccountData>[] = useMemo(
+    () => [
+      {
+        header: 'User Name',
+        accessor: 'username',
+        size: UN_SET_COLUMN_CONFIG,
+      },
+      {
+        header: 'Email',
+        accessor: 'email',
+      },
+      {
+        header: '',
+        accessor: (item) => {
+          return (
+            <Dropdown id={item.id} actions={actions} onAction={onDelete} />
+          );
+        },
+      },
+    ],
+    [actions, onDelete],
+  );
 
   return (
     <Box className="flex flex-col gap-1">
@@ -190,4 +145,4 @@ const AccountTable = ({
   );
 };
 
-export default AccountTable;
+export default memo(AccountTable);
