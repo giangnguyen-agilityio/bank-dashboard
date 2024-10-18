@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect } from 'react';
+import { ChangeEvent, memo, useCallback, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -47,7 +47,7 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
     formState: { isValid, isDirty, errors },
     handleSubmit,
     clearErrors,
-    reset,
+    setValue,
   } = useForm<SettingFormData>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
@@ -57,14 +57,17 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
 
   const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
 
-  const handleUpdateProfile = (data: SettingFormData) => {
-    const newData = {
-      ...infoField,
-      ...data,
-    };
+  const handleUpdateProfile = useCallback(
+    (data: SettingFormData) => {
+      const newData = {
+        ...infoField,
+        ...data,
+      };
 
-    onSubmit(newData);
-  };
+      onSubmit(newData);
+    },
+    [infoField, onSubmit],
+  );
 
   const handleInputChange = useCallback(
     (name: keyof SettingFormData, onChange: (value: string) => void) => {
@@ -81,11 +84,17 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
   );
 
   useEffect(() => {
-    reset({
-      ...infoField,
-      password: decryptString(infoField.password, SECRET_KEY),
-    });
-  }, [infoField, reset]);
+    if (infoField) {
+      const decryptedPassword = decryptString(infoField.password, SECRET_KEY);
+
+      Object.entries(infoField).forEach(([key, value]) => {
+        setValue(
+          key as keyof SettingFormData,
+          key === 'password' ? decryptedPassword : value,
+        );
+      });
+    }
+  }, [infoField, setValue]);
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit(handleUpdateProfile)}>
@@ -486,4 +495,4 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
   );
 };
 
-export default SettingForm;
+export default memo(SettingForm);

@@ -1,4 +1,11 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Card } from '@nextui-org/react';
 import toast from 'react-hot-toast';
 import { useShallow } from 'zustand/react/shallow';
@@ -50,46 +57,52 @@ const SettingPage = () => {
     setSelected(key);
   };
 
-  const handleSubmit = (data: SettingFormData): void => {
-    const newData = {
-      ...userInfo,
-      ...data,
-    } as IAccountData;
+  const handleSubmit = useCallback(
+    (data: SettingFormData): void => {
+      const newData = {
+        ...userInfo,
+        ...data,
+      } as IAccountData;
 
-    editAccount(newData, {
-      onSuccess: () => {
-        setCredentials({ users: newData, exp: exp || '' });
-        toast.success(SUCCESS_MESSAGE.UPDATE_ACCOUNT);
+      editAccount(newData, {
+        onSuccess: () => {
+          setCredentials({ users: newData, exp: exp || '' });
+          toast.success(SUCCESS_MESSAGE.UPDATE_ACCOUNT);
+        },
+      });
+    },
+    [userInfo, exp, editAccount, setCredentials],
+  );
+
+  const tabs = useMemo(
+    () => [
+      {
+        key: SETTING_TABS.EDIT_PROFILE.KEY,
+        title: SETTING_TABS.EDIT_PROFILE.TITLE,
+        tabContent: (
+          <Box className="p-5 md:px-6.25 lg:p-7.5">
+            <SettingForm
+              isLoading={isUpdatingAccount}
+              infoField={infoField}
+              onSubmit={handleSubmit}
+            />
+          </Box>
+        ),
       },
-    });
-  };
-
-  const tabs = [
-    {
-      key: SETTING_TABS.EDIT_PROFILE.KEY,
-      title: SETTING_TABS.EDIT_PROFILE.TITLE,
-      tabContent: (
-        <Box className="p-5 md:px-6.25 lg:p-7.5">
-          <SettingForm
-            isLoading={isUpdatingAccount}
-            infoField={infoField}
-            onSubmit={handleSubmit}
-          />
-        </Box>
-      ),
-    },
-    {
-      key: SETTING_TABS.SECURITY.KEY,
-      title: SETTING_TABS.SECURITY.TITLE,
-      tabContent: (
-        <Box className="p-5 md:px-6.25 lg:p-7.5">
-          <Suspense fallback={null}>
-            <SecurityForm />
-          </Suspense>
-        </Box>
-      ),
-    },
-  ];
+      {
+        key: SETTING_TABS.SECURITY.KEY,
+        title: SETTING_TABS.SECURITY.TITLE,
+        tabContent: (
+          <Box className="p-5 md:px-6.25 lg:p-7.5">
+            <Suspense fallback={null}>
+              <SecurityForm />
+            </Suspense>
+          </Box>
+        ),
+      },
+    ],
+    [infoField, isUpdatingAccount, handleSubmit],
+  );
 
   useEffect(() => {
     if (userInfo) {
