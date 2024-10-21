@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from '@app/utils';
+import { render, screen, userEvent, waitFor } from '@app/utils';
 
 // Pages
 import { AccountPage } from '@app/pages';
@@ -42,27 +42,27 @@ describe('AccountPage', () => {
     expect(container).toMatchSnapshot();
   });
 
-  // it('should render the delete modal correctly', async () => {
-  //   render(<AccountPage />);
+  it('should render the delete modal correctly', async () => {
+    render(<AccountPage />);
 
-  //   await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
+    await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText('Delete')).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      expect(screen.getByLabelText('delete button')).toBeInTheDocument();
+    });
 
-  //   await userEvent.click(screen.getByText('Delete'));
+    await userEvent.click(screen.getByLabelText('delete button'));
 
-  //   await waitFor(() => {
-  //     expect(screen.getByTestId('confirm-button')).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      expect(screen.getByTestId('confirm-button')).toBeInTheDocument();
+    });
 
-  //   await userEvent.click(screen.getByTestId('confirm-button'));
+    await userEvent.click(screen.getByTestId('confirm-button'));
 
-  //   await waitFor(() => {
-  //     expect(useAccount().deleteAccount).toHaveBeenCalled();
-  //   });
-  // });
+    await waitFor(() => {
+      expect(useAccount().deleteAccount).toHaveBeenCalled();
+    });
+  });
 
   it('should handle pagination correctly', () => {
     render(<AccountPage />);
@@ -74,27 +74,27 @@ describe('AccountPage', () => {
     expect(useFetchAccounts).toHaveBeenCalled();
   });
 
-  // it('should close modal when cancel is clicked', async () => {
-  //   render(<AccountPage />);
+  it('should close modal when cancel is clicked', async () => {
+    render(<AccountPage />);
 
-  //   await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
+    await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText('Delete')).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      expect(screen.getByLabelText('delete button')).toBeInTheDocument();
+    });
 
-  //   await userEvent.click(screen.getByText('Delete'));
+    await userEvent.click(screen.getByLabelText('delete button'));
 
-  //   await waitFor(() => {
-  //     expect(screen.getByTestId('cancel-button')).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      expect(screen.getByTestId('cancel-button')).toBeInTheDocument();
+    });
 
-  //   await userEvent.click(screen.getByTestId('cancel-button'));
+    await userEvent.click(screen.getByTestId('cancel-button'));
 
-  //   await waitFor(() => {
-  //     expect(screen.queryByTestId('cancel-button')).not.toBeInTheDocument();
-  //   });
-  // });
+    await waitFor(() => {
+      expect(screen.queryByTestId('cancel-button')).not.toBeInTheDocument();
+    });
+  });
 
   it('should render the default value correctly', () => {
     (useFetchAccounts as jest.Mock).mockReturnValue({

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import CryptoJS from 'crypto-js';
 import { redirect } from '@tanstack/react-router';
 
@@ -13,26 +14,6 @@ import { decryptString, checkUserRole, authorizeUserRole } from '@app/utils';
 jest.mock('@tanstack/react-router', () => ({
   redirect: jest.fn(),
 }));
-
-interface AppState {
-  state?: {
-    data?: {
-      userInfo?: { role: AccountRole };
-    };
-  };
-}
-
-const mockLocalStorage = (data: AppState | null) => {
-  const mockStorage = {
-    getItem: jest.fn(() => (data ? JSON.stringify(data) : null)),
-    setItem: jest.fn(),
-    removeItem: jest.fn(),
-  };
-  Object.defineProperty(window, 'localStorage', {
-    value: mockStorage,
-    writable: true,
-  });
-};
 
 describe('decryptString', () => {
   const secretKey = 'test-secret-key';
@@ -72,14 +53,14 @@ describe('checkUserRole', () => {
   });
 
   it('should return false if there is no stored data', () => {
-    mockLocalStorage(null);
+    (global as any).mockLocalStorage(null);
     const result = checkUserRole(AccountRole.Admin);
 
     expect(result).toBe(false);
   });
 
   it('should return false if stored data is not valid JSON', () => {
-    mockLocalStorage(null);
+    (global as any).mockLocalStorage(null);
     Object.defineProperty(window.localStorage, 'getItem', {
       value: jest.fn(() => 'invalid json'),
     });
@@ -89,7 +70,7 @@ describe('checkUserRole', () => {
   });
 
   it('should return false if user role does not match the required role', () => {
-    mockLocalStorage({
+    (global as any).mockLocalStorage({
       state: {
         data: {
           userInfo: { role: AccountRole.User },
@@ -102,7 +83,7 @@ describe('checkUserRole', () => {
   });
 
   it('should return true if user role matches the required role', () => {
-    mockLocalStorage({
+    (global as any).mockLocalStorage({
       state: {
         data: {
           userInfo: { role: AccountRole.Admin },
@@ -115,7 +96,7 @@ describe('checkUserRole', () => {
   });
 
   it('should return false if userInfo is undefined', () => {
-    mockLocalStorage({});
+    (global as any).mockLocalStorage({});
     const result = checkUserRole(AccountRole.Admin);
 
     expect(result).toBe(false);
@@ -128,7 +109,7 @@ describe('authorizeUserRole', () => {
   });
 
   it('should proceed without throwing if the user has the required role', async () => {
-    mockLocalStorage({
+    (global as any).mockLocalStorage({
       state: {
         data: {
           userInfo: { role: AccountRole.Admin },
@@ -144,7 +125,7 @@ describe('authorizeUserRole', () => {
   });
 
   it('should throw a redirect if the user does not have the required role', async () => {
-    mockLocalStorage({
+    (global as any).mockLocalStorage({
       state: {},
     });
 
