@@ -15,6 +15,7 @@ import { MainLayout } from '@app/layouts';
 
 // Utils
 import { authorizeUserRole } from '@app/utils';
+import DashboardPage from '@app/pages/DashboardPage';
 
 // Components
 const ErrorFallback = lazy(
@@ -35,7 +36,7 @@ const renderWithMainLayout = (Component: ReactElement) => (
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: () => renderWithMainLayout(<TransactionPage />),
+  component: () => renderWithMainLayout(<DashboardPage />),
   errorComponent: () => renderWithMainLayout(<ErrorFallback />),
 });
 

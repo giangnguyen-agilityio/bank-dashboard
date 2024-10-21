@@ -75,7 +75,7 @@ const TransactionItem = ({
         <Text
           aria-label="Transaction amount"
           data-testid="transaction-amount"
-          customClass={`h-full text-sm font-medium lg:text-2xl ${amountClassName}`}
+          customClass={`h-full flex justify-center items-center text-sm font-medium lg:text-2xl ${amountClassName}`}
         >
           {formattedAmount}
         </Text>
