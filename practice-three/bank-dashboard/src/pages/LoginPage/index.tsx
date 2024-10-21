@@ -5,7 +5,7 @@ import { Card, CardBody } from '@nextui-org/react';
 import { LogoIcon } from '@app/assets';
 
 // Hooks
-import { useAuth } from '@app/hooks';
+import { useAuth, useColorMode } from '@app/hooks';
 
 // Interfaces
 import { LoginFormData } from '@app/interfaces';
@@ -15,6 +15,7 @@ import { Box, LoginForm, Text } from '@app/components';
 
 const LoginPage = () => {
   const { isPendingLogin, mutate } = useAuth();
+  const { isDarkMode } = useColorMode();
 
   const handleLogin = (data: LoginFormData) => {
     mutate(data);
@@ -29,7 +30,10 @@ const LoginPage = () => {
           className="flex items-center cursor-pointer h-20.5 lg:h-25 hover:opacity-100 active:opacity-100"
           aria-label="Logo"
         >
-          <LogoIcon customClass="w-full text-text-secondary" />
+          <LogoIcon
+            customClass="w-full text-text-secondary"
+            isDefault={isDarkMode}
+          />
         </Link>
 
         <Card className="w-full max-w-md mx-auto">

@@ -67,9 +67,9 @@ const CustomTable = <T extends { id: string }>({
       'rounded-xl md:rounded-2xl lg:rounded-3xl',
     ),
     header: cn(
-      'bg-background-default border-b border-solid border-blue-20',
+      'bg-background-default border-b border-solid border-blue-20 dark:bg-transparent',
       'font-primary font-medium text-text-primary text-base lg:text-2xl',
-      'pb-1.75 lg:pb-2.5',
+      'pb-1.75 lg:pb-2.5 dark:text-text-default',
     ),
     tr: cn(
       'border-b border-solid border-blue-20',

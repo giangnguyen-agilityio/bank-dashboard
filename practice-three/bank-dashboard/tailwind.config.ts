@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { nextui } from '@nextui-org/theme';
+import { nextui, ThemeColors } from '@nextui-org/theme';
 
 import {
   screens,
@@ -13,6 +13,7 @@ import {
   colors,
   colorPalette,
   backgroundImage,
+  darkColors,
 } from './src/themes';
 
 const config: Config = {
@@ -34,14 +35,24 @@ const config: Config = {
         ...fontStyles,
       },
       fontSize,
-      colors: {
-        ...colors,
-        ...colorPalette,
-      },
     },
   },
 
   darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: { ...(colors as unknown as ThemeColors), ...colorPalette },
+        },
+        dark: {
+          colors: {
+            ...(darkColors as unknown as ThemeColors),
+            ...colorPalette,
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

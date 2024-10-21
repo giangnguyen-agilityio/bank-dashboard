@@ -7,6 +7,9 @@ import { LogoIcon, CloseIcon } from '@app/assets';
 // Utils
 import { cn } from '@app/utils';
 
+// Hooks
+import { useColorMode } from '@app/hooks';
+
 // Components
 import { Button, SidebarItem } from '@app/components';
 
@@ -25,6 +28,8 @@ const Sidebar = ({
   items = [],
   toggleSidebar,
 }: SidebarProps) => {
+  const { isDarkMode } = useColorMode();
+
   return (
     <aside
       data-testid="sidebar"
@@ -54,7 +59,10 @@ const Sidebar = ({
           className="flex items-center pl-2 cursor-pointer mb-2.75 lg:mb-3.25 h-20.5 lg:h-25 hover:opacity-100 active:opacity-100"
           aria-label="Logo"
         >
-          <LogoIcon customClass="w-full text-text-secondary" />
+          <LogoIcon
+            customClass="w-full text-text-secondary"
+            isDefault={isDarkMode}
+          />
         </Link>
 
         {/* Sidebar List */}

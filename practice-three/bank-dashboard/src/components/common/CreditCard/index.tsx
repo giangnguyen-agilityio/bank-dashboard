@@ -13,6 +13,9 @@ import { BrandCardIcon, ChipCardIcon } from '@app/assets';
 // Utils
 import { cn, maskCardNumber } from '@app/utils';
 
+// Hooks
+import { useColorMode } from '@app/hooks';
+
 interface CreditCardProps {
   isDefault?: boolean;
   data?: ICreditCard;
@@ -25,6 +28,8 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
     cardNumber = '',
     expiryDate = '',
   } = data || {};
+
+  const { isDarkMode } = useColorMode();
 
   const cardClass = cn(
     'cursor-pointer shadow-none w-66.25 md:w-57.75 lg:w-87.5 rounded-xl md:rounded-2xl lg:rounded-3xl',
@@ -139,7 +144,7 @@ const CreditCard = ({ isDefault = false, data }: CreditCardProps) => {
           </Text>
 
           {/* Brand Icon */}
-          <BrandCardIcon />
+          <BrandCardIcon isDefault={isDarkMode} />
         </Box>
       </CardFooter>
     </Card>

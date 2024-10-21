@@ -68,9 +68,31 @@ const colors = {
   },
 };
 
+const darkColors = {
+  text: {
+    default: colorPalette.white[100],
+    primary: colorPalette.blue[50],
+    secondary: colorPalette.blue[100],
+    tertiary: colorPalette.white[100],
+    success: colorPalette.green[150],
+    error: colorPalette.red[100],
+  },
+
+  background: {
+    default: colorPalette.black[500],
+    primary: colorPalette.black[500],
+    secondary: colorPalette.blue[200],
+  },
+
+  border: {
+    default: colorPalette.white[100],
+    primary: colorPalette.gray[100],
+  },
+};
+
 export const backgroundImage = {
   'linear-card':
     'linear-gradient(to right, #4643ed 0%, 44.2%, #1712f3 88.4%, 94.2%, #100bf2 100%)',
 };
 
-export { colorPalette, colors };
+export { colorPalette, colors, darkColors };

@@ -22,21 +22,21 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
 }) => {
   const itemClass = cn(
-    'bg-transparent text-blue-200 shadow-none',
-    'data-[active=true]:bg-blue-200 data-[active=true]:text-text-tertiary',
+    'bg-transparent text-blue-200 dark:text-text-default shadow-none',
+    'data-[active=true]:bg-blue-200 data-[active=true]:text-text-tertiary dark:data-[active=true]:bg-gray-100',
   );
 
   const prevButtonClass = cn(
     'flex p-0 font-primary font-semibold bg-transparent',
     {
-      'text-blue-200': currentPage !== 1,
+      'text-blue-200 dark:text-text-default': currentPage !== 1,
     },
   );
 
   const nextButtonClass = cn(
     'flex p-0 font-primary font-semibold bg-transparent',
     {
-      'text-blue-200': currentPage !== totalPages,
+      'text-blue-200 dark:text-text-default': currentPage !== totalPages,
     },
   );
 
@@ -71,7 +71,7 @@ const Pagination: React.FC<PaginationProps> = ({
         data-testid="pagination"
         classNames={{
           item: itemClass,
-          cursor: 'bg-background-secondary',
+          cursor: 'bg-background-secondary dark:bg-transparent',
         }}
         total={totalPages}
         page={currentPage}

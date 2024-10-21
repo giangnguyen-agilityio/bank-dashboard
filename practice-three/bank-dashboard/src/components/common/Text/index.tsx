@@ -36,7 +36,8 @@ interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
 const VARIANT_CLASSES = {
   default: 'font-primary text-text-default font-normal',
   primary: 'font-primary text-text-primary font-normal',
-  heading: 'font-primary text-text-secondary font-semibold',
+  heading:
+    'font-primary text-text-secondary font-semibold dark:text-text-default',
   title: 'font-primary text-text-primary font-medium',
   sidebar: 'font-primary text-gray-100 font-normal',
   description: 'font-secondary text-text-tertiary font-semibold',

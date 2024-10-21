@@ -26,7 +26,7 @@ import { getHeadingFromPathname } from '@app/utils';
 import { useAuthStore } from '@app/stores';
 
 // Components
-import { Text, Button, Avatar } from '@app/components';
+import { Text, Button, Avatar, Switch } from '@app/components';
 
 interface NavbarProps {
   onToggleSidebar: () => void;
@@ -95,6 +95,8 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
           data-testid="navbar-item"
           className="flex items-center gap-4"
         >
+          <Switch />
+
           <Button
             aria-label="Settings"
             variant="light"

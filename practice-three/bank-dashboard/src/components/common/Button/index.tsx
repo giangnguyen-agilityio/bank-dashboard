@@ -9,7 +9,7 @@ const Button = extendVariants(NextUIButton, {
       outline: 'outline-gray-150 font-primary font-medium rounded-md',
     },
     color: {
-      default: 'bg-transparent text-text-secondary',
+      default: 'bg-transparent text-text-secondary dark:text-text-default',
       primary: 'bg-background-secondary text-text-tertiary',
       secondary: 'bg-background-primary',
     },

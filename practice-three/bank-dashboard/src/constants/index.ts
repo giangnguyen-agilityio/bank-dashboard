@@ -9,3 +9,4 @@ export * from './toast';
 export * from './api';
 export * from './breakpoint';
 export * from './accounts';
+export * from './theme';

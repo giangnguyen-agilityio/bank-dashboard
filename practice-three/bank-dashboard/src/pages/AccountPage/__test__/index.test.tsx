@@ -1,4 +1,4 @@
-import { render, screen, userEvent, waitFor } from '@app/utils';
+import { wrapper, screen, userEvent, waitFor } from '@app/utils';
 
 // Pages
 import { AccountPage } from '@app/pages';
@@ -37,13 +37,13 @@ describe('AccountPage', () => {
   });
 
   it('should render the account page correctly', () => {
-    const { container } = render(<AccountPage />);
+    const { container } = wrapper(<AccountPage />);
 
     expect(container).toMatchSnapshot();
   });
 
   it('should render the delete modal correctly', async () => {
-    render(<AccountPage />);
+    wrapper(<AccountPage />);
 
     await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
 
@@ -65,7 +65,7 @@ describe('AccountPage', () => {
   });
 
   it('should handle pagination correctly', () => {
-    render(<AccountPage />);
+    wrapper(<AccountPage />);
 
     // Click next page button
     userEvent.click(screen.getByLabelText('Next Button'));
@@ -75,7 +75,7 @@ describe('AccountPage', () => {
   });
 
   it('should close modal when cancel is clicked', async () => {
-    render(<AccountPage />);
+    wrapper(<AccountPage />);
 
     await userEvent.click(screen.getAllByLabelText('More actions button')[0]);
 
@@ -105,7 +105,7 @@ describe('AccountPage', () => {
       isLoading: false,
     });
 
-    render(<AccountPage />);
+    wrapper(<AccountPage />);
 
     expect(screen.queryByText('Total Accounts: 20')).not.toBeInTheDocument();
   });
@@ -113,7 +113,7 @@ describe('AccountPage', () => {
   it('should render the default value correctly when data is null', () => {
     (useFetchAccounts as jest.Mock).mockReturnValue({});
 
-    render(<AccountPage />);
+    wrapper(<AccountPage />);
 
     expect(screen.queryByText('Total Accounts: 20')).not.toBeInTheDocument();
   });

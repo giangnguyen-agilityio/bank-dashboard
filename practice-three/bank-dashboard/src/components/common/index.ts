@@ -20,3 +20,4 @@ export { default as SidebarItem } from './SidebarItem';
 export { default as Sidebar } from './Sidebar';
 export { default as Navbar } from './Navbar';
 export { default as Dropdown } from './Dropdown';
+export { default as Switch } from './Switch';

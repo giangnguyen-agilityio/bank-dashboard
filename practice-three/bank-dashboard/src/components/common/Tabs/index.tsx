@@ -26,13 +26,14 @@ const CustomTabs = ({
   const { base, tabList, tab, tabContent, cursor } = classNames || {};
 
   const classes = {
-    base: 'w-full border-b-1 border-blue-25',
+    base: 'w-full border-b-1 border-blue-25 dark:border-border-primary',
     tabList:
       'w-fit bg-transparent rounded-none pb-0 gap-8.75 md:gap-10 lg:gap-12.5',
     tab: 'px-2 data-[hover-unselected=true]:opacity-100',
     tabContent:
-      'w-fit font-primary font-medium text-md lg:text-2xl group-data-[selected=true]:text-blue-200',
-    cursor: 'shadow-none rounded-none border-b-2 border-blue-200',
+      'w-fit font-primary font-medium text-md lg:text-2xl group-data-[selected=true]:text-blue-200 dark:group-data-[selected=true]:text-white-100',
+    cursor:
+      'shadow-none rounded-none border-b-2 border-blue-200 dark:border-border-default dark:bg-transparent',
   };
 
   return (

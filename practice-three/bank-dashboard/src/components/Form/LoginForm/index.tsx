@@ -84,7 +84,7 @@ const LoginForm = ({ isPendingLogin, handleLogin }: LoginFormProps) => {
               classNames={{
                 inputWrapper: 'p-2.5',
                 input:
-                  'text-lg md:text-xl placeholder:text-lg md:placeholder:text-xl',
+                  'text-lg md:text-xl placeholder:text-lg md:placeholder:text-xl dark:!text-black-500',
                 label: 'text-lg md:text-xl',
               }}
               label="Username"
@@ -122,7 +122,7 @@ const LoginForm = ({ isPendingLogin, handleLogin }: LoginFormProps) => {
               classNames={{
                 inputWrapper: 'p-2.5',
                 input:
-                  'text-lg md:text-xl placeholder:text-lg md:placeholder:text-xl',
+                  'text-lg md:text-xl placeholder:text-lg md:placeholder:text-xl dark:!text-black-500',
                 label: 'text-lg md:text-xl',
               }}
               label="Password"

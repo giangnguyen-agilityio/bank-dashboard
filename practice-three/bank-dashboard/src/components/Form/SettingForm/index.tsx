@@ -30,7 +30,7 @@ const classes = {
   inputWrapper:
     'px-3.75 rounded-lg py-3 lg:px-5 lg:py-4 md:rounded-xl lg:min-h-12.5',
   input:
-    'font-primary text-md placeholder:text-text-primary lg:text-2xl placeholder:text-md lg:placeholder:text-2xl',
+    'font-primary text-md placeholder:text-text-primary lg:text-2xl placeholder:text-md lg:placeholder:text-2xl dark:!text-black-500',
   inputLabel: 'font-primary text-md pb:2.25 lg:pb-2.75 lg:text-2xl',
   errorMessage: 'font-primary text-base lg:text-xl',
 };

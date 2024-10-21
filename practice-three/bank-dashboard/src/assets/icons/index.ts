@@ -28,3 +28,5 @@ export * from './DeleteIcon';
 export * from './LoadingIcon';
 export * from './LogoutIcon';
 export * from './ExpenseChart';
+export * from './MoonIcon';
+export * from './SunIcon';

@@ -5,7 +5,6 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from '@tanstack/react-router';
-import { NextUIProvider } from '@nextui-org/system';
 import toast, { Toaster } from 'react-hot-toast';
 
 // Routes
@@ -13,6 +12,9 @@ import { router } from '@app/routes';
 
 // Constants
 import { TOAST_CONFIG } from '@app/constants';
+
+// Providers
+import { ThemeProvider } from '@app/providers';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,12 +30,12 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <>
-      <NextUIProvider>
+      <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           <RouterProvider router={router} />
         </QueryClientProvider>
-      </NextUIProvider>
+      </ThemeProvider>
 
       <Toaster
         position="bottom-center"
