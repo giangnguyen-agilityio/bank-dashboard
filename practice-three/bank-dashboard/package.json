@@ -12,10 +12,13 @@
     "test:coverage": "jest --coverage",
     "prepare": "cd ../../ && husky practice-three/bank-dashboard/.husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@milahu/patch-package": "^6.4.14",
+    "@nextui-org/pagination": "2.0.36",
     "@nextui-org/react": "^2.4.6",
     "@nextui-org/system": "^2.2.6",
     "@nextui-org/theme": "^2.2.11",
