@@ -98,7 +98,7 @@ const BalanceChart = () => {
         Balance History
       </Text>
 
-      <Card className="pr-3 pt-3 md:pr-5 md:pt-5 lg:pr-6.25 lg:pt-7.5">
+      <Card className="shadow-md pr-3 pt-3 md:pr-5 md:pt-5 lg:pr-6.25 lg:pt-7.5">
         <Chart options={options} series={series} type="area" />
       </Card>
     </Box>
