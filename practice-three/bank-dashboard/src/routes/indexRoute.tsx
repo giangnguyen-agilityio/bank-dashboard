@@ -15,7 +15,6 @@ import { MainLayout } from '@app/layouts';
 
 // Utils
 import { authorizeUserRole } from '@app/utils';
-import DashboardPage from '@app/pages/DashboardPage';
 
 // Components
 const ErrorFallback = lazy(
@@ -27,6 +26,7 @@ const AccountPage = lazy(() => import('@app/pages/AccountPage'));
 const LoginPage = lazy(() => import('@app/pages/LoginPage'));
 const SettingPage = lazy(() => import('@app/pages/SettingPage'));
 const TransactionPage = lazy(() => import('@app/pages/TransactionPage'));
+const DashboardPage = lazy(() => import('@app/pages/DashboardPage'));
 
 const renderWithMainLayout = (Component: ReactElement) => (
   <MainLayout>{Component}</MainLayout>
@@ -44,6 +44,13 @@ const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.LOGIN,
   component: () => <LoginPage />,
+});
+
+const dashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: DESTINATION.DASHBOARD,
+  component: () => renderWithMainLayout(<DashboardPage />),
+  errorComponent: () => renderWithMainLayout(<ErrorFallback />),
 });
 
 const transactionRoute = createRoute({
@@ -72,6 +79,7 @@ const settingRoute = createRoute({
 export {
   indexRoute,
   loginRoute,
+  dashboardRoute,
   transactionRoute,
   accountsRoute,
   settingRoute,

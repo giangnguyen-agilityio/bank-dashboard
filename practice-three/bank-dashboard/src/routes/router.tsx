@@ -5,6 +5,7 @@ import {
   rootRoute,
   indexRoute,
   loginRoute,
+  dashboardRoute,
   transactionRoute,
   accountsRoute,
   settingRoute,
@@ -15,6 +16,7 @@ import {
 const routeTree = rootRoute.addChildren([
   indexRoute,
   loginRoute,
+  dashboardRoute,
   transactionRoute,
   accountsRoute,
   settingRoute,

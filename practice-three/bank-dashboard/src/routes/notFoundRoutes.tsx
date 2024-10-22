@@ -17,7 +17,6 @@ const NotFoundFallback = lazy(
 const UnauthorizedPage = lazy(() => import('@app/pages/UnauthorizedPage'));
 
 const notFoundRoutes = [
-  DESTINATION.DASHBOARD,
   DESTINATION.INVESTMENTS,
   DESTINATION.CREDIT_CARDS,
   DESTINATION.LOANS,

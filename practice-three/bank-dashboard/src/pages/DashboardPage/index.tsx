@@ -2,10 +2,12 @@ import { Card } from '@nextui-org/react';
 
 // Components
 import {
+  ActivityChart,
   BalanceChart,
   Box,
   Button,
   CreditCard,
+  ExpenseStatisticsChart,
   Text,
   TransactionItem,
 } from '@app/components';
@@ -81,6 +83,12 @@ const DashboardPage = () => {
 
       {/* Balance Chart */}
       <BalanceChart />
+
+      {/* Weekly Activity Chart */}
+      <ActivityChart />
+
+      {/* Expense Statistics Chart */}
+      <ExpenseStatisticsChart />
     </Box>
   );
 };
