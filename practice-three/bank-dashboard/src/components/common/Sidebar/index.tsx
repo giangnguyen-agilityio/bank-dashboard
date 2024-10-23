@@ -50,7 +50,6 @@ const Sidebar = ({
         {/* Logo */}
         <Link
           to="/"
-          as="h1"
           className="flex items-center pl-2 cursor-pointer mb-2.75 lg:mb-3.25 h-20.5 lg:h-25 hover:opacity-100 active:opacity-100"
           aria-label="Logo"
         >

@@ -32,6 +32,7 @@ const Dropdown = ({ id, actions, onAction }: DropdownProps) => {
 
   return (
     <DropdownNextUI
+      role="dialog"
       aria-label="More actions"
       data-testid="dropdown"
       classNames={{ content: 'min-w-25 md:min-w-27.5' }}

@@ -83,7 +83,7 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
           className="h-full flex"
         >
           <Text
-            as="h2"
+            as="h1"
             variant="heading"
             customClass="content-center capitalize text-5xl md:text-7xl lg:text-8xl"
           >

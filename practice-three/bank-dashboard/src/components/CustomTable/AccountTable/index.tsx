@@ -51,8 +51,9 @@ const AccountTable = ({
     () => [
       {
         key: 'delete',
-        className: 'text-red-200 hover:outline-red-200',
-        icon: <DeleteIcon customClass="text-red-200" />,
+        className:
+          'text-red-100 hover:outline-red-100 data-[hover=true]:bg-transparent',
+        icon: <DeleteIcon customClass="text-red-100" />,
       },
     ],
     [],
