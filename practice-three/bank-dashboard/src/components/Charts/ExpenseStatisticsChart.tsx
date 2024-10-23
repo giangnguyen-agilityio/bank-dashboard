@@ -12,19 +12,35 @@ import { SCREEN_WIDTH } from '@app/constants';
 // Hooks
 import { useMediaQuery } from '@app/hooks';
 
-// Components
-import { Box, Text } from '@app/components';
+// Utils
+import { cn } from '@app/utils';
 
 const ExpenseStatisticsChart = () => {
-  const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
+  const isTablet = useMediaQuery(`(min-width: ${SCREEN_WIDTH.lg})`);
+  const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.xl})`);
+  const smallChartHeight = 270;
 
   const series = [15, 35, 20, 30];
   const labels = ['Bill Expense', 'Others', 'Investment', 'Entertainment'];
+
+  const formatYaxisLabel = (val: number) => `${val}%`;
+  const formatDataLabels = (val: number) => `${Math.round(val)}%`;
 
   const options: ApexOptions = {
     chart: {
       toolbar: {
         show: true,
+        export: {
+          csv: {
+            filename: 'expense-statistics-chart',
+          },
+          png: {
+            filename: 'expense-statistics-chart',
+          },
+          svg: {
+            filename: 'expense-statistics-chart',
+          },
+        },
       },
       zoom: {
         enabled: false,
@@ -35,20 +51,15 @@ const ExpenseStatisticsChart = () => {
       colors: [colorPalette.white[100]],
     },
     legend: {
-      fontSize: isMobile ? '8px' : '16px',
-      offsetX: 0,
-      offsetY: -20,
-      markers: {
-        offsetX: isMobile ? -5 : -10,
-      },
+      show: isTablet,
+      position: 'bottom',
+      offsetY: isDesktop ? -10 : -5,
     },
     labels,
     yaxis: {
       show: false,
       labels: {
-        formatter: function (val) {
-          return val + '%';
-        },
+        formatter: formatYaxisLabel,
       },
     },
     fill: {
@@ -63,30 +74,24 @@ const ExpenseStatisticsChart = () => {
     ],
     dataLabels: {
       enabled: true,
-      style: {
-        fontSize: isMobile ? '8px' : '20px',
-      },
-      formatter: function (val) {
-        return `${Math.round(Number(val))}%`;
-      },
+      formatter: formatDataLabels,
     },
   };
 
   return (
-    <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
-      <Text
-        as="h2"
-        aria-label="Balance history chart title"
-        variant="heading"
-        customClass="text-2xl md:text-4xl lg:text-6xl"
-      >
-        Expense Statistics
-      </Text>
-
-      <Card className="shadow-md px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5">
-        <Chart options={options} series={series} type="donut" />
-      </Card>
-    </Box>
+    <Card
+      className={cn(
+        'flex shadow-md h-full',
+        'px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5',
+      )}
+    >
+      <Chart
+        options={options}
+        series={series}
+        type="donut"
+        {...(isDesktop ? { height: '100%' } : { height: smallChartHeight })}
+      />
+    </Card>
   );
 };
 

@@ -5,32 +5,51 @@ import { Card } from '@nextui-org/react';
 // Themes
 import { colorPalette } from '@app/themes';
 
-// Components
-import { Box, Text } from '@app/components';
+// Hooks
+import { useMediaQuery } from '@app/hooks';
+
+// Constants
+import { SCREEN_WIDTH } from '@app/constants';
 
 const BalanceChart = () => {
+  const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.xl})`);
+  const categories = [
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+  ];
+  const smallChartHeight = 180;
+  const mediumChartHeight = 230;
+
   const options = {
     chart: {
       toolbar: {
         show: true,
+        export: {
+          csv: {
+            filename: 'balance-chart',
+          },
+          png: {
+            filename: 'balance-chart',
+          },
+          svg: {
+            filename: 'balance-chart',
+          },
+        },
       },
       zoom: {
         enabled: false,
       },
     },
     xaxis: {
-      categories: [
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-      ],
+      categories,
       labels: {
         style: {
           colors: colorPalette.blue[50],
@@ -88,20 +107,16 @@ const BalanceChart = () => {
   ];
 
   return (
-    <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
-      <Text
-        as="h2"
-        aria-label="Balance history chart title"
-        variant="heading"
-        customClass="text-2xl md:text-4xl lg:text-6xl"
-      >
-        Balance History
-      </Text>
-
-      <Card className="shadow-md pr-3 pt-3 md:pr-5 md:pt-5 lg:pr-6.25 lg:pt-7.5">
-        <Chart options={options} series={series} type="area" />
-      </Card>
-    </Box>
+    <Card className="shadow-md pr-3 pt-3 md:pr-5 md:pt-5 lg:pr-6.25 lg:pt-7.5">
+      <Chart
+        options={options}
+        series={series}
+        type="area"
+        {...(!isDesktop
+          ? { height: smallChartHeight }
+          : { height: mediumChartHeight })}
+      />
+    </Card>
   );
 };
 

@@ -12,17 +12,27 @@ import { SCREEN_WIDTH } from '@app/constants';
 // Hooks
 import { useMediaQuery } from '@app/hooks';
 
-// Components
-import { Box, Text } from '@app/components';
-
 const ActivityChart = () => {
   const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
+  const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.lg})`);
+  const categories = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
   const options: ApexOptions = {
     chart: {
       toolbar: {
         show: true,
         offsetX: 15,
+        export: {
+          csv: {
+            filename: 'weekly-activity-chart',
+          },
+          png: {
+            filename: 'weekly-activity-chart',
+          },
+          svg: {
+            filename: 'weekly-activity-chart',
+          },
+        },
       },
       zoom: {
         enabled: false,
@@ -31,8 +41,8 @@ const ActivityChart = () => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: isMobile ? 10 : 20,
-        borderRadius: isMobile ? 4 : 8,
+        columnWidth: isMobile ? 10 : isDesktop ? 16 : 20,
+        borderRadius: isMobile ? 4 : isDesktop ? 7 : 8,
       },
     },
     dataLabels: {
@@ -44,10 +54,10 @@ const ActivityChart = () => {
       curve: 'smooth',
     },
     xaxis: {
-      categories: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      categories,
       labels: {
         style: {
-          fontSize: isMobile ? '14px' : '16px',
+          fontSize: isMobile ? '14px' : isDesktop ? '12px' : '16px',
           colors: colorPalette.blue[50],
         },
       },
@@ -55,7 +65,7 @@ const ActivityChart = () => {
     yaxis: {
       labels: {
         style: {
-          fontSize: isMobile ? '14px' : '16px',
+          fontSize: isMobile ? '14px' : isDesktop ? '12px' : '16px',
           colors: colorPalette.blue[50],
         },
       },
@@ -64,7 +74,7 @@ const ActivityChart = () => {
       markers: {
         shape: 'circle',
       },
-      fontSize: isMobile ? '14px' : '16px',
+      fontSize: isMobile ? '14px' : isDesktop ? '12px' : '16px',
       position: 'top',
       horizontalAlign: 'right',
       itemMargin: {
@@ -88,20 +98,9 @@ const ActivityChart = () => {
   ];
 
   return (
-    <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
-      <Text
-        as="h2"
-        aria-label="Balance history chart title"
-        variant="heading"
-        customClass="text-2xl md:text-4xl lg:text-6xl"
-      >
-        Weekly Activity
-      </Text>
-
-      <Card className="shadow-md px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5">
-        <Chart options={options} series={series} type="bar" />
-      </Card>
-    </Box>
+    <Card className="shadow-md h-full px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5">
+      <Chart options={options} series={series} type="bar" height={300} />
+    </Card>
   );
 };
 
