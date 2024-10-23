@@ -8,7 +8,7 @@
 
 ## ⌛ Timeline
 
-- 14 working days
+- 19 working days
 
 ## 🗂️ Features
 
@@ -17,7 +17,7 @@
 
   - **Admin**:
 
-    - The Admin can monitor the total number of accounts through the Status bar in the Accounts tab (including both active and inactive accounts).
+    - The Admin can view the total number of accounts through the Status bar in the Accounts tab (including both active and inactive accounts).
     - The Admin can access the Accounts tab to perform delete operations on the account database.
     - The Admin can access the Settings tab to update their personal profile information.
     - The Admin can access the Settings tab to change their current password.
@@ -83,6 +83,7 @@
 .
 ├── .husky
 ├── .storybook
+├── patches
 ├── public/
 │   └── images/
 ├── src/
@@ -149,13 +150,13 @@
 
 **_Admin account:_**
 
-- **Username:** admin
+- **Username:** admin56
 - **Password:** adminPass123
 
 **_User account:_**
 
-- **Username:** user
-- **Password:** userPass456
+- **Username:** user74
+- **Password:** userPass123
 
 ## 👨‍💻 Author
 
