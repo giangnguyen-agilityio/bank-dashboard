@@ -392,8 +392,48 @@ const MOCK_ACCOUNT_RESPONSE = {
   exp: '2024-10-09T05:07:36.611Z',
 };
 
+const MOCK_QUICK_TRANSFER_DATA = [
+  {
+    id: 1,
+    src: 'https://i.pravatar.cc/150?u=a1',
+    name: 'Livia Bator',
+    role: 'CEO',
+  },
+  {
+    id: 2,
+    src: 'https://i.pravatar.cc/150?u=a3',
+    name: 'Randy Press',
+    role: 'Director',
+  },
+  {
+    id: 3,
+    src: 'https://i.pravatar.cc/150?u=a4',
+    name: 'Workman',
+    role: 'Designer',
+  },
+  {
+    id: 4,
+    src: 'https://i.pravatar.cc/150?u=a5',
+    name: 'Sophia Hayes',
+    role: 'Manager',
+  },
+  {
+    id: 5,
+    src: 'https://i.pravatar.cc/150?u=a6',
+    name: 'Nathan Reed',
+    role: 'Engineer',
+  },
+  {
+    id: 6,
+    src: 'https://i.pravatar.cc/150?u=a8',
+    name: 'Emily Carter',
+    role: 'Specialist',
+  },
+];
+
 export {
   MOCK_ACCOUNT_STATUS_BAR_DATA,
   MOCK_ACCOUNTS_DATA,
   MOCK_ACCOUNT_RESPONSE,
+  MOCK_QUICK_TRANSFER_DATA,
 };

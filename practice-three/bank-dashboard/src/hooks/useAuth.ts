@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { login } from '@app/services';
 
 // Interface
-import { AccountRole, LoginFormData } from '@app/interfaces';
+import { LoginFormData } from '@app/interfaces';
 
 // Stores
 import { DESTINATION, ERROR_MESSAGE } from '@app/constants';
@@ -24,9 +24,8 @@ export const useAuth = () => {
     onSuccess: (data) => {
       if (data?.users) {
         setCredentials(data);
-        const isAdmin = data.users.role === AccountRole.Admin;
         navigate({
-          to: isAdmin ? DESTINATION.ACCOUNTS : DESTINATION.TRANSACTIONS,
+          to: DESTINATION.DASHBOARD,
         });
 
         return;

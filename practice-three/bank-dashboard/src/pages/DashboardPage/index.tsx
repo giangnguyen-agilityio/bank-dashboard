@@ -1,5 +1,17 @@
 import { Card } from '@nextui-org/react';
 
+// Mocks
+import { MOCK_CREDIT_CARD_DATA, MOCK_TRANSACTION_ITEMS } from '@app/mocks';
+
+// Hooks
+import { useMediaQuery } from '@app/hooks';
+
+// Constants
+import { SCREEN_WIDTH } from '@app/constants';
+
+// Utils
+import { cn } from '@app/utils';
+
 // Components
 import {
   ActivityChart,
@@ -10,12 +22,12 @@ import {
   ExpenseStatisticsChart,
   Text,
   TransactionItem,
+  QuickTransfer,
 } from '@app/components';
 
-// Mocks
-import { MOCK_CREDIT_CARD_DATA, MOCK_TRANSACTION_ITEMS } from '@app/mocks';
-
 const DashboardPage = () => {
+  const isMobile = useMediaQuery(`(min-width: ${SCREEN_WIDTH.sm})`);
+
   return (
     <Box className="min-h-fit flex flex-col gap-5.5 md:gap-5 lg:gap-6">
       <Box className="flex flex-col md:flex-row gap-5.5 md:gap-6.25 lg:gap-7.5">
@@ -23,7 +35,7 @@ const DashboardPage = () => {
           {/* Card Action */}
           <Box className="card-action flex justify-between items-center">
             <Text
-              as="h3"
+              as="h2"
               variant="heading"
               customClass="text-2xl md:text-4xl lg:text-6xl"
             >
@@ -32,7 +44,11 @@ const DashboardPage = () => {
             <Button
               aria0-label="Add card button"
               color="default"
-              className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"
+              className={cn(
+                'bg-transparent rounded-sm p-1',
+                'font-primary font-semibold text-text-secondary',
+                'text-lg md:text-xl lg:text-3xl',
+              )}
             >
               See All
             </Button>
@@ -57,7 +73,12 @@ const DashboardPage = () => {
         </Box>
 
         {/* Recent Transaction */}
-        <Box className="flex flex-col w-full justify-between gap-3.75 md:gap-4.5 lg:gap-5">
+        <Box
+          className={cn(
+            'flex flex-col w-full justify-between',
+            'gap-3.75 md:gap-4.5 lg:gap-5',
+          )}
+        >
           <Text
             as="h2"
             aria-label="Balance history chart title"
@@ -67,7 +88,12 @@ const DashboardPage = () => {
             Recent Transaction
           </Text>
 
-          <Card className="flex shadow-none border border-blue-25 gap-3 px-4.5 py-5 md:px-3.75 md:py-3.75 lg:px-6.25 lg:py-6.25">
+          <Card
+            className={cn(
+              'flex shadow-none border border-blue-25 gap-3',
+              'px-4.5 py-5 md:px-3.75 md:py-3.75 lg:px-6.25 lg:py-6.25',
+            )}
+          >
             {MOCK_TRANSACTION_ITEMS.map((transaction, index) => (
               <TransactionItem
                 key={`${transaction.transactionInfo}-${index}`}
@@ -81,14 +107,83 @@ const DashboardPage = () => {
         </Box>
       </Box>
 
-      {/* Balance Chart */}
-      <BalanceChart />
+      <Box className="flex flex-col md:flex-row gap-5.5 md:gap-6.25 lg:gap-7.5">
+        <Box
+          className={cn(
+            'flex flex-col',
+            'md:min-w-[487px] lg:min-w-[730px]',
+            'gap-3.75 md:gap-4.5 lg:gap-5',
+          )}
+        >
+          <Text
+            as="h2"
+            aria-label="Weekly activity chart title"
+            variant="heading"
+            customClass="text-2xl md:text-4xl lg:text-6xl"
+          >
+            Weekly Activity
+          </Text>
 
-      {/* Weekly Activity Chart */}
-      <ActivityChart />
+          {/* Weekly Activity Chart */}
+          <ActivityChart />
+        </Box>
 
-      {/* Expense Statistics Chart */}
-      <ExpenseStatisticsChart />
+        <Box className="w-full flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
+          <Text
+            as="h2"
+            aria-label="Expense statistics chart title"
+            variant="heading"
+            customClass="text-2xl md:text-4xl lg:text-6xl"
+          >
+            Expense Statistics
+          </Text>
+
+          {/* Expense Statistics Chart */}
+          <ExpenseStatisticsChart />
+        </Box>
+      </Box>
+
+      <Box
+        className={cn(
+          'flex flex-col',
+          'gap-5.5 md:gap-6.25 lg:gap-7.5',
+          isMobile && 'flex-row',
+        )}
+      >
+        <Box
+          className={cn(
+            'flex flex-col',
+            'w-full md:w-111.25 lg:w-182.5',
+            'gap-3.75 md:gap-4.5 lg:gap-5',
+          )}
+        >
+          <Text
+            as="h2"
+            aria-label="Quick transfer title"
+            variant="heading"
+            customClass="text-2xl md:text-4xl lg:text-6xl"
+          >
+            Quick Transfer
+          </Text>
+
+          {/* Quick Transfer */}
+          <QuickTransfer />
+        </Box>
+
+        <Box className="w-full flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
+          <Text
+            as="h2"
+            aria-label="Balance history chart title"
+            variant="heading"
+            customClass="text-2xl md:text-4xl lg:text-6xl"
+          >
+            Balance History
+          </Text>
+
+          {/* Balance Chart */}
+          <BalanceChart />
+        </Box>
+      </Box>
     </Box>
   );
 };
