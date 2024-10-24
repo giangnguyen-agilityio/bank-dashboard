@@ -1,12 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { Image } from '@nextui-org/react';
-import { useShallow } from 'zustand/react/shallow';
 
 // Constants
 import { DESTINATION, NOT_FOUND_URL_IMAGE } from '@app/constants';
-
-// Stores
-import { useAuthStore } from '@app/stores';
 
 // Components
 import { Box, Text } from '@app/components';
@@ -28,39 +24,35 @@ const classes = {
 const NotFoundFallback = ({
   title = 'Sorry, page not found',
   message = "The page you are looking for doesn't exist or another error occurred. Please go back to the Homepage.",
-}: NotFoundFallbackProps) => {
-  const isAdmin = useAuthStore(useShallow((state) => state.isAdmin));
+}: NotFoundFallbackProps) => (
+  <Box className={classes.container}>
+    <Image
+      aria-label="Not found image"
+      classNames={{
+        wrapper: classes.imageWrapper,
+        img: classes.imageWrapper,
+      }}
+      src={NOT_FOUND_URL_IMAGE}
+      alt="Not Found Image"
+    />
+    <Text data-testid="title" customClass={classes.title}>
+      {title}
+    </Text>
 
-  return (
-    <Box className={classes.container}>
-      <Image
-        aria-label="Not found image"
-        classNames={{
-          wrapper: classes.imageWrapper,
-          img: classes.imageWrapper,
-        }}
-        src={NOT_FOUND_URL_IMAGE}
-        alt="Not Found Image"
-      />
-      <Text data-testid="title" customClass={classes.title}>
-        {title}
+    {message && (
+      <Text data-testid="message" customClass={classes.message}>
+        {message}
       </Text>
+    )}
 
-      {message && (
-        <Text data-testid="message" customClass={classes.message}>
-          {message}
-        </Text>
-      )}
-
-      <Link
-        to={isAdmin ? DESTINATION.ACCOUNTS : DESTINATION.TRANSACTIONS}
-        className={classes.link}
-        aria-label="Link back to home"
-      >
-        Back to home
-      </Link>
-    </Box>
-  );
-};
+    <Link
+      to={DESTINATION.DASHBOARD}
+      className={classes.link}
+      aria-label="Link back to home"
+    >
+      Back to home
+    </Link>
+  </Box>
+);
 
 export default NotFoundFallback;

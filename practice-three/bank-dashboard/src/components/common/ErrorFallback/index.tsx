@@ -1,12 +1,12 @@
+import React from 'react';
 import { Link } from '@tanstack/react-router';
-import { Image } from '@nextui-org/react';
-import { useShallow } from 'zustand/react/shallow';
+import { Card, Image } from '@nextui-org/react';
 
 // Constants
 import { DESTINATION, ERROR_IMAGE, WIDTH_IMAGE } from '@app/constants';
 
-// Stores
-import { useAuthStore } from '@app/stores';
+// Utils
+import { cn } from '@app/utils';
 
 // Components
 import { Box, Text } from '@app/components';
@@ -22,10 +22,34 @@ const classes = {
   link: 'text-blue-200 text-2xl hover:underline md:text-3xl',
 };
 
-const ErrorFallback = () => {
-  const isAdmin = useAuthStore(useShallow((state) => state.isAdmin));
+interface ErrorFallbackProps {
+  error?: Error;
+}
+
+const ErrorFallback: React.FC<ErrorFallbackProps> = ({ error }) => {
   const errorMessage = `Oops! Something went wrong :(`;
-  const detailErrorMessage = `An error occurred. For more help, feel free to reach out to our support team`;
+  const detailErrorMessage = `An error occurred. For more help, feel free to reach out to our support team.`;
+
+  if (error) {
+    return (
+      <Card
+        className={cn(
+          classes.container,
+          'w-full h-auto justify-center shadow-md gap-4',
+        )}
+      >
+        <Text customClass="text-base md:text-3xl">{errorMessage}</Text>
+        <pre
+          className={cn(
+            'text-center whitespace-pre-line text-text-error',
+            'text-base md:text-2xl',
+          )}
+        >
+          {error.message}
+        </pre>
+      </Card>
+    );
+  }
 
   return (
     <Box className={classes.container}>
@@ -45,7 +69,7 @@ const ErrorFallback = () => {
       <Text customClass={classes.actionText}>
         Please refresh the page or&nbsp;
         <Link
-          to={isAdmin ? DESTINATION.ACCOUNTS : DESTINATION.TRANSACTIONS}
+          to={DESTINATION.DASHBOARD}
           aria-label="Link back to home"
           className={classes.link}
         >

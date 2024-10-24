@@ -12,6 +12,9 @@ import { UserIcon } from '@app/assets';
 // Interfaces
 import { IAccountData, IAccountStatusItem } from '@app/interfaces';
 
+// HOCs
+import ErrorBoundary from '@app/hocs';
+
 // Components
 import {
   Box,
@@ -90,42 +93,46 @@ const AccountPage = () => {
 
   return (
     <Box className="min-h-fit flex flex-col gap-5.5 md:gap-5 lg:gap-6">
-      <Box aria-label="Account status bar">
-        <AccountStatusBar data={ACCOUNT_STATUS_BAR_DATA} />
-      </Box>
+      <ErrorBoundary>
+        <Box aria-label="Account status bar">
+          <AccountStatusBar data={ACCOUNT_STATUS_BAR_DATA} />
+        </Box>
+      </ErrorBoundary>
 
       {/* Account List */}
-      <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
-        <Box className="card-action flex justify-between items-center">
-          <Text
-            as="h2"
-            aria-label="Title of list accounts"
-            variant="heading"
-            customClass="text-2xl md:text-4xl lg:text-6xl"
-          >
-            List Accounts
-          </Text>
-          <Button
-            as="h3"
-            aria-label="Add new account button"
-            color="default"
-            className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"
-          >
-            + Add New Account
-          </Button>
-        </Box>
+      <ErrorBoundary>
+        <Box className="flex flex-col gap-3.75 md:gap-4.5 lg:gap-5">
+          <Box className="card-action flex justify-between items-center">
+            <Text
+              as="h2"
+              aria-label="Title of list accounts"
+              variant="heading"
+              customClass="text-2xl md:text-4xl lg:text-6xl"
+            >
+              List Accounts
+            </Text>
+            <Button
+              as="h3"
+              aria-label="Add new account button"
+              color="default"
+              className="font-primary font-semibold rounded-sm p-1 bg-transparent text-text-secondary text-lg md:text-xl lg:text-3xl"
+            >
+              + Add New Account
+            </Button>
+          </Box>
 
-        {/* Account Table */}
-        <AccountTable
-          aria-label="Account table"
-          accounts={accounts}
-          totalAccounts={totalAccounts}
-          currentPage={page}
-          isLoading={isLoading}
-          onPageChange={handlePageChange}
-          onDelete={handleOpenModal}
-        />
-      </Box>
+          {/* Account Table */}
+          <AccountTable
+            aria-label="Account table"
+            accounts={accounts}
+            totalAccounts={totalAccounts}
+            currentPage={page}
+            isLoading={isLoading}
+            onPageChange={handlePageChange}
+            onDelete={handleOpenModal}
+          />
+        </Box>
+      </ErrorBoundary>
 
       {/* Modal */}
       {isModalOpen && (
