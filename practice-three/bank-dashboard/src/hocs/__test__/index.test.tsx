@@ -15,6 +15,10 @@ jest.mock('@app/components', () => ({
 }));
 
 describe('ErrorBoundary Component', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+  });
+
   it('should renders child components when there is no error', () => {
     render(
       <ErrorBoundary>
