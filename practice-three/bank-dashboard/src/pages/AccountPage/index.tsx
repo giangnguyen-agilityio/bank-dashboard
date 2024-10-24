@@ -24,7 +24,7 @@ import {
   Button,
 } from '@app/components';
 
-const ConfirmModal = lazy(() => import('@app/components/common/ConfirmModal'));
+const ConfirmModal = lazy(() => import('@app/components/ConfirmModal'));
 
 const AccountPage = () => {
   const [page, setPage] = useState(1);

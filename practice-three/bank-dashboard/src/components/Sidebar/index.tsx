@@ -1,5 +1,5 @@
 import { memo, ReactNode } from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 
 // Icons
 import { LogoIcon, CloseIcon } from '@app/assets';
@@ -7,8 +7,11 @@ import { LogoIcon, CloseIcon } from '@app/assets';
 // Utils
 import { cn } from '@app/utils';
 
+// Constants
+import { DESTINATION } from '@app/constants';
+
 // Components
-import { Button, SidebarItem } from '@app/components';
+import { Button } from '@app/components';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -25,6 +28,8 @@ const Sidebar = ({
   items = [],
   toggleSidebar,
 }: SidebarProps) => {
+  const location = useLocation();
+
   return (
     <aside
       data-testid="sidebar"
@@ -58,15 +63,36 @@ const Sidebar = ({
 
         {/* Sidebar List */}
         <ul data-testid="sidebar-list">
-          {items?.map((item) => (
-            <SidebarItem
-              key={item.label}
-              icon={item.icon}
-              label={item.label}
-              link={item.link}
-              onToggleSidebar={toggleSidebar}
-            />
-          ))}
+          {items?.map((item) => {
+            const isActive =
+              location.pathname === item.link ||
+              (location.pathname === '/' &&
+                item.link === DESTINATION.DASHBOARD);
+
+            return (
+              <li
+                key={item.label}
+                aria-label="Sidebar item"
+                data-testid="sidebar-item"
+                className={`pl-7.5 py-3.75 lg:py-4.5 rounded-r-3xl border-l-5 list-none ${
+                  isActive ? 'border-blue-200' : 'border-transparent'
+                }`}
+                onClick={toggleSidebar}
+              >
+                <Link
+                  to={item.link}
+                  className={`flex items-center transition-colors ${
+                    isActive ? 'text-blue-200' : 'text-gray-200 opacity-80'
+                  } hover:text-blue-200`}
+                >
+                  {item.icon}
+                  <span className="ml-5 lg:ml-6.5 font-primary font-medium text-2xl lg:text-4xl">
+                    {item.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </aside>

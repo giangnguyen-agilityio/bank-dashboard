@@ -154,26 +154,31 @@ const LoginForm = ({ isPendingLogin, handleLogin }: LoginFormProps) => {
           )}
         />
       </Box>
-
       {/* Other form fields */}
-      <Box className="w-full flex items-center justify-between">
+
+      <Box
+        className="w-full flex items-center justify-between"
+        title="This feature is not available in this version yet"
+      >
         <Checkbox
           aria-label="Remember me checkbox"
-          classNames={{ label: 'text-text-default text-lg md:text-xl' }}
+          classNames={{
+            label: 'cursor-pointer text-text-default text-lg md:text-xl',
+          }}
         >
           Remember me
         </Checkbox>
 
         <Link
+          disabled
           to={DESTINATION.FORGOT_PASSWORD}
           aria-label="Forgot password link"
           data-testid="forgot-password-link"
-          className="text-blue-200 font-semibold text-lg hover:underline"
+          className="text-blue-200 font-semibold text-lg cursor-pointer hover:underline"
         >
           Forgot your password?
         </Link>
       </Box>
-
       <Button
         isIconOnly
         aria-label="Sign in button"
@@ -186,7 +191,6 @@ const LoginForm = ({ isPendingLogin, handleLogin }: LoginFormProps) => {
       >
         Sign in
       </Button>
-
       <Text customClass="text-text-default text-lg text-center">
         Don't have an account?&nbsp;
         <Link

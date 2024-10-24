@@ -112,6 +112,7 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
         >
           <Avatar
             isEdit
+            radius="full"
             size={isMobile ? '3xl' : '2xl'}
             customClass="text-white-100"
           />
