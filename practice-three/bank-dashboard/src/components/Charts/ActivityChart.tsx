@@ -6,18 +6,28 @@ import { Card } from '@nextui-org/react';
 // Themes
 import { colorPalette } from '@app/themes';
 
-// Constants
-import { SCREEN_WIDTH } from '@app/constants';
+// Utils
+import { cn } from '@app/utils';
 
-// Hooks
-import { useMediaQuery } from '@app/hooks';
+interface ChartData {
+  name: string;
+  data: number[];
+}
 
-const ActivityChart = () => {
-  const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
-  const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.lg})`);
-  const categories = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+interface ChartProps {
+  series?: ChartData[];
+  labels?: string[];
+  customOptions?: ApexOptions;
+  className?: string;
+}
 
-  const options: ApexOptions = {
+const ActivityChart = ({
+  series = [],
+  labels = [],
+  customOptions = {},
+  className = '',
+}: ChartProps) => {
+  const defaultOptions: ApexOptions = {
     chart: {
       toolbar: {
         show: true,
@@ -41,8 +51,8 @@ const ActivityChart = () => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: isMobile ? 10 : isDesktop ? 16 : 20,
-        borderRadius: isMobile ? 4 : isDesktop ? 7 : 8,
+        columnWidth: 16,
+        borderRadius: 7,
       },
     },
     dataLabels: {
@@ -54,10 +64,10 @@ const ActivityChart = () => {
       curve: 'smooth',
     },
     xaxis: {
-      categories,
+      categories: labels,
       labels: {
         style: {
-          fontSize: isMobile ? '14px' : isDesktop ? '12px' : '16px',
+          fontSize: '12px',
           colors: colorPalette.blue[50],
         },
       },
@@ -65,7 +75,7 @@ const ActivityChart = () => {
     yaxis: {
       labels: {
         style: {
-          fontSize: isMobile ? '14px' : isDesktop ? '12px' : '16px',
+          fontSize: '12px',
           colors: colorPalette.blue[50],
         },
       },
@@ -74,7 +84,7 @@ const ActivityChart = () => {
       markers: {
         shape: 'circle',
       },
-      fontSize: isMobile ? '14px' : isDesktop ? '12px' : '16px',
+      fontSize: '12px',
       position: 'top',
       horizontalAlign: 'right',
       itemMargin: {
@@ -84,21 +94,77 @@ const ActivityChart = () => {
       offsetX: 20,
     },
     colors: [colorPalette.blue[200], colorPalette.green[200]],
+    responsive: [
+      {
+        breakpoint: 640,
+        options: {
+          plotOptions: {
+            bar: {
+              columnWidth: 10,
+              borderRadius: 4,
+            },
+          },
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: '14px',
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: '14px',
+              },
+            },
+          },
+          legend: {
+            fontSize: '14px',
+          },
+        },
+      },
+      {
+        breakpoint: 1024,
+        options: {
+          plotOptions: {
+            bar: {
+              columnWidth: 20,
+              borderRadius: 8,
+            },
+          },
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: '16px',
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: '16px',
+              },
+            },
+          },
+          legend: {
+            fontSize: '16px',
+          },
+        },
+      },
+    ],
   };
 
-  const series = [
-    {
-      name: 'Deposit',
-      data: [490, 350, 350, 490, 150, 405, 400],
-    },
-    {
-      name: 'Withdraw',
-      data: [250, 115, 280, 380, 235, 260, 320],
-    },
-  ];
+  // Merge customOptions with defaultOptions
+  const options = { ...defaultOptions, ...customOptions };
 
   return (
-    <Card className="shadow-md h-full px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5">
+    <Card
+      className={cn(
+        'shadow-md h-full',
+        'px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5',
+        className,
+      )}
+    >
       <Chart options={options} series={series} type="bar" height={300} />
     </Card>
   );

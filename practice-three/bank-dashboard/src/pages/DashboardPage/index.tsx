@@ -1,7 +1,16 @@
 import { Card } from '@nextui-org/react';
 
 // Mocks
-import { MOCK_CREDIT_CARD_DATA, MOCK_TRANSACTION_ITEMS } from '@app/mocks';
+import {
+  ACTIVITY_CHART_DATA,
+  ACTIVITY_CHART_LABELS,
+  BALANCE_CHART_DATA,
+  BALANCE_CHART_LABELS,
+  EXPENSE_STATISTICS_CHART_DATA,
+  EXPENSE_STATISTICS_CHART_LABELS,
+  MOCK_CREDIT_CARD_DATA,
+  MOCK_TRANSACTION_ITEMS,
+} from '@app/mocks';
 
 // Hooks
 import { useMediaQuery } from '@app/hooks';
@@ -136,7 +145,10 @@ const DashboardPage = () => {
             </Text>
 
             {/* Weekly Activity Chart */}
-            <ActivityChart />
+            <ActivityChart
+              series={ACTIVITY_CHART_DATA}
+              labels={ACTIVITY_CHART_LABELS}
+            />
           </Box>
         </ErrorBoundary>
 
@@ -156,7 +168,10 @@ const DashboardPage = () => {
             </Text>
 
             {/* Expense Statistics Chart */}
-            <ExpenseStatisticsChart />
+            <ExpenseStatisticsChart
+              series={EXPENSE_STATISTICS_CHART_DATA}
+              labels={EXPENSE_STATISTICS_CHART_LABELS}
+            />
           </Box>
         </ErrorBoundary>
       </Box>
@@ -208,7 +223,10 @@ const DashboardPage = () => {
             </Text>
 
             {/* Balance Chart */}
-            <BalanceChart />
+            <BalanceChart
+              series={BALANCE_CHART_DATA}
+              labels={BALANCE_CHART_LABELS}
+            />
           </Box>
         </ErrorBoundary>
       </Box>

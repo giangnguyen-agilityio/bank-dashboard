@@ -7,7 +7,7 @@ import { Card } from '@nextui-org/react';
 import { colorPalette } from '@app/themes';
 
 // Constants
-import { SCREEN_WIDTH } from '@app/constants';
+import { CHART_MENU_ICON, SCREEN_WIDTH } from '@app/constants';
 
 // Hooks
 import { useMediaQuery } from '@app/hooks';
@@ -15,18 +15,27 @@ import { useMediaQuery } from '@app/hooks';
 // Utils
 import { cn } from '@app/utils';
 
-const ExpenseStatisticsChart = () => {
-  const isTablet = useMediaQuery(`(min-width: ${SCREEN_WIDTH.lg})`);
-  const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.xl})`);
-  const smallChartHeight = 270;
+interface ChartProps {
+  series?: number[];
+  labels?: string[];
+  customOptions?: ApexOptions;
+  className?: string;
+}
 
-  const series = [15, 35, 20, 30];
-  const labels = ['Bill Expense', 'Others', 'Investment', 'Entertainment'];
+const ExpenseStatisticsChart = ({
+  series = [],
+  labels = [],
+  customOptions = {},
+  className = '',
+}: ChartProps) => {
+  const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.xl})`);
+
+  const smallChartHeight = 270;
 
   const formatYaxisLabel = (val: number) => `${val}%`;
   const formatDataLabels = (val: number) => `${Math.round(val)}%`;
 
-  const options: ApexOptions = {
+  const defaultOptions: ApexOptions = {
     chart: {
       toolbar: {
         show: true,
@@ -41,6 +50,9 @@ const ExpenseStatisticsChart = () => {
             filename: 'expense-statistics-chart',
           },
         },
+        tools: {
+          download: CHART_MENU_ICON,
+        },
       },
       zoom: {
         enabled: false,
@@ -51,9 +63,9 @@ const ExpenseStatisticsChart = () => {
       colors: [colorPalette.white[100]],
     },
     legend: {
-      show: isTablet,
+      show: true,
       position: 'bottom',
-      offsetY: isDesktop ? -10 : -5,
+      offsetY: -10,
     },
     labels,
     yaxis: {
@@ -76,13 +88,36 @@ const ExpenseStatisticsChart = () => {
       enabled: true,
       formatter: formatDataLabels,
     },
+    responsive: [
+      {
+        breakpoint: 1024,
+        options: {
+          legend: {
+            show: false,
+          },
+        },
+      },
+
+      {
+        breakpoint: 1440,
+        options: {
+          legend: {
+            offsetY: -5,
+          },
+        },
+      },
+    ],
   };
+
+  // Merge customOptions with defaultOptions
+  const options = { ...defaultOptions, ...customOptions };
 
   return (
     <Card
       className={cn(
         'flex shadow-md h-full',
         'px-3 pt-3 md:px-5 md:pt-5 lg:px-6.25 lg:pt-7.5',
+        className,
       )}
     >
       <Chart

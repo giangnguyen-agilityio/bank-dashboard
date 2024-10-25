@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { ApexOptions } from 'apexcharts';
 import Chart from 'react-apexcharts';
 import { Card } from '@nextui-org/react';
 
@@ -9,26 +10,35 @@ import { colorPalette } from '@app/themes';
 import { useMediaQuery } from '@app/hooks';
 
 // Constants
-import { SCREEN_WIDTH } from '@app/constants';
+import { CHART_MENU_ICON, SCREEN_WIDTH } from '@app/constants';
 
-const BalanceChart = () => {
+// Utils
+import { cn } from '@app/utils';
+
+interface ChartData {
+  name: string;
+  data: number[];
+}
+
+interface ChartProps {
+  series?: ChartData[];
+  labels?: string[];
+  customOptions?: ApexOptions;
+  className?: string;
+}
+
+const BalanceChart = ({
+  series = [],
+  labels = [],
+  customOptions = {},
+  className = '',
+}: ChartProps) => {
   const isDesktop = useMediaQuery(`(min-width: ${SCREEN_WIDTH.xl})`);
-  const categories = [
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-  ];
+
   const smallChartHeight = 180;
   const mediumChartHeight = 230;
 
-  const options = {
+  const defaultOptions = {
     chart: {
       toolbar: {
         show: true,
@@ -43,13 +53,16 @@ const BalanceChart = () => {
             filename: 'balance-chart',
           },
         },
+        tools: {
+          download: CHART_MENU_ICON,
+        },
       },
       zoom: {
         enabled: false,
       },
     },
     xaxis: {
-      categories,
+      categories: labels,
       labels: {
         style: {
           colors: colorPalette.blue[50],
@@ -99,15 +112,18 @@ const BalanceChart = () => {
       },
     },
   };
-  const series = [
-    {
-      name: 'Balance',
-      data: [110, 310, 210, 480, 420, 780, 200, 585, 210, 620],
-    },
-  ];
+
+  // Merge customOptions with defaultOptions
+  const options = { ...defaultOptions, ...customOptions };
 
   return (
-    <Card className="shadow-md pr-3 pt-3 md:pr-5 md:pt-5 lg:pr-6.25 lg:pt-7.5">
+    <Card
+      className={cn(
+        'shadow-md',
+        'pr-3 pt-3 md:pr-5 md:pt-5 lg:pr-6.25 lg:pt-7.5',
+        className,
+      )}
+    >
       <Chart
         options={options}
         series={series}

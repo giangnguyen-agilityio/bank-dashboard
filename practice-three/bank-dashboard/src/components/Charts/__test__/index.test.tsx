@@ -1,15 +1,25 @@
 // Utils
 import { render } from '@app/utils';
 
+// Hooks
+import { useMediaQuery } from '@app/hooks';
+
+// Mocks
+import {
+  ACTIVITY_CHART_DATA,
+  ACTIVITY_CHART_LABELS,
+  BALANCE_CHART_DATA,
+  BALANCE_CHART_LABELS,
+  EXPENSE_STATISTICS_CHART_DATA,
+  EXPENSE_STATISTICS_CHART_LABELS,
+} from '@app/mocks';
+
 // Components
 import {
   ActivityChart,
   BalanceChart,
   ExpenseStatisticsChart,
 } from '@app/components';
-
-// Hooks
-import { useMediaQuery } from '@app/hooks';
 
 jest.mock('react-apexcharts', () => ({
   __esModule: true,
@@ -23,30 +33,23 @@ jest.mock('@app/hooks', () => ({
 
 describe('ActivityChart Component', () => {
   it('should renders the ActivityChart correctly', () => {
-    (useMediaQuery as jest.Mock)
-      .mockReturnValueOnce(true)
-      .mockReturnValueOnce(false);
-
-    const { container } = render(<ActivityChart />);
+    const { container } = render(
+      <ActivityChart
+        series={ACTIVITY_CHART_DATA}
+        labels={ACTIVITY_CHART_LABELS}
+      />,
+    );
 
     expect(container).toMatchSnapshot();
   });
 
   it('should renders the ActivityChart with desktop breakpoint correctly', () => {
-    (useMediaQuery as jest.Mock)
-      .mockReturnValueOnce(false)
-      .mockReturnValueOnce(true);
-
     const { container } = render(<ActivityChart />);
 
     expect(container).toMatchSnapshot();
   });
 
   it('should renders the ActivityChart mobile breakpoint correctly', () => {
-    (useMediaQuery as jest.Mock)
-      .mockReturnValueOnce(false)
-      .mockReturnValueOnce(false);
-
     const { container } = render(<ActivityChart />);
 
     expect(container).toMatchSnapshot();
@@ -57,7 +60,12 @@ describe('BalanceChart Component', () => {
   it('should renders the BalanceChart correctly', () => {
     (useMediaQuery as jest.Mock).mockReturnValue(true);
 
-    const { container } = render(<BalanceChart />);
+    const { container } = render(
+      <BalanceChart
+        series={BALANCE_CHART_DATA}
+        labels={BALANCE_CHART_LABELS}
+      />,
+    );
 
     expect(container).toMatchSnapshot();
   });
@@ -75,7 +83,12 @@ describe('ExpenseStatisticsChart Component', () => {
   it('should renders the ExpenseStatisticsChart correctly', () => {
     (useMediaQuery as jest.Mock).mockReturnValue(true);
 
-    const { container } = render(<ExpenseStatisticsChart />);
+    const { container } = render(
+      <ExpenseStatisticsChart
+        series={EXPENSE_STATISTICS_CHART_DATA}
+        labels={EXPENSE_STATISTICS_CHART_LABELS}
+      />,
+    );
 
     expect(container).toMatchSnapshot();
   });
