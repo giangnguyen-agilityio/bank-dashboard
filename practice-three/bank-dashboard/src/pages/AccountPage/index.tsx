@@ -22,6 +22,7 @@ import {
   AccountTable,
   AccountStatusBar,
   Button,
+  Spinner,
 } from '@app/components';
 
 const ConfirmModal = lazy(() => import('@app/components/ConfirmModal'));
@@ -136,7 +137,7 @@ const AccountPage = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<Spinner />}>
           <ConfirmModal
             size="md"
             isOpen={isModalOpen}

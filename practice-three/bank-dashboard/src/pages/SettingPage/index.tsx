@@ -15,8 +15,11 @@ import { useAuthStore } from '@app/stores';
 // Interfaces
 import { IAccountData, SettingFormData } from '@app/interfaces';
 
+// Icons
+import { LoadingIcon } from '@app/assets';
+
 // Components
-import { Box, CustomTabs, SettingForm } from '@app/components';
+import { Box, CustomTabs, SettingForm, Text } from '@app/components';
 
 const SecurityForm = lazy(() => import('@app/components/Form/SecurityForm'));
 
@@ -86,7 +89,14 @@ const SettingPage = () => {
         title: SETTING_TABS.SECURITY.TITLE,
         tabContent: (
           <Box className="p-5 md:px-6.25 lg:p-7.5">
-            <Suspense fallback={null}>
+            <Suspense
+              fallback={
+                <Box className="flex justify-center items-center gap-2">
+                  <Text>Loading form, please wait...</Text>
+                  <LoadingIcon />
+                </Box>
+              }
+            >
               <SecurityForm />
             </Suspense>
           </Box>
