@@ -1,11 +1,4 @@
-import {
-  lazy,
-  Suspense,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react';
 import { Card } from '@nextui-org/react';
 import toast from 'react-hot-toast';
 import { useShallow } from 'zustand/react/shallow';
@@ -44,7 +37,6 @@ const SettingPage = () => {
   const [selected, setSelected] = useState<string | number>(
     SETTING_TABS.EDIT_PROFILE.KEY,
   );
-  const [infoField, setInfoField] = useState(defaultValues);
 
   const { isUpdatingAccount, editAccount } = useAccount();
   const setCredentials = useAuthStore(
@@ -83,7 +75,7 @@ const SettingPage = () => {
           <Box className="p-5 md:px-6.25 lg:p-7.5">
             <SettingForm
               isLoading={isUpdatingAccount}
-              infoField={infoField}
+              infoField={userInfo || defaultValues}
               onSubmit={handleSubmit}
             />
           </Box>
@@ -101,14 +93,8 @@ const SettingPage = () => {
         ),
       },
     ],
-    [infoField, isUpdatingAccount, handleSubmit],
+    [isUpdatingAccount, userInfo, handleSubmit],
   );
-
-  useEffect(() => {
-    if (userInfo) {
-      setInfoField(userInfo);
-    }
-  }, [userInfo]);
 
   return (
     <Card className="min-h-fit shadow-none rounded-xl md:rounded-2xl lg:rounded-3xl py-5.5 px-5 md:py-6.25 md:px-6.25 lg:py-5.5 lg:px-7.5">
