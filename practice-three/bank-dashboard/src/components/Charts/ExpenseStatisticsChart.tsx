@@ -59,7 +59,6 @@ const ExpenseStatisticsChart = ({
       },
     },
     stroke: {
-      width: 6,
       colors: [colorPalette.white[100]],
     },
     legend: {

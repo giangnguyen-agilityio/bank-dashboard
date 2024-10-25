@@ -7,9 +7,17 @@ import { useAuth } from '@app/hooks';
 // Pages
 import { LoginPage } from '@app/pages';
 
+// Stores
+import { useAuthStore } from '@app/stores';
+
 jest.mock('@app/hooks', () => ({
   ...jest.requireActual('@app/hooks'),
   useAuth: jest.fn(),
+}));
+
+jest.mock('@app/stores', () => ({
+  ...jest.requireActual('@app/stores'),
+  useAuthStore: jest.fn(),
 }));
 
 describe('LoginPage', () => {
@@ -20,6 +28,11 @@ describe('LoginPage', () => {
       isPendingLogin: false,
       mutate: mutateMock,
     });
+    (useAuthStore as unknown as jest.Mock).mockImplementation((selector) =>
+      selector({
+        isAuthenticated: true,
+      }),
+    );
 
     jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
   });

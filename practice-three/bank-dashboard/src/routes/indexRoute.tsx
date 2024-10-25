@@ -57,7 +57,7 @@ const transactionRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.TRANSACTIONS,
   component: () => renderWithMainLayout(<TransactionPage />),
-  loader: authorizeUserRole(AccountRole.User),
+  beforeLoad: authorizeUserRole(AccountRole.User),
   errorComponent: () => renderWithMainLayout(<ErrorFallback />),
 });
 
@@ -65,7 +65,7 @@ const accountsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: DESTINATION.ACCOUNTS,
   component: () => renderWithMainLayout(<AccountPage />),
-  loader: authorizeUserRole(AccountRole.Admin),
+  beforeLoad: authorizeUserRole(AccountRole.Admin),
   errorComponent: () => renderWithMainLayout(<ErrorFallback />),
 });
 

@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
+import { useNavigate } from '@tanstack/react-router';
 import { Link } from '@tanstack/react-router';
 import { Card, CardBody } from '@nextui-org/react';
+import { useShallow } from 'zustand/react/shallow';
 
 // Assets
 import { LogoIcon } from '@app/assets';
+
+// Constants
+import { DESTINATION } from '@app/constants';
 
 // Hooks
 import { useAuth } from '@app/hooks';
@@ -10,15 +16,29 @@ import { useAuth } from '@app/hooks';
 // Interfaces
 import { LoginFormData } from '@app/interfaces';
 
+// Stores
+import { useAuthStore } from '@app/stores';
+
 // Components
 import { Box, LoginForm, Text } from '@app/components';
 
 const LoginPage = () => {
   const { isPendingLogin, mutate } = useAuth();
+  const isAuthenticated = useAuthStore(
+    useShallow((state) => state.isAuthenticated),
+  );
+
+  const navigate = useNavigate();
 
   const handleLogin = (data: LoginFormData) => {
     mutate(data);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate({ to: DESTINATION.DASHBOARD });
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
