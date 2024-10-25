@@ -34,6 +34,7 @@ const defaultValues: SettingFormData = {
   city: '',
   postalCode: '',
   country: '',
+  avatar: '',
 };
 
 const SettingPage = () => {

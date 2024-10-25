@@ -26,6 +26,7 @@ interface IAccountData {
   country: string;
   status: boolean;
   role: AccountRole;
+  avatar?: string;
 }
 
 interface SecurityFormData {

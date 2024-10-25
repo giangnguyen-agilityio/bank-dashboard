@@ -1,6 +1,7 @@
-import { ChangeEvent, memo, useCallback, useEffect } from 'react';
+import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import imageCompression from 'browser-image-compression';
 
 // Assets
 import { LoadingIcon } from '@app/assets';
@@ -55,18 +56,48 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
     resolver: zodResolver(accountSchema),
   });
 
+  const [avatarPreview, setAvatarPreview] = useState('');
   const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
+
+  const handleAvatarUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      try {
+        const options = {
+          // Limit file size to 0.5 MB
+          maxSizeMB: 0.5,
+          // Limit resolution
+          maxWidthOrHeight: 800,
+          useWebWorker: true,
+        };
+        const compressedFile = await imageCompression(file, options);
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          const base64String = reader.result as string;
+          // Use the compressed base64 file
+          setAvatarPreview(base64String);
+        };
+
+        reader.readAsDataURL(compressedFile);
+      } catch (error) {
+        console.error('Image compression error:', error);
+      }
+    }
+  };
 
   const handleUpdateProfile = useCallback(
     (data: SettingFormData) => {
       const newData = {
         ...infoField,
         ...data,
+        avatar: avatarPreview,
       };
 
       onSubmit(newData);
     },
-    [infoField, onSubmit],
+    [avatarPreview, infoField, onSubmit],
   );
 
   const handleInputChange = useCallback(
@@ -108,13 +139,23 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
       >
         <Box
           className="upload-image-field cursor-pointer"
-          title="Image upload is not available in this version"
+          title="Click to upload avatar"
         >
           <Avatar
-            isEdit
             radius="full"
             size={isMobile ? '3xl' : '2xl'}
             customClass="text-white-100"
+            src={avatarPreview || infoField.avatar}
+            onUpload={() =>
+              document.getElementById('avatar-upload-input')?.click()
+            }
+          />
+          <input
+            type="file"
+            id="avatar-upload-input"
+            style={{ display: 'none' }}
+            accept="image/*"
+            onChange={handleAvatarUpload}
           />
         </Box>
         <Box className="w-full flex flex-wrap flex-col gap-4 md:flex-row lg:gap-5.5">
