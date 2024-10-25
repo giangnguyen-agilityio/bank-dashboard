@@ -43,19 +43,23 @@ describe('Avatar Component', () => {
     expect(avatar).not.toHaveClass('border-2');
   });
 
-  it('should render the edit icon when isEdit is true and size is greater than xl', () => {
+  it('should render the edit icon when onUpload is true and size is greater than xl', () => {
     const sizes: ('xl' | '2xl' | '3xl')[] = ['xl', '2xl', '3xl'];
 
     sizes.forEach((size) => {
-      const { container } = render(<Avatar size={size} radius="full" isEdit />);
-      const editIcon = container.querySelector('[data-testid="icon"]');
+      const { container } = render(
+        <Avatar size={size} radius="full" onUpload={jest.fn()} />,
+      );
+      const editIcon = container.querySelector(
+        '[data-testid="upload-avatar-button"]',
+      );
 
       expect(editIcon).toBeInTheDocument();
     });
   });
 
-  it('should not render the edit icon when isEdit is true but size is smaller than xl', () => {
-    render(<Avatar size="md" isEdit />);
+  it('should not render the edit icon when onUpload is true but size is smaller than xl', () => {
+    render(<Avatar size="md" onUpload={jest.fn()} />);
 
     const editIcon = screen.queryByTestId('icon');
 

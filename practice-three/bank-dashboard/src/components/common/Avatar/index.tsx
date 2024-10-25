@@ -10,11 +10,14 @@ import { EditIcon } from '@app/assets';
 // Utils
 import { cn } from '@app/utils';
 
+// Components
+import { Box, Button } from '@app/components';
+
 interface AvatarProps extends Omit<AvatarNextUIProps, 'size'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   customClass?: string;
   hasBorder?: boolean;
-  isEdit?: boolean;
+  onUpload?: () => void;
 }
 
 const SIZE_CLASSES = {
@@ -42,8 +45,8 @@ const Avatar = ({
   customClass = '',
   size = 'md',
   hasBorder = false,
-  isEdit = false,
   radius,
+  onUpload,
   ...rest
 }: AvatarProps) => {
   const sizeClass = SIZE_CLASSES[size];
@@ -57,32 +60,34 @@ const Avatar = ({
   };
   const iconSizeClass = getIconSize(size);
   const isShowIcon =
-    isEdit &&
+    onUpload &&
     radius === 'full' &&
     (size === 'xl' || size === '2xl' || size === '3xl');
+
   return (
-    <div className="avatar-container relative inline-block">
+    <Box className="avatar-container relative inline-block">
       <AvatarNextUI
         classNames={classNames}
         aria-label="User avatar"
         data-testid="avatar"
         radius={radius}
+        onClick={onUpload}
         {...rest}
       />
       {isShowIcon && (
-        <div className="absolute bottom-3.75 right-0" data-testid="icon">
-          <div
-            className={cn(
-              'flex justify-center items-center rounded-full bg-background-secondary',
-              iconSizeClass,
-            )}
-            aria-label="Edit Avatar Icon"
-          >
-            <EditIcon customClass="text-white-100 w-4.5 h-5 md:w-3.5" />
-          </div>
-        </div>
+        <Button
+          aria-label="Upload Avatar Icon"
+          data-testid="upload-avatar-button"
+          variant="circle"
+          className={cn(
+            'p-2 absolute bottom-3.75 right-0 flex justify-center items-center',
+            iconSizeClass,
+          )}
+          endContent={<EditIcon customClass="w-4.5 h-4.5 " />}
+          onPress={onUpload}
+        />
       )}
-    </div>
+    </Box>
   );
 };
 
