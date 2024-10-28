@@ -1,67 +1,93 @@
-import { render, screen, userEvent, waitFor } from '@app/utils';
+import { render, screen, userEvent } from '@app/utils';
 
 // Components
 import { Dropdown } from '@app/components';
 
-jest.mock('@app/utils', () => ({
-  ...jest.requireActual('@app/utils'),
-  cn: jest.fn(),
-}));
-
-const defaultProps = {
-  id: 'dropdown-1',
-  actions: [
-    { key: 'edit', className: 'text-success-500' },
-    { key: 'delete', className: 'text-red-500' },
-  ],
-  onAction: jest.fn(),
-};
-
 describe('Dropdown Component', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  const mockOptions = [
+    {
+      key: 'edit',
+      icon: <span>Edit Icon</span>,
+      isDisabled: false,
+      className: 'edit-class',
+      onAction: jest.fn(),
+    },
+    {
+      key: 'delete',
+      icon: <span>Delete Icon</span>,
+      isDisabled: true,
+      className: 'delete-class',
+      onAction: jest.fn(),
+    },
+  ];
 
-  it('should render without crashing', () => {
-    const { container } = render(<Dropdown {...defaultProps} />);
+  it('should renders the dropdown correctly without crashing', () => {
+    const { container } = render(<Dropdown options={mockOptions} />);
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should display the actions provided', async () => {
-    render(<Dropdown {...defaultProps} />);
+  it('should opens the menu and displays options when the trigger button is clicked', async () => {
+    render(<Dropdown options={mockOptions} />);
 
-    await userEvent.click(screen.getByLabelText('More actions button'));
+    const dropdownTrigger = screen.getByLabelText('More actions button');
 
-    await waitFor(() => {
-      expect(screen.getByLabelText('edit button')).toBeInTheDocument();
-    });
+    await userEvent.click(dropdownTrigger);
+
+    // Verify menu items are displayed after opening
+    expect(screen.getByLabelText('edit button')).toBeInTheDocument();
     expect(screen.getByLabelText('delete button')).toBeInTheDocument();
   });
 
-  it('should trigger onAction when an action is clicked', async () => {
-    render(<Dropdown {...defaultProps} />);
+  it('should disables menu items marked as disabled', async () => {
+    render(<Dropdown options={mockOptions} />);
 
-    await userEvent.click(screen.getByLabelText('More actions button'));
+    const dropdownTrigger = screen.getByLabelText('More actions button');
 
-    await userEvent.click(screen.getByLabelText('edit button'));
+    await userEvent.click(dropdownTrigger);
 
-    await waitFor(() => {
-      expect(defaultProps.onAction).toHaveBeenCalledWith(defaultProps.id);
-    });
+    // Check disabled item
+    const deleteItem = screen.getByLabelText('delete button');
+
+    expect(deleteItem).toHaveAttribute('aria-disabled', 'true');
+
+    // Check enabled item
+    const editItem = screen.getByLabelText('edit button');
+
+    expect(editItem).not.toHaveAttribute('aria-disabled');
   });
 
-  it('should not call onAction if no handler is provided', async () => {
-    const { onAction, ...propsWithoutHandler } = defaultProps;
+  it('should calls onAction for enabled menu items when clicked', async () => {
+    render(<Dropdown options={mockOptions} />);
 
-    render(<Dropdown {...propsWithoutHandler} />);
+    const dropdownTrigger = screen.getByLabelText('More actions button');
 
-    await userEvent.click(screen.getByLabelText('More actions button'));
+    await userEvent.click(dropdownTrigger);
 
-    await userEvent.click(screen.getByLabelText('edit button'));
+    const editItem = screen.getByLabelText('edit button');
 
-    await waitFor(() => {
-      expect(onAction).not.toHaveBeenCalled();
-    });
+    await userEvent.click(editItem);
+
+    expect(mockOptions[0].onAction).toHaveBeenCalled();
+
+    // Disabled item should not be called
+    expect(mockOptions[1].onAction).not.toHaveBeenCalled();
+  });
+
+  it('should applies custom classes to menu items', async () => {
+    render(<Dropdown options={mockOptions} />);
+
+    const dropdownTrigger = screen.getByLabelText('More actions button');
+
+    await userEvent.click(dropdownTrigger);
+
+    // Check for custom classes
+    const editItem = screen.getByLabelText('edit button');
+
+    expect(editItem).toHaveClass('edit-class');
+
+    const deleteItem = screen.getByLabelText('delete button');
+
+    expect(deleteItem).toHaveClass('delete-class');
   });
 });

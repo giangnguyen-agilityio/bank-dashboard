@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import { Key, memo, ReactNode } from 'react';
 import {
   Dropdown as DropdownNextUI,
   DropdownTrigger,
@@ -16,18 +16,24 @@ import { cn } from '@app/utils';
 import { Text } from '@app/components';
 
 interface DropdownProps {
-  id: string;
-  actions: Array<{
+  options: Array<{
     key: string;
     icon?: ReactNode;
+    isDisabled?: boolean;
     className?: string;
+    onAction: () => void;
   }>;
-  onAction?: (id: string) => void;
 }
 
-const Dropdown = ({ id, actions, onAction }: DropdownProps) => {
-  const handleAction = () => {
-    onAction?.(id);
+const Dropdown = ({ options }: DropdownProps) => {
+  const disabledKeys = options
+    .filter(({ isDisabled }) => isDisabled)
+    .map(({ key }) => key);
+
+  const handleAction = (key: Key) => {
+    const option = options.find((option) => option.key === key);
+
+    return option?.onAction();
   };
 
   return (
@@ -43,22 +49,26 @@ const Dropdown = ({ id, actions, onAction }: DropdownProps) => {
         </button>
       </DropdownTrigger>
 
-      <DropdownMenu aria-label="More actions menu" onAction={handleAction}>
-        {actions.map((action) => (
+      <DropdownMenu
+        aria-label="More actions menu"
+        disabledKeys={disabledKeys}
+        onAction={handleAction}
+      >
+        {options.map(({ key, className, icon }) => (
           <DropdownItem
-            key={action.key}
-            aria-label={`${action.key} button`}
-            className={action.className}
-            startContent={action.icon}
+            key={key}
+            aria-label={`${key} button`}
+            className={className}
+            startContent={icon}
           >
             <Text
               variant="title"
               customClass={cn(
                 'font-primary capitalize font-semibold text-lg lg:text-2xl',
-                action.className,
+                className,
               )}
             >
-              {action.key}
+              {key}
             </Text>
           </DropdownItem>
         ))}

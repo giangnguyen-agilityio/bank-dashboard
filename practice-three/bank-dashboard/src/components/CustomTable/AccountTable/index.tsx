@@ -47,18 +47,6 @@ const AccountTable = ({
   );
   const isShowPagination = !isLoading && accounts.length > 0;
 
-  const actions = useMemo(
-    () => [
-      {
-        key: 'delete',
-        className:
-          'text-red-100 hover:outline-red-100 data-[hover=true]:bg-transparent',
-        icon: <DeleteIcon customClass="text-red-100" />,
-      },
-    ],
-    [],
-  );
-
   const COLUMN_ACCOUNT_LIST_DESKTOP: TableColumnType<IAccountData>[] = useMemo(
     () => [
       {
@@ -87,12 +75,22 @@ const AccountTable = ({
         header: '',
         accessor: (item) => {
           return (
-            <Dropdown id={item.id} actions={actions} onAction={onDelete} />
+            <Dropdown
+              options={[
+                {
+                  key: 'delete',
+                  className:
+                    'text-text-error hover:outline-text-error data-[hover=true]:bg-transparent',
+                  icon: <DeleteIcon customClass="text-text-error" />,
+                  onAction: () => onDelete?.(item.id),
+                },
+              ]}
+            />
           );
         },
       },
     ],
-    [actions, onDelete],
+    [onDelete],
   );
 
   const COLUMN_ACCOUNT_LIST_MOBILE: TableColumnType<IAccountData>[] = useMemo(
@@ -110,12 +108,22 @@ const AccountTable = ({
         header: '',
         accessor: (item) => {
           return (
-            <Dropdown id={item.id} actions={actions} onAction={onDelete} />
+            <Dropdown
+              options={[
+                {
+                  key: 'delete',
+                  className:
+                    'text-text-error hover:outline-text-error data-[hover=true]:bg-transparent',
+                  icon: <DeleteIcon customClass="text-text-error" />,
+                  onAction: () => onDelete?.(item.id),
+                },
+              ]}
+            />
           );
         },
       },
     ],
-    [actions, onDelete],
+    [onDelete],
   );
 
   return (
