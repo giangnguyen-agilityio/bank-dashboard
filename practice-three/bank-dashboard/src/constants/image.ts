@@ -11,10 +11,15 @@ const CHART_MENU_ICON = `<svg width="26" height="26" viewBox="0 0 26 26" fill="n
   />
 </svg>`;
 
+const ALLOWED_IMAGE_FILE_TYPES = ['.jpeg', '.png', '.webp', '.jpg', '.svg'];
+const MAX_IMAGE_FILE_SIZE_MB = 2 * 1024 * 1024;
+
 export {
   ERROR_IMAGE,
   WIDTH_IMAGE,
   NOT_FOUND_URL_IMAGE,
   UNAUTHORIZED_IMAGE,
   CHART_MENU_ICON,
+  ALLOWED_IMAGE_FILE_TYPES,
+  MAX_IMAGE_FILE_SIZE_MB,
 };

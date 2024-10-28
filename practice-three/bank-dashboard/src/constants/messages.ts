@@ -75,6 +75,10 @@ const ERROR_MESSAGE = {
   UNEXPECTED_ERROR: 'An unexpected error occurred',
   UNKNOWN_ERROR: 'An unknown error occurred',
   SESSION_HAS_EXPIRED: 'Your session has expired',
+  IMAGE_SIZE_EXCEEDED:
+    'The image size is exceeded. Maximum allowed size is 2MB',
+  ONLY_IMAGE_FILES_ALLOWED:
+    'Only image files (jpeg, png, webp, jpg, svg) are allowed.',
 };
 
 const SUCCESS_MESSAGE = {

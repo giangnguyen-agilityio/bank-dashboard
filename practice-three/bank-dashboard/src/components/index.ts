@@ -12,3 +12,4 @@ export { default as AccountStatusItem } from './AccountStatusItem';
 export { default as AccountStatusBar } from './AccountStatusBar';
 export { default as ConfirmModal } from './ConfirmModal';
 export { default as TransactionItem } from './TransactionItem';
+export { default as ImageUpload } from './ImageUpload';

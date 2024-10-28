@@ -1,12 +1,9 @@
-import { ChangeEvent, memo, useCallback, useEffect } from 'react';
+import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 // Assets
 import { LoadingIcon } from '@app/assets';
-
-// Hooks
-import { useMediaQuery } from '@app/hooks';
 
 // Interfaces
 import { SettingFormData } from '@app/interfaces';
@@ -15,13 +12,13 @@ import { SettingFormData } from '@app/interfaces';
 import { accountSchema } from '@app/schemas';
 
 // Constants
-import { SCREEN_WIDTH, SECRET_KEY } from '@app/constants';
+import { SECRET_KEY } from '@app/constants';
 
 // Utils
 import { cn, decryptString, getCurrentDate } from '@app/utils';
 
 // Components
-import { Avatar, Box, Button, Input } from '@app/components';
+import { ImageUpload, Box, Button, Input } from '@app/components';
 
 const classes = {
   inputContainer:
@@ -55,19 +52,24 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
     resolver: zodResolver(accountSchema),
   });
 
-  const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
+  const [avatarSrc, setAvatarSrc] = useState('');
 
   const handleUpdateProfile = useCallback(
     (data: SettingFormData) => {
       const newData = {
         ...infoField,
         ...data,
+        avatar: avatarSrc,
       };
 
       onSubmit(newData);
     },
-    [infoField, onSubmit],
+    [avatarSrc, infoField, onSubmit],
   );
+
+  const handleAvatarUpload = useCallback((avatar: string) => {
+    setAvatarSrc(avatar);
+  }, []);
 
   const handleInputChange = useCallback(
     (name: keyof SettingFormData, onChange: (value: string) => void) => {
@@ -106,16 +108,11 @@ const SettingForm = ({ isLoading, infoField, onSubmit }: SettingFormProps) => {
           'space-y-5.25 md:space-y-0 md:space-x-11.25 lg:space-x-13',
         )}
       >
-        <Box
-          className="upload-image-field cursor-pointer"
-          title="Image upload is not available in this version"
-        >
-          <Avatar
-            radius="full"
-            size={isMobile ? '3xl' : '2xl'}
-            customClass="text-white-100"
-          />
-        </Box>
+        <ImageUpload
+          avatarSrc={avatarSrc || infoField.avatar}
+          onAvatarUpload={handleAvatarUpload}
+        />
+
         <Box className="w-full flex flex-wrap flex-col gap-4 md:flex-row lg:gap-5.5">
           <div className={classes.inputContainer}>
             {/* Name Input */}

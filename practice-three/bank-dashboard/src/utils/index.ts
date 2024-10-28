@@ -6,3 +6,4 @@ export * from './api';
 export * from './testUtils';
 export * from './security';
 export * from './datetime';
+export * from './files';
