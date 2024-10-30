@@ -1,3 +1,5 @@
+import { TransactionKind } from '@app/interfaces';
+
 // The config width for column in table
 const WIDTH_COLUMN_CONFIG = {
   SMALL: 80,
@@ -12,15 +14,15 @@ const UN_SET_COLUMN_CONFIG = 'unset';
 
 const TRANSACTION_TABLE_TABS = {
   ALL_TRANSACTIONS: {
-    KEY: '',
+    KEY: TransactionKind.AllTransactions,
     TITLE: 'All Transactions',
   },
   EXPENSE_TRANSACTIONS: {
-    KEY: 'expense',
+    KEY: TransactionKind.Expense,
     TITLE: 'Expense',
   },
   INCOME_TRANSACTIONS: {
-    KEY: 'income',
+    KEY: TransactionKind.Income,
     TITLE: 'Income',
   },
 };

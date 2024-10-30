@@ -1,6 +1,7 @@
 import { ElementType } from 'react';
 
 export enum TransactionKind {
+  AllTransactions = '',
   Income = 'Income',
   Expense = 'Expense',
 }

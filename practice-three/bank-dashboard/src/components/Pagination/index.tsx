@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { Pagination as PaginationNextUI } from '@nextui-org/react';
 
 // Utils
@@ -40,17 +40,17 @@ const Pagination: React.FC<PaginationProps> = ({
     },
   );
 
-  const handlePrev = useCallback(() => {
+  const handlePrev = () => {
     if (currentPage > 1) {
       onPageChange?.(currentPage - 1);
     }
-  }, [currentPage, onPageChange]);
+  };
 
-  const handleNext = useCallback(() => {
+  const handleNext = () => {
     if (currentPage < totalPages) {
       onPageChange?.(currentPage + 1);
     }
-  }, [currentPage, totalPages, onPageChange]);
+  };
 
   return (
     <div className="flex justify-center items-center font-primary font-semibold space-x-2 p-2">

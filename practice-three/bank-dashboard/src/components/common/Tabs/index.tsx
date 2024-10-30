@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { Tabs, Tab, TabsProps } from '@nextui-org/react';
 
 // Utils
@@ -64,4 +64,4 @@ const CustomTabs = ({
   );
 };
 
-export default CustomTabs;
+export default memo(CustomTabs);

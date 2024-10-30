@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 
 // Constants
 import {
@@ -18,7 +18,7 @@ import { TableColumnType } from '@app/types';
 import { getTransactionAmountStyles, maskCardNumber } from '@app/utils';
 
 // Hooks
-import { useMediaQuery } from '@app/hooks';
+import { useFetchTransactions, useMediaQuery } from '@app/hooks';
 
 // Icons
 import { UpArrowIcon } from '@app/assets';
@@ -26,16 +26,7 @@ import { UpArrowIcon } from '@app/assets';
 // Components
 import { Box, Pagination, Table, CustomTabs, Text } from '@app/components';
 
-interface TransactionTableProps {
-  currentPage: number;
-  totalTransactions?: number;
-  transactions?: TransactionData[];
-  isLoading?: boolean;
-  onTabChange?: (tab: TransactionKind) => void;
-  onPageChange?: (page: number) => void;
-}
-
-const COLUMNS_TRANSACTION_LIST_DESKTOP: TableColumnType<TransactionData>[] = [
+const TABLE_COLUMNS_DESKTOP: TableColumnType<TransactionData>[] = [
   {
     header: 'Description',
 
@@ -45,11 +36,11 @@ const COLUMNS_TRANSACTION_LIST_DESKTOP: TableColumnType<TransactionData>[] = [
         style={{ maxWidth: WIDTH_COLUMN_CONFIG.EXTRA_LARGE }}
       >
         <Box data-testid="icon-wrapper" className="icon-wrapper">
-          {item.type === TransactionKind.Income ? (
-            <UpArrowIcon />
-          ) : (
-            <UpArrowIcon customClass="rotate-180" />
-          )}
+          <UpArrowIcon
+            customClass={
+              item.type === TransactionKind.Income ? '' : 'rotate-180'
+            }
+          />
         </Box>
         <Text customClass="text-base lg:text-2xl">{item.description}</Text>
       </Box>
@@ -91,7 +82,7 @@ const COLUMNS_TRANSACTION_LIST_DESKTOP: TableColumnType<TransactionData>[] = [
   },
 ];
 
-const COLUMNS_TRANSACTION_LIST_MOBILE: TableColumnType<TransactionData>[] = [
+const TABLE_COLUMNS_MOBILE: TableColumnType<TransactionData>[] = [
   {
     header: 'Description',
     accessor: (item) => (
@@ -137,30 +128,37 @@ const COLUMNS_TRANSACTION_LIST_MOBILE: TableColumnType<TransactionData>[] = [
   },
 ];
 
-const TransactionTable = ({
-  totalTransactions = 0,
-  transactions = [],
-  isLoading,
-  currentPage,
-  onTabChange,
-  onPageChange,
-}: TransactionTableProps) => {
-  const [selected, setSelected] = useState<string | number>(
+const TransactionTable = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedTab, setSelectedTab] = useState<TransactionKind>(
     TRANSACTION_TABLE_TABS.ALL_TRANSACTIONS.KEY,
   );
+  const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm}
+    )`);
+  const { data: transactionData, isLoading } = useFetchTransactions(
+    selectedTab,
+    currentPage,
+    LIMIT_PER_PAGE,
+  );
 
-  const isMobile = useMediaQuery(`(max-width: ${SCREEN_WIDTH.sm})`);
+  const { transactions = [], count: totalTransactions = 0 } =
+    transactionData || {};
 
   const totalPage = Math.ceil(totalTransactions / LIMIT_PER_PAGE);
 
-  const handleTabChange = (key: string | number) => {
-    setSelected(key);
-    onTabChange?.(key as TransactionKind);
-  };
+  const columns = isMobile ? TABLE_COLUMNS_MOBILE : TABLE_COLUMNS_DESKTOP;
 
-  const columns = isMobile
-    ? COLUMNS_TRANSACTION_LIST_MOBILE
-    : COLUMNS_TRANSACTION_LIST_DESKTOP;
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      setCurrentPage(newPage);
+    },
+    [setCurrentPage],
+  );
+
+  const handleTabChange = useCallback((key: string | number) => {
+    setSelectedTab(key as TransactionKind);
+    setCurrentPage(1);
+  }, []);
 
   const tabs = [
     {
@@ -210,7 +208,7 @@ const TransactionTable = ({
       <CustomTabs
         aria-label="Transaction table tabs"
         tabs={tabs}
-        selectedKey={selected}
+        selectedKey={selectedTab}
         onSelectionChange={handleTabChange}
       />
 
@@ -221,7 +219,7 @@ const TransactionTable = ({
             aria-label="Transaction table pagination"
             totalPages={totalPage}
             currentPage={currentPage}
-            onPageChange={onPageChange}
+            onPageChange={handlePageChange}
           />
         </Box>
       )}
@@ -229,4 +227,4 @@ const TransactionTable = ({
   );
 };
 
-export default TransactionTable;
+export default memo(TransactionTable);

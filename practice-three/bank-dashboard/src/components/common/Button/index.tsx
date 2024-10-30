@@ -1,5 +1,4 @@
 import { extendVariants, Button as NextUIButton } from '@nextui-org/react';
-import { memo } from 'react';
 
 const Button = extendVariants(NextUIButton, {
   variants: {
@@ -33,4 +32,4 @@ const Button = extendVariants(NextUIButton, {
   },
 });
 
-export default memo(Button);
+export default Button;
